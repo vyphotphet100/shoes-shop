@@ -7,8 +7,9 @@ import com.group3.shoesshop.entity.PaymentMethodEntity;
 import com.group3.shoesshop.entity.UserEntity;
 import com.group3.shoesshop.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
-
+@Service
 public class PaymentMethodMapper extends BaseMapper<PaymentMethodDTO, PaymentMethodEntity>{
     @Autowired
     private UserRepository userRepo;

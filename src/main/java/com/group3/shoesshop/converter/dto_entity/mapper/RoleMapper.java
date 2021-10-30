@@ -7,7 +7,9 @@ import com.group3.shoesshop.entity.RoleEntity;
 import com.group3.shoesshop.entity.UserEntity;
 import com.group3.shoesshop.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class RoleMapper extends BaseMapper<RoleDTO, RoleEntity>{
     @Autowired
     private UserRepository userRepo;

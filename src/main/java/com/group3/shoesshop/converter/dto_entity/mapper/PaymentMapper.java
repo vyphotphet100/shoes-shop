@@ -4,7 +4,9 @@ import com.group3.shoesshop.dto.BaseDTO;
 import com.group3.shoesshop.dto.PaymentDTO;
 import com.group3.shoesshop.entity.BaseEntity;
 import com.group3.shoesshop.entity.PaymentEntity;
+import org.springframework.stereotype.Service;
 
+@Service
 public class PaymentMapper extends BaseMapper<PaymentDTO, PaymentEntity>{
     @Override
     public PaymentDTO mapToDTO(BaseEntity entity) {

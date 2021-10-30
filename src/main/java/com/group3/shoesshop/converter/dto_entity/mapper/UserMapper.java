@@ -7,7 +7,9 @@ import com.group3.shoesshop.repository.OrderItemRepository;
 import com.group3.shoesshop.repository.ProductRepository;
 import com.group3.shoesshop.repository.TransferPaymentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class UserMapper extends BaseMapper<UserDTO, UserEntity>{
     @Autowired
     private ProductRepository productRepo;

@@ -1,4 +1,8 @@
 package com.group3.shoesshop.service;
 
-public interface IOrderItemService extends IBaseService{
+import com.group3.shoesshop.dto.OrderItemDTO;
+
+public interface IOrderItemService extends IBaseService<OrderItemDTO>{
+    OrderItemDTO findOne(Integer id);
+    void delete(Integer id);
 }

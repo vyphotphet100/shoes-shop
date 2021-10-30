@@ -4,7 +4,9 @@ import com.group3.shoesshop.dto.BaseDTO;
 import com.group3.shoesshop.dto.OrderItemDTO;
 import com.group3.shoesshop.entity.BaseEntity;
 import com.group3.shoesshop.entity.OrderItemEntity;
+import org.springframework.stereotype.Service;
 
+@Service
 public class OrderItemMapper extends BaseMapper<OrderItemDTO, OrderItemEntity>{
     @Override
     public OrderItemDTO mapToDTO(BaseEntity entity) {

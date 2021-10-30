@@ -7,7 +7,9 @@ import com.group3.shoesshop.entity.CategoryEntity;
 import com.group3.shoesshop.entity.ProductEntity;
 import com.group3.shoesshop.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class CategoryMapper extends BaseMapper<CategoryDTO, CategoryEntity> {
     @Autowired
     private ProductRepository productRepo;
