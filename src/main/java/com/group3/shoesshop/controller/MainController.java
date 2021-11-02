@@ -1,21 +1,20 @@
 package com.group3.shoesshop.controller;
 
-import com.group3.shoesshop.dto.UserDTO;
-import com.group3.shoesshop.service.IUserService;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
-@RestController
-public class MainController {
+import javax.servlet.http.HttpServlet;
 
-    @Autowired
-    private IUserService userService;
+@Controller
+@RequestMapping("/test")
+public class MainController extends HttpServlet {
 
-    @GetMapping("/test")
-    public UserDTO test() {
-        UserDTO userDto = userService.findByUsernameAndPassword("user1", "123456");
-        return userDto;
+    @GetMapping
+    public ModelAndView test() {
+        ModelAndView modelAndView = new ModelAndView("test");
+        return modelAndView;
     }
 
 }
