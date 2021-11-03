@@ -3,3 +3,4 @@
 -UI:
 + Hoàn thành xong Customer list và Edit customer
 + Hoàn thành xong Edit Seller và Seller List
++ Hoàn thành xong Create seller
