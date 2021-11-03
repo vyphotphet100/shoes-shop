@@ -1,8 +1,8 @@
 package com.group3.shoesshop.service;
 
-import com.group3.shoesshop.dto.CategoryDTO;
+import com.group3.shoesshop.entity.CategoryEntity;
 
-public interface ICategoryService extends IBaseService<CategoryDTO>{
-    CategoryDTO findOne(String code);
+public interface ICategoryService extends IBaseService<CategoryEntity>{
+    CategoryEntity findOne(String code);
     void delete(String code);
 }

@@ -1,30 +1,30 @@
 package com.group3.shoesshop.service.impl;
 
-import com.group3.shoesshop.dto.CategoryDTO;
+import com.group3.shoesshop.entity.CategoryEntity;
 import com.group3.shoesshop.service.ICategoryService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class CategoryService extends BaseService<CategoryDTO> implements ICategoryService {
+public class CategoryService extends BaseService<CategoryEntity> implements ICategoryService {
     @Override
-    public List<CategoryDTO> findAll() {
+    public List<CategoryEntity> findAll() {
         return null;
     }
 
     @Override
-    public CategoryDTO save(CategoryDTO dto) {
+    public CategoryEntity save(CategoryEntity entity) {
         return null;
     }
 
     @Override
-    public CategoryDTO update(CategoryDTO dto) {
+    public CategoryEntity update(CategoryEntity entity) {
         return null;
     }
 
     @Override
-    public CategoryDTO findOne(String code) {
+    public CategoryEntity findOne(String code) {
         return null;
     }
 
