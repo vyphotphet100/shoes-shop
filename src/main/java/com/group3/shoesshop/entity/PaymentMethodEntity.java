@@ -12,6 +12,7 @@ import java.util.List;
 @Getter @Setter
 public class PaymentMethodEntity extends BaseEntity{
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @Column(name = "name")

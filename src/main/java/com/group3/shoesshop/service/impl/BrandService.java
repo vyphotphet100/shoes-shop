@@ -1,31 +1,31 @@
 package com.group3.shoesshop.service.impl;
 
-import com.group3.shoesshop.dto.BrandDTO;
+import com.group3.shoesshop.entity.BrandEntity;
 import com.group3.shoesshop.service.IBrandService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class BrandService extends BaseService<BrandDTO> implements IBrandService {
+public class BrandService extends BaseService<BrandEntity> implements IBrandService {
 
     @Override
-    public List<BrandDTO> findAll() {
+    public List<BrandEntity> findAll() {
         return null;
     }
 
     @Override
-    public BrandDTO save(BrandDTO dto) {
+    public BrandEntity save(BrandEntity entity) {
         return null;
     }
 
     @Override
-    public BrandDTO update(BrandDTO dto) {
+    public BrandEntity update(BrandEntity entity) {
         return null;
     }
 
     @Override
-    public BrandDTO findOne(String code) {
+    public BrandEntity findOne(String code) {
         return null;
     }
 

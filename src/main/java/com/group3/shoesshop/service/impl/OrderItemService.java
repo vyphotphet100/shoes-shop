@@ -1,30 +1,30 @@
 package com.group3.shoesshop.service.impl;
 
-import com.group3.shoesshop.dto.OrderItemDTO;
+import com.group3.shoesshop.entity.OrderItemEntity;
 import com.group3.shoesshop.service.IOrderItemService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class OrderItemService extends BaseService<OrderItemDTO> implements IOrderItemService {
+public class OrderItemService extends BaseService<OrderItemEntity> implements IOrderItemService {
     @Override
-    public List<OrderItemDTO> findAll() {
+    public List<OrderItemEntity> findAll() {
         return null;
     }
 
     @Override
-    public OrderItemDTO save(OrderItemDTO dto) {
+    public OrderItemEntity save(OrderItemEntity entity) {
         return null;
     }
 
     @Override
-    public OrderItemDTO update(OrderItemDTO dto) {
+    public OrderItemEntity update(OrderItemEntity entity) {
         return null;
     }
 
     @Override
-    public OrderItemDTO findOne(Integer id) {
+    public OrderItemEntity findOne(Integer id) {
         return null;
     }
 

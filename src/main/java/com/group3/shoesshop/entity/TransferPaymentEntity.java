@@ -12,6 +12,7 @@ import java.util.Date;
 public class TransferPaymentEntity extends BaseEntity{
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @Column(name = "transfer_date")

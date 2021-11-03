@@ -4,6 +4,6 @@ import java.util.List;
 
 public interface IBaseService<T> {
     List<T> findAll();
-    T save(T dto);
-    T update(T dto);
+    T save(T entity);
+    T update(T entity);
 }

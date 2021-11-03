@@ -1,30 +1,30 @@
 package com.group3.shoesshop.service.impl;
 
-import com.group3.shoesshop.dto.RoleDTO;
+import com.group3.shoesshop.entity.RoleEntity;
 import com.group3.shoesshop.service.IRoleService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class RoleService extends BaseService<RoleDTO> implements IRoleService {
+public class RoleService extends BaseService<RoleEntity> implements IRoleService {
     @Override
-    public List<RoleDTO> findAll() {
+    public List<RoleEntity> findAll() {
         return null;
     }
 
     @Override
-    public RoleDTO save(RoleDTO dto) {
+    public RoleEntity save(RoleEntity entity) {
         return null;
     }
 
     @Override
-    public RoleDTO update(RoleDTO dto) {
+    public RoleEntity update(RoleEntity entity) {
         return null;
     }
 
     @Override
-    public RoleDTO findOne(String code) {
+    public RoleEntity findOne(String code) {
         return null;
     }
 

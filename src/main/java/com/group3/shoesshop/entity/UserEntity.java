@@ -15,6 +15,7 @@ import java.util.List;
 public class UserEntity extends BaseEntity {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @Column(name = "first_name")
@@ -27,6 +28,7 @@ public class UserEntity extends BaseEntity {
     private String gender;
 
     @Column(name = "birthday")
+    @Temporal(TemporalType.DATE)
     private Date birthday;
 
     @Column(name = "address", columnDefinition = "TEXT")
@@ -44,7 +46,7 @@ public class UserEntity extends BaseEntity {
     @Column(name = "password")
     private String password;
 
-    @Column(name = "is_active")
+    @Column(name = "is_active", columnDefinition = "BOOLEAN")
     private Boolean isActive;
 
     @ManyToOne

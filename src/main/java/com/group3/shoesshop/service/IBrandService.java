@@ -1,8 +1,8 @@
 package com.group3.shoesshop.service;
 
-import com.group3.shoesshop.dto.BrandDTO;
+import com.group3.shoesshop.entity.BrandEntity;
 
-public interface IBrandService extends IBaseService<BrandDTO>{
-    BrandDTO findOne(String code);
+public interface IBrandService extends IBaseService<BrandEntity>{
+    BrandEntity findOne(String code);
     void delete(String code);
 }

@@ -11,6 +11,7 @@ import javax.persistence.*;
 public class OrderItemEntity extends BaseEntity{
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @Column(name = "quantity_bought")

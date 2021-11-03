@@ -1,8 +1,8 @@
 package com.group3.shoesshop.service;
 
-import com.group3.shoesshop.dto.PaymentMethodDTO;
+import com.group3.shoesshop.entity.PaymentMethodEntity;
 
-public interface IPaymentMethodService extends IBaseService<PaymentMethodDTO>{
-    PaymentMethodDTO findOne(Integer id);
+public interface IPaymentMethodService extends IBaseService<PaymentMethodEntity>{
+    PaymentMethodEntity findOne(Integer id);
     void delete(Integer id);
 }
