@@ -1,0 +1,81 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.page__container {
+  background-color: #e4e4e4;
+  width: 100%;
+  margin-top: 30px;
+  height: auto;
+  margin-bottom: 50px;
+  padding: 30px 0;
+}
+.page__container .page__title {
+  font-size: 28px;
+  color: #222222;
+  padding: 15px 50px;
+  margin-top: 10px;
+}
+.page__container .add__btn {
+  margin-top: 15px;
+  margin-right: 40px;
+  width: 150px;
+  height: 40px;
+  background-color: #ffda52;
+  padding: 5px;
+}
+.page__container .add__btn:hover {
+  background-color: #ffc107;
+}
+.page__container .basic__product__info {
+  padding: 24px;
+  width: 700px;
+  height: auto;
+  border: 1px solid #222222;
+  border-radius: 2px;
+  background-color: white;
+  margin-left: 20px;
+}
+#upload {
+  opacity: 0;
+}
+
+#upload-label {
+  position: absolute;
+  top: 50%;
+  left: 1rem;
+  transform: translateY(-50%);
+}
+
+.image-area {
+  border: 2px dashed rgba(255, 255, 255, 0.7);
+  padding: 1rem;
+  position: relative;
+}
+
+.image-area::before {
+  content: "Uploaded image result";
+  color: #fff;
+  font-weight: bold;
+  text-transform: uppercase;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 0.8rem;
+  z-index: 1;
+}
+
+.image-area img {
+  z-index: 2;
+  position: relative;
+}
+.page__container .price__product {
+  height: auto !important;
+  width: auto;
+  background-color: white;
+  border: 1px solid #222222;
+  margin-right: 20px;
+  padding: 24px;
+}

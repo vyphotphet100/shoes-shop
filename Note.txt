@@ -1,8 +1,15 @@
 - Thiết kế Service Layer
 
 -UI:
-+ Hoàn thành xong Customer list và Edit customer
-+ Hoàn thành xong Edit Seller và Seller List
-+ Hoàn thành xong Create seller
-+ Hoàn thành xong catalog (product)
-+ Hoàn thành xong Order
+  + Customer
+    + Hoàn thành xong Customer list và Edit customer
+    + Hoàn thành xong Edit Seller và Seller List
+    + Hoàn thành xong Create seller
+    + Hoàn thành xong catalog (product)
+    + Hoàn thành xong Order
+    + Thiếu Login
+  + Seller
+    + Hoàn thành customer path
+    + Hoàn thành Catalog
+    + Hoàn thành orders
+    + Thiếu Login
