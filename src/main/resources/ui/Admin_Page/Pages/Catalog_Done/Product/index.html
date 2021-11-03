@@ -38,21 +38,24 @@
                     </div>
                     <div class="btn__group col">
                         <div class="dropdown float-end">
-                            <button class="btn btn-outline-secondary" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                            <button class="btn btn-outline-secondary" type="button" id="dropdownMenuButton1"
+                                data-bs-toggle="dropdown" aria-expanded="false">
                                 <span>
-                                    <img style="height: 20px; width: 20px;" src="https://scontent.fdad2-1.fna.fbcdn.net/v/t1.6435-9/171619300_1092543814590800_1632394128569325001_n.jpg?_nc_cat=108&ccb=1-5&_nc_sid=09cbfe&_nc_ohc=P560_w3_4aMAX83vWZW&_nc_ht=scontent.fdad2-1.fna&oh=5b8190fd275affaaf37019f3cd0b206a&oe=61A3FFE8" alt="">
+                                    <img style="height: 20px; width: 20px;"
+                                        src="https://scontent.fdad2-1.fna.fbcdn.net/v/t1.6435-9/171619300_1092543814590800_1632394128569325001_n.jpg?_nc_cat=108&ccb=1-5&_nc_sid=09cbfe&_nc_ohc=P560_w3_4aMAX83vWZW&_nc_ht=scontent.fdad2-1.fna&oh=5b8190fd275affaaf37019f3cd0b206a&oe=61A3FFE8"
+                                        alt="">
                                 </span>
-                                Username here!  
+                                Username here!
                             </button>
                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                              <li><a class="dropdown-item" href="#">Profile</a></li>
-                              <li><a class="dropdown-item" href="#">Settings</a></li>
-                              <li><a class="dropdown-item" href="#">Sign Out</a></li>
+                                <li><a class="dropdown-item" href="#">Profile</a></li>
+                                <li><a class="dropdown-item" href="#">Settings</a></li>
+                                <li><a class="dropdown-item" href="#">Sign Out</a></li>
                             </ul>
-                          </div>
+                        </div>
                     </div>
-                    
-                    
+
+
                 </div>
             </nav>
             <div class="page__container">
@@ -79,11 +82,13 @@
                                     <option value="1">Nike</option>
                                     <option value="2">Adidas</option>
                                     <option value="3">Puma</option>
-                                  </select>
+                                </select>
                             </div>
                             <div class="mb-3">
                                 <label class="form-label">Product Description</label>
-                                <textarea class="form-control" style="height: 150px;" placeholder="Give customer some Product's Description here!" id="floatingTextarea"></textarea>
+                                <textarea class="form-control" style="height: 150px;"
+                                    placeholder="Give customer some Product's Description here!"
+                                    id="floatingTextarea"></textarea>
                             </div>
                         </form>
                         <div class="row py-4">
@@ -92,20 +97,29 @@
                                     Product Image
                                 </label>
                                 <!-- Upload image input-->
-                                <div class="input-group mb-3 px-2 py-2 bg-white shadow-sm" style="border: 1px solid #777777">
-                                    <input id="upload" type="file" onchange="readURL(this);" class="form-control border-0">
-                                    <label id="upload-label" for="upload" class="font-weight-light text-muted">Choose file</label>
+                                <div class="input-group mb-3 px-2 py-2 bg-white shadow-sm"
+                                    style="border: 1px solid #777777">
+                                    <input id="upload" type="file" onchange="readURL(this);"
+                                        class="form-control border-0">
+                                    <label id="upload-label" for="upload" class="font-weight-light text-muted">Choose
+                                        file</label>
                                     <div class="input-group-append">
-                                        <label  style="border: 1px solid #777777" for="upload" class="btn btn-light m-0 rounded-pill px-4"> <i class="fa fa-cloud-upload mr-2 text-muted"></i><small class="text-uppercase font-weight-bold text-muted"> Choose file</small></label>
+                                        <label style="border: 1px solid #777777" for="upload"
+                                            class="btn btn-light m-0 rounded-pill px-4"> <i
+                                                class="fa fa-cloud-upload mr-2 text-muted"></i><small
+                                                class="text-uppercase font-weight-bold text-muted"> Choose
+                                                file</small></label>
                                     </div>
                                 </div>
-                    
+
                                 <!-- Uploaded image area-->
-                                <p  class="font-italic text-white ">The image uploaded will be rendered inside the box below.</p>
-                                <div class="image-area" style="margin-top: -50px;"><img id="imageResult" src="#" alt="" class="img-fluid rounded shadow-sm mx-auto d-block"></div>
+                                <p class="font-italic text-white ">The image uploaded will be rendered inside the box
+                                    below.</p>
+                                <div class="image-area" style="margin-top: -50px;"><img id="imageResult" src="#" alt=""
+                                        class="img-fluid rounded shadow-sm mx-auto d-block"></div>
                             </div>
                         </div>
-    
+
                     </div>
                     <div style="width: 25px"></div>
                     <div class="price__product col">
@@ -117,12 +131,14 @@
                                 <label class="form-label">Price</label>
                                 <div class="input-group mb-3">
                                     <span class="input-group-text">Price</span>
-                                    <input type="number" class="form-control" aria-label="Amount (to the nearest dollar)">
+                                    <input type="number" class="form-control"
+                                        aria-label="Amount (to the nearest dollar)">
                                     <span class="input-group-text">VND</span>
                                 </div>
                                 <div class="input-group mb-3">
                                     <span class="input-group-text">Old price</span>
-                                    <input disabled type="number" class="form-control" aria-label="Amount (to the nearest dollar)">
+                                    <input disabled type="number" class="form-control"
+                                        aria-label="Amount (to the nearest dollar)">
                                     <span class="input-group-text">VND</span>
                                 </div>
                             </div>
@@ -133,21 +149,63 @@
                                     <option value="1">Men's shoes</option>
                                     <option value="2">Women's shoes</option>
                                     <option value="3">Clothers</option>
-                                  </select>                                
+                                </select>
                             </div>
                             <div class="mb-3">
-                                <label class="form-label">Inventory</label>
-                                <select class="form-select" aria-label="Default select example">
-                                    <option selected>Select category</option>
-                                    <option value="1">Men's shoes</option>
-                                    <option value="2">Women's shoes</option>
-                                    <option value="3">Clothers</option>
-                                </select>                                
+                                <label class="form-label mb-3">Inventory</label>
+                                <div class="container row">
+                                    <div class="col">
+                                        <h6>Select Size</h6>
+                                        <div class="form-check mb-3">
+                                            <input style="width: 23px; height: 25px; margin-right: 10px;" class="form-check-input" type="checkbox">
+                                            <label style="font-size: 25px;" class="form-check-label">
+                                                37
+                                            </label>
+                                        </div>
+                                        <div class="form-check mb-3">
+                                            <input style="width: 23px; height: 25px; margin-right: 10px;" class="form-check-input" type="checkbox">
+                                            <label style="font-size: 25px;" class="form-check-label">
+                                                37
+                                            </label>
+                                        </div>
+                                        <div class="form-check mb-3">
+                                            <input style="width: 23px; height: 25px; margin-right: 10px;" class="form-check-input" type="checkbox">
+                                            <label style="font-size: 25px;" class="form-check-label">
+                                                37
+                                            </label>
+                                        </div>
+                                        <div class="form-check mb-3">
+                                            <input style="width: 23px; height: 25px; margin-right: 10px;" class="form-check-input" type="checkbox">
+                                            <label style="font-size: 25px;" class="form-check-label">
+                                                37
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <h6>Quantity</h6>
+                                        <div class="input-group mb-3">
+                                            <span class="input-group-text">Quantity</span>
+                                            <input type="text" class="form-control">
+                                          </div>
+                                          <div class="input-group mb-3">
+                                            <span class="input-group-text">Quantity</span>
+                                            <input type="text" class="form-control">
+                                          </div>
+                                          <div class="input-group mb-3">
+                                            <span class="input-group-text">Quantity</span>
+                                            <input type="text" class="form-control">
+                                          </div>
+                                          <div class="input-group mb-3">
+                                            <span class="input-group-text">Quantity</span>
+                                            <input type="text" class="form-control">
+                                          </div>
+                                    </div>
+                                </div>
                             </div>
                         </form>
                     </div>
                 </div>
-                
+
             </div>
             <div id="footer"></div>
         </div>
