@@ -13,3 +13,9 @@
     + Hoàn thành Catalog
     + Hoàn thành orders
     + Thiếu Login
+
+- Module hóa header.
+- Cấu trúc lại UI:
+    + static: để các file sources (js, css, png, ...).
+    + templates: để các file html.
+    + Cấu trúc và tên ở 2 folders là như nhau.
