@@ -1,0 +1,17 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+body{
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    background-color: #f8f9fa;
+}
+.card{
+    margin-top: 130px;
+    width: 500px;
+    height: auto;
+    padding: 10px 20px;
+}
