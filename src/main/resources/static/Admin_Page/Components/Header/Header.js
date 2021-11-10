@@ -1,5 +1,7 @@
 $(document).ready(function() {
     $("#header").before(`
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
 <nav style="background-color: whitesmoke; padding: 15px 0;" class="sticky-top">
             <div class="nav__container row">
                 <div class="input-group col">
@@ -12,7 +14,7 @@ $(document).ready(function() {
                 </div>
                 <div class="btn__group col">
                     <div class="dropdown float-end">
-                        <button class="btn btn-outline-secondary" type="button" id="dropdownMenuButton1"
+                        <button th:utext="${buyer.username}" class="btn btn-outline-secondary" type="button" id="dropdownMenuButton1"
                                 data-bs-toggle="dropdown" aria-expanded="false">
                                 <span>
                                     <img style="height: 20px; width: 20px;"
