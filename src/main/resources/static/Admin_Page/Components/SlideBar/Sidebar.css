@@ -64,6 +64,9 @@ a:focus {
   transition: all 0.3s;
   position: sticky;
 }
+#side__bar {
+  background: #3d464d;
+}
 
 #sidebar.active {
   margin-left: -250px;

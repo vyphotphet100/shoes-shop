@@ -8,13 +8,13 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServlet;
 
 @Controller
-@RequestMapping("/test")
 public class MainController extends HttpServlet {
 
-    @GetMapping
+    @GetMapping(value = "/test")
     public ModelAndView test() {
         // a
         ModelAndView modelAndView = new ModelAndView("test");
+        modelAndView.addObject("test", "Xin chao");
         return modelAndView;
     }
 
