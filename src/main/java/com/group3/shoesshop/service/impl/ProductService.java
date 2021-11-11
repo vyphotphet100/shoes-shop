@@ -3,6 +3,7 @@ package com.group3.shoesshop.service.impl;
 import com.group3.shoesshop.entity.ProductEntity;
 import com.group3.shoesshop.repository.ProductRepository;
 import com.group3.shoesshop.service.IProductService;
+import com.group3.shoesshop.utils.MyUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.BeanWrapper;
 import org.springframework.beans.BeanWrapperImpl;
@@ -17,9 +18,6 @@ import java.util.Set;
 @Service
 public class ProductService extends BaseService<ProductEntity> implements IProductService {
     @Autowired
-    private EntityManager em;
-
-    @Autowired
     private ProductRepository productRepo;
 
     @Override
@@ -29,7 +27,10 @@ public class ProductService extends BaseService<ProductEntity> implements IProdu
 
     @Override
     public ProductEntity save(ProductEntity entity) {
-        return null;
+        entity.setCode(MyUtils.generateRandomString(5));
+        ProductEntity productEntity = productRepo.save(entity);
+        productEntity.setMessage("Add product successfully");
+        return productEntity;
     }
 
     @Override
