@@ -3,7 +3,6 @@ package com.group3.shoesshop.controller.admin;
 import com.group3.shoesshop.converter.dto_entity.DTOEntityConverter;
 import com.group3.shoesshop.converter.dto_entity.mapper.UserMapper;
 import com.group3.shoesshop.dto.UserDTO;
-import com.group3.shoesshop.entity.OrderItemEntity;
 import com.group3.shoesshop.entity.UserEntity;
 import com.group3.shoesshop.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-@Controller()
+@Controller
 public class CustomerController {
     @Autowired
     private IUserService userService;
