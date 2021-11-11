@@ -1,6 +1,7 @@
 package com.group3.shoesshop.service.impl;
 
 import com.group3.shoesshop.converter.dto_entity.mapper.UserMapper;
+import com.group3.shoesshop.entity.OrderItemEntity;
 import com.group3.shoesshop.entity.UserEntity;
 import com.group3.shoesshop.repository.UserRepository;
 import com.group3.shoesshop.service.IUserService;
@@ -38,6 +39,13 @@ public class UserService extends BaseService<UserEntity> implements IUserService
         UserEntity userEntity = userRepo.findById(entity.getId()).orElse(null);
         if (userEntity == null)
             return this.exceptionObject(new UserEntity(), "This user id does not exist.");
+
+        userEntity.setFirstName(entity.getFirstName());
+        userEntity.setLastName(entity.getLastName());
+        userEntity.setEmail(entity.getEmail());
+        userEntity.setGender(entity.getGender());
+        userEntity.setPhone(entity.getPhone());
+        userEntity.setAddress(entity.getAddress());
 
         userEntity = userRepo.save(userEntity);
         userEntity.setMessage("Update information successfully.");
@@ -78,4 +86,27 @@ public class UserService extends BaseService<UserEntity> implements IUserService
     public List<UserEntity> findAllBuyer() {
         return userRepo.findAllByRoleCode("BUYER");
     }
+
+    @Override
+    public Integer getOrderedItem(Integer customerId) {
+        UserEntity customer = userRepo.findById(customerId).orElse(null);
+
+        Integer ordered = 0;
+        for (OrderItemEntity orderItem: customer.getOrderItems())
+            ordered += orderItem.getQuantityBought();
+
+        return ordered;
+    }
+
+    @Override
+    public float getTotalSpent(Integer customerId) {
+        UserEntity customer = userRepo.findById(customerId).orElse(null);
+
+        float totalSpent=0;
+        for (OrderItemEntity orderItem: customer.getOrderItems())
+            totalSpent += orderItem.getTotalCost();
+
+        return totalSpent;
+    }
+
 }
