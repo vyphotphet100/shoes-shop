@@ -1,15 +1,13 @@
 package com.group3.shoesshop.controller.admin;
 
 import com.group3.shoesshop.entity.ProductEntity;
+import com.group3.shoesshop.entity.UserEntity;
 import com.group3.shoesshop.service.IBrandService;
 import com.group3.shoesshop.service.ICategoryService;
 import com.group3.shoesshop.service.IProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
@@ -50,6 +48,35 @@ public class ProductController {
     public ModelAndView editProductPut(@ModelAttribute("product") ProductEntity product) {
         productService.update(product);
         return this.editProductGet(product.getCode());
+    }
+
+
+    @GetMapping(value = "/admin/product/add")
+    public ModelAndView addProductGet(ProductEntity product) {
+        ModelAndView mav = new ModelAndView("Admin_Page/Pages/Catalog/AddProduct/index");
+
+        if (product == null)
+            mav.addObject("product", new ProductEntity());
+        else
+            mav.addObject("product", product);
+        mav.addObject("brands", brandService.findAll());
+        mav.addObject("categories", categoryService.findAll());
+
+        return mav;
+    }
+
+    @PostMapping(value = "/admin/product/add")
+    public ModelAndView addProductPost(@ModelAttribute("product") ProductEntity product) {
+        //ModelAndView mav = new ModelAndView("Admin_Page/Pages/Catalog/AddProduct/index");
+
+        product.setInStock(true);
+        product.setRating(5);
+        UserEntity seller = new UserEntity();
+        seller.setId(1);
+        product.setSeller(seller);
+        product = productService.save(product);
+
+        return this.addProductGet(product);
     }
 
 }

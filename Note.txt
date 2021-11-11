@@ -18,8 +18,13 @@
 
 - Backend:
     + Hoàn thành:
-        + Customer
+        + Admin:
+            + Customer (included service)
+            + Catalog (included service)
+            + Views layer
 
     + Những thứ chưa xong nhưng chưa cần làm:
         + Delete user
         + Search user
+        + Delete product
+        + Upload product picture

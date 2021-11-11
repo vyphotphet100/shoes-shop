@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="utf-8">
@@ -14,48 +15,21 @@
         integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-    <link rel="stylesheet" href="../../../../../ui/Admin_Page/Components/SlideBar/Sidebar.css">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="/Admin_Page/Pages/Seller/SellerList/style.css">
 
-    <script src="https://kit.fontawesome.com/e82e1ec9a6.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
     <div class="wrapper">
         <!-- Sidebar  -->
-        <div id="side__bar"></div>
+        <div id="side__bar">
+            <div th:replace="/Admin_Page/Components/SlideBar/Sidebar :: sidebar"></div>
+        </div>
         <!-- Page Content  -->
         <div id="content">
-            <nav style="background-color: whitesmoke; padding: 15px 0;" class="sticky-top">
-                <div class="nav__container row">
-                    <div class="input-group col">
-                        <button type="button" id="sidebarCollapse" class="btn btn-info">
-                            <i class="fas fa-align-justify"></i>
-                        </button>
-                        <span style="width: 40px"></span>
-                        <span class="input-group-text" id="basic-addon1"><i class="fas fa-search"></i></span>
-                        <input type="text" class="form-control" placeholder="Search everthings you need!">
-                    </div>
-                    <div class="btn__group col">
-                        <div class="dropdown float-end">
-                            <button class="btn btn-outline-secondary" type="button" id="dropdownMenuButton1"
-                                data-bs-toggle="dropdown" aria-expanded="false">
-                                <span>
-                                    <img style="height: 20px; width: 20px;"
-                                        src="https://scontent.fdad2-1.fna.fbcdn.net/v/t1.6435-9/171619300_1092543814590800_1632394128569325001_n.jpg?_nc_cat=108&ccb=1-5&_nc_sid=09cbfe&_nc_ohc=P560_w3_4aMAX83vWZW&_nc_ht=scontent.fdad2-1.fna&oh=5b8190fd275affaaf37019f3cd0b206a&oe=61A3FFE8"
-                                        alt="">
-                                </span>
-                                Username here!
-                            </button>
-                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                <li><a class="dropdown-item" href="#">Profile</a></li>
-                                <li><a class="dropdown-item" href="#">Settings</a></li>
-                                <li><a class="dropdown-item" href="#">Sign Out</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </nav>
+            <div id="header">
+                <div th:replace="/Admin_Page/Components/Header/Header :: header"></div>
+            </div>
             <div class="page__container">
                 <div class="page__top row">
                     <h1 class="page__title col">
@@ -110,7 +84,9 @@
                       </table>
                 </div>
             </div>
-            <div id="footer"></div>
+            <div id="footer">
+                <div th:replace="/Admin_Page/Components/Footer/Footer :: footer"></div>
+            </div>
         </div>
     </div>
     <script src="https://kit.fontawesome.com/e82e1ec9a6.js" crossorigin="anonymous"></script>
@@ -124,10 +100,8 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
         crossorigin="anonymous"></script>
-    <script src="../../../../../ui/Admin_Page/Components/SlideBar/Sidebar.js"></script>
-    <script src="../../../../../ui/Admin_Page/Components/SlideBar/main.js"></script>
-    <script src="../../../../../ui/Admin_Page/Components/Footer/Footer.js"></script>
 
-    <script type="text/javascript" src="main.js"></script>
+    <script type="text/javascript" src="/Admin_Page/Pages/Seller/SellerList/main.js"></script>
+    <script src="https://kit.fontawesome.com/e82e1ec9a6.js" crossorigin="anonymous"></script>
 </body>
 </html>
