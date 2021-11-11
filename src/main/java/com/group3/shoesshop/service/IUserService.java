@@ -12,4 +12,7 @@ public interface IUserService extends IBaseService<UserEntity>{
     List<UserEntity> findAllSeller();
     List<UserEntity> findAllBuyer();
 
+    Integer getOrderedItem(Integer customerId);
+    float getTotalSpent(Integer customerId);
+
 }

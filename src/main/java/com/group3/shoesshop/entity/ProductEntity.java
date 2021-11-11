@@ -24,6 +24,9 @@ public class ProductEntity extends BaseEntity{
     @Column(name = "size")
     private Integer size;
 
+    @Column(name = "price")
+    private float price;
+
     @Column(name = "quantity")
     private Integer quantity;
 
