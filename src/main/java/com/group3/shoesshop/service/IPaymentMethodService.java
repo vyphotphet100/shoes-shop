@@ -4,5 +4,5 @@ import com.group3.shoesshop.entity.PaymentMethodEntity;
 
 public interface IPaymentMethodService extends IBaseService<PaymentMethodEntity>{
     PaymentMethodEntity findOne(Integer id);
-    void delete(Integer id);
+    PaymentMethodEntity delete(Integer id);
 }

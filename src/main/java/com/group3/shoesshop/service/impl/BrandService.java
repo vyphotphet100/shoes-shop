@@ -35,7 +35,7 @@ public class BrandService extends BaseService<BrandEntity> implements IBrandServ
     }
 
     @Override
-    public void delete(String code) {
-
+    public BrandEntity delete(String code) {
+        return null;
     }
 }

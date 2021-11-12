@@ -29,7 +29,7 @@ public class RoleService extends BaseService<RoleEntity> implements IRoleService
     }
 
     @Override
-    public void delete(String code) {
-
+    public RoleEntity delete(String code) {
+        return null;
     }
 }

@@ -54,7 +54,8 @@ public class TransferPaymentService extends BaseService<TransferPaymentEntity> i
     }
 
     @Override
-    public void delete(Integer id) {
+    public TransferPaymentEntity delete(Integer id) {
 
+        return null;
     }
 }

@@ -35,7 +35,7 @@ public class CategoryService extends BaseService<CategoryEntity> implements ICat
     }
 
     @Override
-    public void delete(String code) {
-
+    public CategoryEntity delete(String code) {
+        return null;
     }
 }

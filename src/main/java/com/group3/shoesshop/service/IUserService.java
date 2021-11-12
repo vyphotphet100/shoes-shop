@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface IUserService extends IBaseService<UserEntity>{
     UserEntity findOne(Integer id);
-    void delete(Integer id);
+    UserEntity delete(Integer id);
 
     UserEntity findByUsernameAndPassword(String username, String password);
     List<UserEntity> findAllSeller();

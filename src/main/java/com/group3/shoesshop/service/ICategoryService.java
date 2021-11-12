@@ -4,5 +4,5 @@ import com.group3.shoesshop.entity.CategoryEntity;
 
 public interface ICategoryService extends IBaseService<CategoryEntity>{
     CategoryEntity findOne(String code);
-    void delete(String code);
+    CategoryEntity delete(String code);
 }
