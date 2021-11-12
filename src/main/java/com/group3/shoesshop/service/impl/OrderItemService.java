@@ -29,7 +29,7 @@ public class OrderItemService extends BaseService<OrderItemEntity> implements IO
     }
 
     @Override
-    public void delete(Integer id) {
-
+    public OrderItemEntity delete(Integer id) {
+        return null;
     }
 }

@@ -29,7 +29,7 @@ public class PaymentService extends BaseService<PaymentEntity> implements IPayme
     }
 
     @Override
-    public void delete(Integer id) {
-
+    public PaymentEntity delete(Integer id) {
+        return null;
     }
 }

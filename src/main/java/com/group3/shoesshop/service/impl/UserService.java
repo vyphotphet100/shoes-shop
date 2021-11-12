@@ -62,8 +62,15 @@ public class UserService extends BaseService<UserEntity> implements IUserService
     }
 
     @Override
-    public void delete(Integer id) {
+    public UserEntity delete(Integer id) {
+        UserEntity userEntity = userRepo.findById(id).orElse(null);
+        if (userEntity == null)
+            return this.exceptionObject(new UserEntity(), "This user does not exist");
 
+        userEntity.setIsActive(false);
+        userEntity = this.update(userEntity);
+        userEntity.setMessage("Delete user successfully");
+        return userEntity;
     }
 
     @Override
