@@ -6,12 +6,10 @@ import com.group3.shoesshop.dto.UserDTO;
 import com.group3.shoesshop.entity.UserEntity;
 import com.group3.shoesshop.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
@@ -34,6 +32,13 @@ public class CustomerController {
         modelAndView.addObject("customers", userService.findAllBuyer());
 
         return modelAndView;
+    }
+
+    @DeleteMapping(value = "/admin/customer/delete")
+    public ResponseEntity<UserDTO> deleteCustomer(@RequestParam Integer id) {
+        UserEntity userEntity = userService.delete(id);
+        UserDTO userDto = dtoEntityConverter.toDTO(userEntity, userMapper);
+        return new ResponseEntity<UserDTO>(userDto, userDto.getHttpStatus());
     }
 
     @GetMapping(value = "/admin/customer/edit")

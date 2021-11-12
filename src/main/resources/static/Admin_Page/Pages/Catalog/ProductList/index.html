@@ -83,7 +83,7 @@
                             <td>
                                 <div class="btn__action">
                                     <a th:href="'edit?code=' + ${product.code}" class="btn btn-warning" type="button">Edit</a>
-                                    <button type="button" class="btn btn-danger">Delete</button>
+                                    <button th:attr="onclick=|deleteProduct('${product.code}');|" type="button" class="btn btn-danger">Delete</button>
                                 </div>
                             </td>
                           </tr>

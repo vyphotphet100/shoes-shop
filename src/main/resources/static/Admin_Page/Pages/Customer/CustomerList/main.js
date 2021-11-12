@@ -20,9 +20,24 @@ $(function () {
 var input = document.getElementById( 'upload' );
 var infoArea = document.getElementById( 'upload-label' );
 
-input.addEventListener( 'change', showFileName );
-function showFileName( event ) {
-  var input = event.srcElement;
-  var fileName = input.files[0].name;
-  infoArea.textContent = 'File name: ' + fileName;
+
+function deleteCustomer(id) {
+    if (!confirm('Are you sure to delete this user?'))
+        return;
+
+    var user = $.ajax({
+        url: '/admin/customer/delete?id=' + id,
+        type: 'DELETE',
+        async: false,
+        contentType: 'application/json',
+        success: function(userEntity) {
+            return userEntity;
+        },
+        error: function(error) {
+            return error;
+        }
+    }).responseJSON;
+
+    alert(user.message);
+    window.location.reload();
 }

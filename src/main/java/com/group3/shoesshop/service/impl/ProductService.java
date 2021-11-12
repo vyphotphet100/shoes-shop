@@ -8,6 +8,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -17,7 +18,7 @@ public class ProductService extends BaseService<ProductEntity> implements IProdu
 
     @Override
     public List<ProductEntity> findAll() {
-        return productRepo.findAll();
+        return productRepo.findAllByIsAvailable(true);
     }
 
     @Override
@@ -51,7 +52,9 @@ public class ProductService extends BaseService<ProductEntity> implements IProdu
         if (productEntity == null)
             return this.exceptionObject(new ProductEntity(), "This product does not exist");
 
-        //productEntity.setIn
-        return null;
+        productEntity.setIsAvailable(false);
+        productEntity = this.update(productEntity);
+        productEntity.setMessage("Delete product successfully");
+        return productEntity;
     }
 }
