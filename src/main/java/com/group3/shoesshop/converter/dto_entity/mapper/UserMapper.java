@@ -29,7 +29,7 @@ public class UserMapper extends BaseMapper<UserDTO, UserEntity>{
 
         // products
         if (userEntity.getProducts() != null)
-            for (ProductEntity productEntity : ((CategoryEntity) entity).getProducts())
+            for (ProductEntity productEntity : ((UserEntity) entity).getProducts())
                 userDto.getProductCodes().add(productEntity.getCode());
 
         // order items

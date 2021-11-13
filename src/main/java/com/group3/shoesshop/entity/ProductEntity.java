@@ -39,6 +39,9 @@ public class ProductEntity extends BaseEntity{
     @Column(name = "picture_url", columnDefinition = "TEXT")
     private String pictureUrl;
 
+    @Column(name = "is_available", columnDefinition = "BOOLEAN")
+    private Boolean isAvailable;
+
     @ManyToOne
     @JoinColumn(name = "seller_id")
     private UserEntity seller;

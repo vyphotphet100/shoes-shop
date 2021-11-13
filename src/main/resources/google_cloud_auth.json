@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "kinetic-highway-331915",
+  "private_key_id": "40ccf03f810015547bd22f24eaf1978168c6be9d",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEuwIBADANBgkqhkiG9w0BAQEFAASCBKUwggShAgEAAoIBAQDRiZ1mvRDZYc8d\nIQg85L8vi+UApOpY/Hk3gGnIT8Xx2FKpZkguRNG1THfoZ67I/tzM9VQ7dXgya0bm\nJBBWY6tXLEFswlMw0P8nQpRa7M5ShRny3X/Mi8HmrqRmk7nSZGv6Zj32rDiJxClU\nOUSTP8uhJ8S6byA3LtJE7FX4CJuetZH6ZNZt8q5QZI/bjzrZsyTpT8uSXKNSEGc3\nADCt89WsY893KBSRQg+I4QiEN1n+0h5KK+WqoRU5uzkSyNICmLx6tzk4q577G9YK\nH8TERFBLSlBoFEsNjfuTyh8xm2mjcpmVFXzbyxYPi/wL13L9kPQ+SNLVsfvbbDY9\n1wR+8URtAgMBAAECgf8HgLtMx82n+wNE3RSZGZe+8W4XF9ChtGiivsu1iyW2AzOd\nMoxjG75mlNZg/AAbh69gUhMyDdgVS2y+e4waNndsJ6mFZhqUejyoqzmksoCwyRNP\ndEmfNAyStgOCU3J+lhnyXWGFSPq9SXOGuzDkFOS1teGAIM/b1Kay0Rjtngv0eCYA\nGySz/077ugAR+L7L067YXxqdg/iCJKuWraDAwfiZo2BoZCGdnJzn6qzjRpmgszjZ\ndXL1pHAkAc0aLzql/FuBV79QLrVt1OZeJ5h/iITicJGKG0gLcGIlqodogHWYp0Yh\nm2zxpA0vtAuU+qPrKt8GAYD5p0KXpiDUmlEGJjcCgYEA7Oplix6ZlaITMdJROo2X\nTN0jW3psbLACsOM6B0+7oYRyFenIWiLt7VK0VguOhOx5hL57hK/hjYZfwu0n8kGe\nr7Drm45amUXbCNIuSIOKGoGPPUlHpgQypsrGa0iBvjOhe3Ng5qjcRtlv2f6hYH2l\nyQ9LxoGZNKBhXHOM+bxk3BMCgYEA4mqi158ziO6AXw6uNVNm5dwbPUMlqlRl0G9H\nGKvi0bnWcnNHXSZgXjoAiWLAcV2+ijLbPgYoykUuil3iF58MgWcc/7WWOnL2c937\n0Gurw7hDXiyHLHLo+fGFxHPg2+WvgTxMmW2WgEGcpbjAJ/mmkOfy+j0W3EuLq9HM\n60p8bX8CgYAm19NoOM8jilwtSfdJa1eIIaWfZPYL59u5Frg35Km1tJpj312a8aki\nxPGOPfzS7FaMHhLwUUngw0xGEE4BWSLkWVR3v6I5CQv9aUBvYSmuaNmMScx2eq+3\nSv23Lz8eaSarr+IOT1c2QoYlLqtUv6UDzv80f6EX0MfFuag+ddXvgwKBgCCtyXEb\nnkGOQuL1aHlz3y8f9KKD9YS/B67s0LMj4+nnS6dbMhqktlYDQx6RLTtvj1e8/V3X\nX73J/GymHkLQhuqKamoR2Gv5Oc8BZB3x3Gm0R6zo+l2U/EFO9cKkAvlaDlm1zUx7\nv7QlRCm7H6jlZIAXqj8p4AnNsYwMDOqM5qabAoGBAN52hMopup3F+wUQ0aQAzyHJ\ngzqmtyRX55GXTLGRpCwfSEHfjeeY3eNdHRmu1tVqBAMYyyj1oI72rAVnh+zv2hmR\nm0vplerYAbflUhda8ziLCSf29N/HEwuJGVe23Re2SyIhEaUtkYzKOmbLbPWaGDga\nywJI8RSJREvzjMgaUfVe\n-----END PRIVATE KEY-----\n",
+  "client_email": "service-account-test@kinetic-highway-331915.iam.gserviceaccount.com",
+  "client_id": "117961759691665418670",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/service-account-test%40kinetic-highway-331915.iam.gserviceaccount.com"
+}

@@ -5,9 +5,12 @@ import com.group3.shoesshop.entity.OrderItemEntity;
 import com.group3.shoesshop.entity.UserEntity;
 import com.group3.shoesshop.repository.UserRepository;
 import com.group3.shoesshop.service.IUserService;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.Base64;
 import java.util.List;
 
 @Service
@@ -40,12 +43,7 @@ public class UserService extends BaseService<UserEntity> implements IUserService
         if (userEntity == null)
             return this.exceptionObject(new UserEntity(), "This user id does not exist.");
 
-        userEntity.setFirstName(entity.getFirstName());
-        userEntity.setLastName(entity.getLastName());
-        userEntity.setEmail(entity.getEmail());
-        userEntity.setGender(entity.getGender());
-        userEntity.setPhone(entity.getPhone());
-        userEntity.setAddress(entity.getAddress());
+        BeanUtils.copyProperties(entity, userEntity, getNullPropertyNames(entity));
 
         userEntity = userRepo.save(userEntity);
         userEntity.setMessage("Update information successfully.");
@@ -86,12 +84,12 @@ public class UserService extends BaseService<UserEntity> implements IUserService
 
     @Override
     public List<UserEntity> findAllSeller() {
-        return userRepo.findAllByRoleCode("SELLER");
+        return userRepo.findAllByRoleCodeAndIsActive("SELLER", true);
     }
 
     @Override
     public List<UserEntity> findAllBuyer() {
-        return userRepo.findAllByRoleCode("BUYER");
+        return userRepo.findAllByRoleCodeAndIsActive("BUYER", true);
     }
 
     @Override
