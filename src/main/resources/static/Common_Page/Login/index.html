@@ -15,29 +15,33 @@
           integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ=="
           crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-    <link rel="stylesheet" href="/Admin_Page/Pages/Login/style.css">
+    <link rel="stylesheet" href="/Common_Page/Login/style.css">
 
 </head>
 
 <body>
-    <div class="card d-flex justify-content-center">
+    <form th:object="${user}" method="post" class="card d-flex justify-content-center">
         <div class="card-body">
             <img src="https://opencart.mahardhi.com/MT04/noriva/01/image/catalog/logo.png" class="rounded mx-auto d-block mb-3" alt="...">
             <h2 class="card-title mb-3">Sign in</h2>
-            <p class="card-subtitle mb-3 text-muted">Please sign in to your account to continue</p>
+            <div th:if="${user.httpStatus.value() == 200 and user.message != null}"
+                 th:utext="${user.message}" class="alert alert-success" role="alert"></div>
+            <div th:if="${user.httpStatus.value()} != 200" th:utext="${user.message}"
+                 class="alert alert-danger" role="alert"></div>
+            <p th:if="${user.message == null}" class="card-subtitle mb-3 text-muted">Please sign in to your account to continue</p>
             <label class="mb-3">Username</label>
             <div class="form-floating mb-3">
-                <input type="text" class="form-control" placeholder="Username">
+                <input th:field="*{username}" type="text" class="form-control" placeholder="Username">
                 <label>Username</label>
             </div>
             <label class="mb-3">Password</label>
             <div  class="form-floating mb-3">
-                <input type="password" class="form-control" placeholder="Password">
+                <input th:field="*{password}" type="password" class="form-control" placeholder="Password">
                 <label>Password</label>
             </div>
-            <button type="button" class="btn btn-warning float-end">Sign in</button>
+            <button type="submit" class="btn btn-warning float-end">Sign in</button>
         </div>
-    </div>
+    </form>
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
         integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"

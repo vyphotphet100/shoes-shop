@@ -22,6 +22,7 @@
             + Customer (included service)
             + Catalog (included service)
             + Views layer
+            + Payment list (included service)
 
     + Những thứ chưa xong nhưng chưa cần làm:
         + Search user

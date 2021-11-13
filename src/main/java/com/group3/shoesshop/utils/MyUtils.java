@@ -61,7 +61,7 @@ public class MyUtils {
             String bucketName = rb.getString("bucket.name");
             String authFilePath = rb.getString("auth.file.path");
             String platformLink = rb.getString("platform.link");
-            String classPath = "";
+            String downloadedPath = rb.getString("downloaded.path");
 
             File authFile = ResourceUtils.getFile(authFilePath);
             GoogleCredentials credentials = GoogleCredentials.fromStream(new FileInputStream(authFile.toPath().toString()))
@@ -69,9 +69,9 @@ public class MyUtils {
             Storage storage = StorageOptions.newBuilder().setProjectId(projectId).setCredentials(credentials).build().getService();
 
             Blob blob = storage.get(BlobId.of(bucketName, fileName));
-            blob.downloadTo(Paths.get("downloaded/" + fileName));
+            blob.downloadTo(Paths.get(downloadedPath + "/" + fileName));
 
-            File file = ResourceUtils.getFile("downloaded/" + fileName);
+            File file = ResourceUtils.getFile(downloadedPath + "/" + fileName);
             System.out.println(
                     "Downloaded object "
                             + fileName
@@ -80,7 +80,7 @@ public class MyUtils {
                             + " to "
                             + file.toPath());
 
-            return Files.readAllBytes(Paths.get("downloaded/" + fileName));
+            return Files.readAllBytes(Paths.get(downloadedPath + "/" + fileName));
         } catch (Exception ex) {
             ex.printStackTrace();
             return null;

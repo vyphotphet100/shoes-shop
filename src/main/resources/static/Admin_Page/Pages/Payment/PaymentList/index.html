@@ -15,7 +15,7 @@
         integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-    <link rel="stylesheet" href="/Admin_Page/Pages/Order/OrderList/style.css">
+    <link rel="stylesheet" href="/Admin_Page/Pages/Payment/PaymentList/style.css">
 </head>
 
 <body>
@@ -32,7 +32,7 @@
             <div class="page__container">
                 <div class="page__top row">
                     <h1 class="page__title col">
-                        Orders
+                        Payment
                     </h1>
                 </div>
                 <div class="all__product__container">
@@ -44,70 +44,28 @@
                         <thead>
                             <tr>
                                 <th scope="col">ID</th>
-                                <th scope="col">Date</th>
-                                <th scope="col">Customer</th>
-                                <th scope="col">Paid</th>
-                                <th scope="col">Items</th>
-                                <th scope="col">Total</th>
+                                <th scope="col">Payment date</th>
+                                <th scope="col">Shipment date</th>
+                                <th scope="col">Username</th>
+                                <th scope="col">Quantity</th>
+                                <th scope="col">Total cost</th>
                                 <th scope="col">Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>17/09/2001</td>
-                                <td>Nguyễn Thiên Hoàn</td>
-                                <td>
-                                    <div class="stock__quantity out">
-                                        <p>No</p>
-                                    </div>
-                                </td>
-                                <td>4</td>
-                                <td>$142.00</td>
+                            <tr th:each="payment:${payments}">
+                                <th th:utext="${payment.id}" scope="row">1</th>
+                                <td th:utext="${payment.paymentDate}" >17/09/2001</td>
+                                <td th:utext="${payment.shipmentDate}">17/09/2001</td>
+                                <td th:utext="${payment.orderItem.customer.username}">username</td>
+                                <td th:utext="${payment.orderItem.quantityBought}">4</td>
+                                <td th:utext="${payment.orderItem.totalCost}">$142.00</td>
                                 <td>
                                     <div class="btn__action">
-                                        <a href="#" class="btn btn-warning" type="button">Edit</a>
-                                        <button type="button" class="btn btn-danger">Delete</button>
+                                        <a href="#" class="btn btn-warning" type="button">Detail</a>
                                     </div>
                                 </td>
                             </tr>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>17/09/2001</td>
-                                <td>Nguyễn Thiên Hoàn</td>
-                                <td>
-                                    <div class="stock__quantity">
-                                        <p>Yes</p>
-                                    </div>
-                                </td>
-                                <td>4</td>
-                                <td>$142.00</td>
-                                <td>
-                                    <div class="btn__action">
-                                        <a href="#" class="btn btn-warning" type="button">Edit</a>
-                                        <button type="button" class="btn btn-danger">Delete</button>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>17/09/2001</td>
-                                <td>Nguyễn Thiên Hoàn</td>
-                                <td>
-                                    <div class="stock__quantity">
-                                        <p>Yes</p>
-                                    </div>
-                                </td>
-                                <td>4</td>
-                                <td>$142.00</td>
-                                <td>
-                                    <div class="btn__action">
-                                        <a href="#" class="btn btn-warning" type="button">Edit</a>
-                                        <button type="button" class="btn btn-danger">Delete</button>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
                         </tbody>
                     </table>
 
@@ -134,7 +92,7 @@
 <!--    <script src="/static/Admin_Page/Components/SlideBar/main.js"></script>-->
 <!--    <script src="/static/Admin_Page/Components/Footer/Footer.js"></script>-->
 
-    <script type="text/javascript" src="/Admin_Page/Pages/Order/OrderList/main.js"></script>
+    <script type="text/javascript" src="/Admin_Page/Pages/Payment/PaymentList/main.js"></script>
     <script src="https://kit.fontawesome.com/e82e1ec9a6.js" crossorigin="anonymous"></script>
 </body>
 
