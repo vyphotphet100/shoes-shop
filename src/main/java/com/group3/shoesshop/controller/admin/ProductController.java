@@ -85,12 +85,13 @@ public class ProductController {
     @PostMapping(value = "/admin/product/add")
     public ModelAndView addProductPost(@ModelAttribute("product") ProductEntity product) {
         //ModelAndView mav = new ModelAndView("Admin_Page/Pages/Catalog/AddProduct/index");
-
-        product.setInStock(true);
-        product.setRating(5);
         UserEntity seller = new UserEntity();
         seller.setId(1);
         product.setSeller(seller);
+
+        product.setIsAvailable(true);
+        product.setInStock(true);
+        product.setRating(5);
         product = productService.save(product);
 
         return this.addProductGet(product);

@@ -10,7 +10,7 @@ import java.io.FileInputStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Random;
-import java.util.concurrent.TimeUnit;
+import java.util.ResourceBundle;
 
 public class MyUtils {
     public static String generateRandomString(Integer length) {
@@ -24,25 +24,27 @@ public class MyUtils {
                 .toString();
     }
 
-    public static Boolean upFileToGoogleCloud() {
+    public static Boolean upFileToGoogleCloud(String fileName, byte[] data) {
         try {
-            String projectId = "kinetic-highway-331915";
-            String bucketName = "test_bucket_syvy";
-            String objectName = "test_object.txt";
-            String filePath = "test_object.txt";
+            ResourceBundle rb = ResourceBundle.getBundle("google_cloud");
 
-            File file1 = ResourceUtils.getFile("classpath:kinetic-highway-331915-40ccf03f8100.json");
-            GoogleCredentials credentials = GoogleCredentials.fromStream(new FileInputStream(file1.toPath().toString()))
-                    .createScoped(Lists.newArrayList("https://www.googleapis.com/auth/cloud-platform"));
+            String projectId = rb.getString("project.id");
+            String bucketName = rb.getString("bucket.name");
+            String authFilePath = rb.getString("auth.file.path");
+            String platformLink = rb.getString("platform.link");
+
+            File authFile = ResourceUtils.getFile(authFilePath);
+            GoogleCredentials credentials = GoogleCredentials.fromStream(new FileInputStream(authFile.toPath().toString()))
+                    .createScoped(Lists.newArrayList(platformLink));
             Storage storage = StorageOptions.newBuilder().setProjectId(projectId).setCredentials(credentials).build().getService();
-            BlobId blobId = BlobId.of(bucketName, objectName);
+            BlobId blobId = BlobId.of(bucketName, fileName);
             BlobInfo blobInfo = BlobInfo.newBuilder(blobId).build();
-            File file = ResourceUtils.getFile("classpath:test_object.txt");
-            byte[] sendFile = Files.readAllBytes(file.toPath());
-            storage.create(blobInfo, sendFile);
+//            File file = ResourceUtils.getFile("classpath:test_object.txt");
+//            byte[] sendFile = Files.readAllBytes(file.toPath());
+            storage.create(blobInfo, data);
 
             System.out.println(
-                    "File " + filePath + " uploaded to bucket " + bucketName + " as " + objectName);
+                    "File " + fileName + " uploaded to bucket " + bucketName);
 
             return true;
         } catch (Exception ex) {
@@ -54,18 +56,22 @@ public class MyUtils {
 
     public static byte[] getFileFromGoogleCloud(String fileName){
         try {
-            String projectId = "kinetic-highway-331915";
-            String bucketName = "test_bucket_syvy";
+            ResourceBundle rb = ResourceBundle.getBundle("google_cloud");
+            String projectId = rb.getString("project.id");
+            String bucketName = rb.getString("bucket.name");
+            String authFilePath = rb.getString("auth.file.path");
+            String platformLink = rb.getString("platform.link");
+            String classPath = "";
 
-            File file1 = ResourceUtils.getFile("classpath:kinetic-highway-331915-40ccf03f8100.json");
-            GoogleCredentials credentials = GoogleCredentials.fromStream(new FileInputStream(file1.toPath().toString()))
-                    .createScoped(Lists.newArrayList("https://www.googleapis.com/auth/cloud-platform"));
+            File authFile = ResourceUtils.getFile(authFilePath);
+            GoogleCredentials credentials = GoogleCredentials.fromStream(new FileInputStream(authFile.toPath().toString()))
+                    .createScoped(Lists.newArrayList(platformLink));
             Storage storage = StorageOptions.newBuilder().setProjectId(projectId).setCredentials(credentials).build().getService();
 
             Blob blob = storage.get(BlobId.of(bucketName, fileName));
-            blob.downloadTo(Paths.get(System.getProperty("java.class.path").split(":")[0] + "/downloaded/" + fileName));
+            blob.downloadTo(Paths.get("downloaded/" + fileName));
 
-            File file = ResourceUtils.getFile("classpath:downloaded/" + fileName);
+            File file = ResourceUtils.getFile("downloaded/" + fileName);
             System.out.println(
                     "Downloaded object "
                             + fileName
@@ -74,7 +80,7 @@ public class MyUtils {
                             + " to "
                             + file.toPath());
 
-            return Files.readAllBytes(Paths.get(System.getProperty("java.class.path").split(":")[0]  + "/downloaded/" + fileName));
+            return Files.readAllBytes(Paths.get("downloaded/" + fileName));
         } catch (Exception ex) {
             ex.printStackTrace();
             return null;

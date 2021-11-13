@@ -5,17 +5,11 @@ function readURL(input) {
         reader.onload = function (e) {
             $('#imageResult')
                 .attr('src', e.target.result);
+            $('#pictureUrl').val(e.target.result);
         };
         reader.readAsDataURL(input.files[0]);
     }
 }
-
-$(function () {
-    $('#upload').on('change', function () {
-        readURL(input);
-    });
-});
-
 
 var input = document.getElementById( 'upload' );
 var infoArea = document.getElementById( 'upload-label' );
