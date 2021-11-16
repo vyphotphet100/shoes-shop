@@ -1,20 +1,13 @@
 package com.group3.shoesshop.controller.admin;
 
-import com.group3.shoesshop.dto.UserDTO;
 import com.group3.shoesshop.entity.RoleEntity;
 import com.group3.shoesshop.entity.UserEntity;
 import com.group3.shoesshop.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.propertyeditors.CustomDateEditor;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 @Controller
 public class SellerController {

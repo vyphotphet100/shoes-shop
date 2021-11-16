@@ -5,24 +5,18 @@ function readURL(input) {
         reader.onload = function (e) {
             $('#imageResult')
                 .attr('src', e.target.result);
+            $('#pictureUrl').val(e.target.result);
         };
         reader.readAsDataURL(input.files[0]);
     }
 }
-
-$(function () {
-    $('#upload').on('change', function () {
-        readURL(input);
-    });
-});
-
 
 var input = document.getElementById( 'upload' );
 var infoArea = document.getElementById( 'upload-label' );
 
 input.addEventListener( 'change', showFileName );
 function showFileName( event ) {
-  var input = event.srcElement;
-  var fileName = input.files[0].name;
-  infoArea.textContent = 'File name: ' + fileName;
+    var input = event.srcElement;
+    var fileName = input.files[0].name;
+    infoArea.textContent = 'File name: ' + fileName;
 }

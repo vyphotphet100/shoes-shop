@@ -1,7 +1,9 @@
 package com.group3.shoesshop.service.impl;
 
 import com.group3.shoesshop.entity.ProductEntity;
+import com.group3.shoesshop.entity.UserEntity;
 import com.group3.shoesshop.repository.ProductRepository;
+import com.group3.shoesshop.repository.UserRepository;
 import com.group3.shoesshop.service.IProductService;
 import com.group3.shoesshop.utils.MyUtils;
 import org.springframework.beans.BeanUtils;
@@ -81,5 +83,23 @@ public class ProductService extends BaseService<ProductEntity> implements IProdu
         productEntity = this.update(productEntity);
         productEntity.setMessage("Delete product successfully");
         return productEntity;
+    }
+
+    @Autowired
+    private UserRepository userRepo;
+
+    @Override
+    public List<ProductEntity> findAllByAvailableAndSellerId(Boolean available, Integer id) {
+        UserEntity userEntity = userRepo.findById(id).orElse(null);
+        if (userEntity == null)
+            return null;
+
+        List<ProductEntity> res = new ArrayList<>();
+        for (ProductEntity productEntity: userEntity.getProducts()) {
+            if (productEntity.getIsAvailable().equals(available))
+                res.add(productEntity);
+        }
+
+        return res;
     }
 }
