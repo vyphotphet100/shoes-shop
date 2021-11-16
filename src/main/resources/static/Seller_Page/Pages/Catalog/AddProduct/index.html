@@ -16,19 +16,19 @@
           crossorigin="anonymous" referrerpolicy="no-referrer"/>
 
     <!--    <link rel="stylesheet" href="/static/Admin_Page/Components/SlideBar/Sidebar.css">-->
-    <link rel="stylesheet" href="/Admin_Page/Pages/Catalog/AddProduct/style.css">
+    <link rel="stylesheet" href="/Seller_Page/Pages/Catalog/AddProduct/style.css">
 </head>
 
 <body>
 <div class="wrapper">
     <!-- Sidebar  -->
     <div id="side__bar">
-        <div th:replace="/Admin_Page/Components/SlideBar/Sidebar :: sidebar"></div>
+        <div th:replace="/Seller_Page/Components/SlideBar/Sidebar :: sidebar"></div>
     </div>
     <!-- Page Content  -->
     <div id="content">
         <div id="header">
-            <div th:replace="/Admin_Page/Components/Header/Header :: header"></div>
+            <div th:replace="/Seller_Page/Components/Header/Header :: header"></div>
         </div>
         <div class="page__container">
             <form th:method="post" th:object="${product}">
@@ -126,10 +126,10 @@
                                 <p class="font-italic text-white ">The image uploaded will be rendered inside the box
                                     below.</p>
                                 <div class="image-area" style="margin-top: -50px;">
-                                    <img id="imageResult" src="#" alt=""
+                                    <img id="imageResult" th:src="${product.pictureUrl}" alt=""
                                          class="img-fluid rounded shadow-sm mx-auto d-block">
+                                    <input th:field="*{pictureUrl}" type="hidden" id="pictureUrl"/>
                                 </div>
-                                <input th:field="*{pictureUrl}" type="hidden" id="pictureUrl"/>
                             </div>
                         </div>
                     </div>
@@ -137,7 +137,7 @@
             </form>
         </div>
         <div id="footer">
-            <div th:replace="/Admin_Page/Components/Footer/Footer :: footer"></div>
+            <div th:replace="/Seller_Page/Components/Footer/Footer :: footer"></div>
         </div>
     </div>
 </div>
@@ -156,7 +156,7 @@
 <!--    <script src="/static/Admin_Page/Components/SlideBar/main.js"></script>-->
 <!--    <script src="/static/Admin_Page/Components/Footer/Footer.js"></script>-->
 
-<script type="text/javascript" src="/Admin_Page/Pages/Catalog/AddProduct/main.js"></script>
+<script type="text/javascript" src="/Seller_Page/Pages/Catalog/AddProduct/main.js"></script>
 <script src="https://kit.fontawesome.com/e82e1ec9a6.js" crossorigin="anonymous"></script>
 </body>
 

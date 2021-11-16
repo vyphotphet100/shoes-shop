@@ -37,4 +37,9 @@ public class PaymentService extends BaseService<PaymentEntity> implements IPayme
     public PaymentEntity delete(Integer id) {
         return null;
     }
+
+    @Override
+    public List<PaymentEntity> findAllBySellerId(Integer id) {
+        return paymentRepo.findAllByOrderItemProductSellerId(id);
+    }
 }

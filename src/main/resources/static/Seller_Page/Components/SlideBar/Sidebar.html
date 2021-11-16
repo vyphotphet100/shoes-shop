@@ -1,8 +1,8 @@
 <div th:fragment="sidebar">
-    <link rel="stylesheet" href="/Admin_Page/Components/SlideBar/Sidebar.css">
+    <link rel="stylesheet" href="/Seller_Page/Components/SlideBar/Sidebar.css">
     <nav id="sidebar">
         <div class="sidebar-header">
-            <h3>Noriva Admin</h3>
+            <h3>Noriva Seller</h3>
         </div>
         <div class="sidebar__list sticky-top">
             <p>APPLICATION</p>
@@ -13,10 +13,10 @@
                         Catalog</a>
                     <ul class="collapse list-unstyled" id="catalog">
                         <li>
-                            <a href="/admin/product/add">Add Product</a>
+                            <a href="/seller/product/add">Add Product</a>
                         </li>
                         <li>
-                            <a href="/admin/product/product-list">Product List</a>
+                            <a href="/seller/product/product-list">Product List</a>
                         </li>
                         <!--                        <li>-->
                         <!--                            <a href="#">Category List</a>-->
@@ -28,7 +28,7 @@
                        class="dropdown-toggle"><i style="padding: 7px 5px;" class="far fa-user"></i> Customers</a>
                     <ul class="collapse list-unstyled" id="customer">
                         <li>
-                            <a href="/admin/customer/customer-list">Customer List</a>
+                            <a href="/seller/customer/customer-list">Customer List</a>
                         </li>
                         <!--                        <li>-->
                         <!--                            <a href="/admin/customer/edit">Customer</a>-->
@@ -41,26 +41,26 @@
                         Payment</a>
                     <ul class="collapse list-unstyled" id="orders">
                         <li>
-                            <a href="/admin/payment/payment-list">Payment List</a>
+                            <a href="/seller/payment/payment-list">Payment List</a>
                         </li>
                         <!--                        <li>-->
                         <!--                            <a href="/admin/payment/payment-detail">Payment Details</a>-->
                         <!--                        </li>-->
                     </ul>
                 </li>
-                <li class="active">
-                    <a style="font-size: 14px;" href="#sellers" data-toggle="collapse" aria-expanded="false"
-                       class="dropdown-toggle"> <i style="padding: 7px 5px;" class="fas fa-user-tie"></i>
-                        Sellers</a>
-                    <ul class="collapse list-unstyled" id="sellers">
-                        <li>
-                            <a href="/admin/seller/add">Add seller</a>
-                        </li>
-                        <li>
-                            <a href="/admin/seller/seller-list">Sellers List</a>
-                        </li>
-                    </ul>
-                </li>
+<!--                <li class="active" th:if="${userSession.role.code == 'ADMIN'}">-->
+<!--                    <a style="font-size: 14px;" href="#sellers" data-toggle="collapse" aria-expanded="false"-->
+<!--                       class="dropdown-toggle"> <i style="padding: 7px 5px;" class="fas fa-user-tie"></i>-->
+<!--                        Sellers</a>-->
+<!--                    <ul class="collapse list-unstyled" id="sellers">-->
+<!--                        <li>-->
+<!--                            <a href="/admin/seller/add">Add seller</a>-->
+<!--                        </li>-->
+<!--                        <li>-->
+<!--                            <a href="/admin/seller/seller-list">Sellers List</a>-->
+<!--                        </li>-->
+<!--                    </ul>-->
+<!--                </li>-->
             </ul>
         </div>
     </nav>
