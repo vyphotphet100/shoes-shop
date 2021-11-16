@@ -18,11 +18,8 @@
 
 - Backend:
     + Hoàn thành:
-        + Admin:
-            + Customer (included service)
-            + Catalog (included service)
-            + Views layer
-            + Payment list (included service)
+        + Admin
+        + Seller:
 
     + Những thứ chưa xong nhưng chưa cần làm:
         + Search user

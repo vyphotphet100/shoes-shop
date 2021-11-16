@@ -16,13 +16,21 @@ $(function () {
     });
 });
 
+function deleteSeller(id) {
+    if (!confirm('Are you sure to delete this user?'))
+        return;
 
-var input = document.getElementById( 'upload' );
-var infoArea = document.getElementById( 'upload-label' );
-
-input.addEventListener( 'change', showFileName );
-function showFileName( event ) {
-  var input = event.srcElement;
-  var fileName = input.files[0].name;
-  infoArea.textContent = 'File name: ' + fileName;
+    $.ajax({
+        url: '/admin/seller/delete?id=' + id,
+        type: 'DELETE',
+        async: false,
+        contentType: 'application/json',
+        success: function(userEntity) {
+            alert("Delete user successfully");
+            window.location.reload();
+        },
+        error: function(error) {
+            alert("Something went wrong")
+        }
+    });
 }

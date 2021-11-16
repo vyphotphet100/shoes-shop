@@ -5,6 +5,7 @@ import com.group3.shoesshop.service.IPaymentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
@@ -16,8 +17,12 @@ public class PaymentController {
     private IPaymentService paymentService;
 
     @GetMapping(value = "/admin/payment/payment-detail")
-    public ModelAndView paymentDetail() {
+    public ModelAndView paymentDetail(@RequestParam Integer id) {
         ModelAndView mav = new ModelAndView("Admin_Page/Pages/Payment/PaymentDetail/index");
+
+        PaymentEntity payment = paymentService.findOne(id);
+        mav.addObject("payment", payment);
+
         return mav;
     }
 

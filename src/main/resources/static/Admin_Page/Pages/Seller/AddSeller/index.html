@@ -34,40 +34,61 @@
                 <h1 class="page__title col">
                     New Seller
                 </h1>
-                <button class="add__btn ">Save Changes!</button>
             </div>
             <div style="padding: 0 20px; margin-right: 15px;">
                 <div class="basic__product__info">
+                    <div th:if="${seller.message != null && seller.httpStatus.value() == 200}" th:utext="${seller.message}" class="alert alert-success" role="alert">
+                        This is a success alert—check it out!
+                    </div>
+                    <div th:if="${seller.message != null && seller.httpStatus.value() != 200}" th:utext="${seller.message}" class="alert alert-danger" role="alert">
+                        This is a success alert—check it out!
+                    </div>
                     <img width="150px" height="150px"
                          src="https://scontent.fdad2-1.fna.fbcdn.net/v/t1.6435-9/171619300_1092543814590800_1632394128569325001_n.jpg?_nc_cat=108&ccb=1-5&_nc_sid=09cbfe&_nc_ohc=P560_w3_4aMAX83vWZW&_nc_ht=scontent.fdad2-1.fna&oh=15f5ee48f7e3e586c0f11dc9c43dbc12&oe=61A7F468"
                          class="rounded mx-auto d-block" alt="...">
-                    <form class="mt-3">
+                    <form class="mt-3" method="post" th:object="${seller}">
                         <div class="mb-3">
-                            <label class="form-label">Seller Name</label>
-                            <input type="text" class="form-control">
+                            <label class="form-label">First name</label>
+                            <input type="text" class="form-control" th:field="*{firstName}">
                         </div>
                         <div class="mb-3">
-                            <label class="form-label">Email</label>
-                            <input type="text" class="form-control">
+                            <label class="form-label">Last name</label>
+                            <input type="text" class="form-control" th:field="*{lastName}">
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Gender</label>
-                            <select class="form-select">
-                                <option selected>Select Gender</option>
-                                <option value="1">Male</option>
+                            <select class="form-select" th:field="*{gender}">
+                                <option value="1" selected>Male</option>
                                 <option value="2">Female</option>
                                 <option value="3">Other</option>
                             </select>
                         </div>
                         <div class="mb-3">
-                            <label class="form-label">Phone number</label>
-                            <input type="text" class="form-control" value="0794676336">
+                            <label class="form-label">Birthday</label>
+                            <input type="date" class="form-control"
+                                   th:field="*{birthday}">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Email</label>
+                            <input type="text" class="form-control" th:field="*{email}">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Username</label>
+                            <input type="text" class="form-control" th:field="*{username}">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Password</label>
+                            <input type="password" class="form-control" th:field="*{password}">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Phone</label>
+                            <input type="text" class="form-control" th:field="*{phone}">
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Address</label>
-                            <input type="text" class="form-control" value="210/10 Sambram, Buôn Ma Thuột, DakLak">
+                            <input type="text" class="form-control" th:field="*{address}">
                         </div>
-
+                        <button class="add__btn ">Add</button>
                     </form>
                 </div>
             </div>

@@ -32,9 +32,10 @@ public class UserService extends BaseService<UserEntity> implements IUserService
         if (userEntity != null)
             return this.exceptionObject(new UserEntity(), "This username exists.");
 
-        userEntity = userRepo.save(userEntity);
-        userEntity.setMessage("Register account successfully.");
-        return userEntity;
+        entity.setIsActive(true);
+        entity = userRepo.save(entity);
+        entity.setMessage("Register account successfully.");
+        return entity;
     }
 
     @Override

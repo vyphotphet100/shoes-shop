@@ -62,7 +62,7 @@
                                 <td th:utext="${payment.orderItem.totalCost}">$142.00</td>
                                 <td>
                                     <div class="btn__action">
-                                        <a href="#" class="btn btn-warning" type="button">Detail</a>
+                                        <a th:href="'/admin/payment/payment-detail?id=' + ${payment.id}" class="btn btn-warning" type="button">Detail</a>
                                     </div>
                                 </td>
                             </tr>

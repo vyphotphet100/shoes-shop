@@ -53,9 +53,9 @@ public class CustomerController {
     }
 
     @PostMapping(value = "/admin/customer/edit")
-    public ModelAndView editCustomerPost(@ModelAttribute("customer") UserDTO userDto, ModelMap modelMap) {
+    public ModelAndView editCustomerPost(@ModelAttribute("customer") UserDTO userDto) {
         userService.update(dtoEntityConverter.toEntity(userDto, userMapper));
-        return this.editCustomerGet(userDto.getId());
+        return new ModelAndView("redirect:/admin/customer/edit?id=" + userDto.getId());
         //return null;
     }
 
