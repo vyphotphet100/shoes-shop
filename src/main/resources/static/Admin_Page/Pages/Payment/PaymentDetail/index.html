@@ -33,41 +33,45 @@
         </div>
         <div class="page__container">
             <div class="page__top row">
-                <h1 class="page__title col">
-                    Order #(ID here)
+                <h1 th:utext="'Payment #' + ${payment.id}" class="page__title col">
+                    Payment #(ID here)
                 </h1>
-                <button class="add__btn ">Delete Order</button>
             </div>
             <div class="row" style="padding: 0 20px;">
                 <div class="basic__product__info col">
+                    <h2 class="basic__pro__title">
+                        Customer
+                    </h2>
                     <img width="150px" height="150px"
                          src="https://scontent.fdad2-1.fna.fbcdn.net/v/t1.6435-9/171619300_1092543814590800_1632394128569325001_n.jpg?_nc_cat=108&ccb=1-5&_nc_sid=09cbfe&_nc_ohc=P560_w3_4aMAX83vWZW&_nc_ht=scontent.fdad2-1.fna&oh=15f5ee48f7e3e586c0f11dc9c43dbc12&oe=61A7F468"
                          class="rounded mx-auto d-block" alt="...">
                     <form class="mt-3">
                         <div class="mb-3">
-                            <label class="form-label">Customer Name</label>
-                            <input type="text" class="form-control" value="Nguyễn Thiên Hoàn" disabled>
+                            <label class="form-label">Customer name</label>
+                            <input type="text" class="form-control"
+                                   th:value="${payment.orderItem.customer.firstName + ' ' + payment.orderItem.customer.lastName}"
+                                   disabled>
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Email</label>
-                            <input type="text" class="form-control" value="example@mail.com" disabled>
+                            <input type="text" class="form-control" th:value="${payment.orderItem.customer.email}"
+                                   disabled>
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Gender</label>
                             <select class="form-select" disabled>
-                                <option value="1">Male</option>
-                                <option value="2">Female</option>
-                                <option value="3">Other</option>
+                                <option th:utext="${payment.orderItem.customer.gender}" selected>...</option>
                             </select>
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Phone number</label>
-                            <input type="text" class="form-control" disabled value="0794676336">
+                            <input type="text" class="form-control" th:value="${payment.orderItem.customer.phone}"
+                                   disabled>
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Address</label>
-                            <input type="text" class="form-control" disabled
-                                   value="210/10 Sambram, Buôn Ma Thuột, DakLak">
+                            <input type="text" class="form-control"
+                                   th:value="${payment.orderItem.customer.address}" disabled>
                         </div>
 
                     </form>
@@ -76,7 +80,7 @@
                 <div style="width: 25px"></div>
                 <div class="price__product col">
                     <h2 class="basic__pro__title">
-                        Items
+                        Detail
                     </h2>
                     <table class="table">
                         <tbody>
@@ -87,66 +91,51 @@
                                          src="https://scontent.fdad2-1.fna.fbcdn.net/v/t1.6435-9/171619300_1092543814590800_1632394128569325001_n.jpg?_nc_cat=108&ccb=1-5&_nc_sid=09cbfe&_nc_ohc=P560_w3_4aMAX83vWZW&_nc_ht=scontent.fdad2-1.fna&oh=15f5ee48f7e3e586c0f11dc9c43dbc12&oe=61A7F468">
                                 </div>
                             </th>
-                            <td>Product name here</td>
-                            <td>$142.00</td>
-                            <td>1</td>
-                            <td>2 triệu</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">
-                                <div>
-                                    <img width="40px" height="40px"
-                                         src="https://scontent.fdad2-1.fna.fbcdn.net/v/t1.6435-9/171619300_1092543814590800_1632394128569325001_n.jpg?_nc_cat=108&ccb=1-5&_nc_sid=09cbfe&_nc_ohc=P560_w3_4aMAX83vWZW&_nc_ht=scontent.fdad2-1.fna&oh=15f5ee48f7e3e586c0f11dc9c43dbc12&oe=61A7F468">
-                                </div>
-                            </th>
-                            <td>Product name here</td>
-                            <td>$142.00</td>
-                            <td>1</td>
-                            <td>2 triệu</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">
-                                <div>
-                                    <img width="40px" height="40px"
-                                         src="https://scontent.fdad2-1.fna.fbcdn.net/v/t1.6435-9/171619300_1092543814590800_1632394128569325001_n.jpg?_nc_cat=108&ccb=1-5&_nc_sid=09cbfe&_nc_ohc=P560_w3_4aMAX83vWZW&_nc_ht=scontent.fdad2-1.fna&oh=15f5ee48f7e3e586c0f11dc9c43dbc12&oe=61A7F468">
-                                </div>
-                            </th>
-                            <td>Product name here</td>
-                            <td>$142.00</td>
-                            <td>1</td>
-                            <td>2 triệu</td>
+                            <td id="title" th:utext="${payment.orderItem.product.title}">Product name here</td>
+                            <td id="price" th:utext="'$' + ${payment.orderItem.product.price}">price</td>
+                            <td id="quantity" th:utext="${payment.orderItem.product.quantity}">1</td>
+                            <td id="total-cost" th:utext="'$' + ${payment.orderItem.totalCost}">total cost</td>
                         </tr>
                         </tbody>
                     </table>
                     <table class="table table-borderless">
                         <tr>
-                            <td>Subtotal</td>
-                            <td class="float-end">$124123.00
-                        </tr>
-                        </tr>
-                        <tr>
-                            <td>Shipping fee</td>
-                            <td class="float-end">$5.00
-                        </tr>
+                            <td>Payment date</td>
+                            <td class="float-end" th:utext="${payment.paymentDate}">...</td>
                         </tr>
                         <tr>
-                            <td>Total</td>
-                            <td class="float-end">$12412.00
-                        </tr>
+                            <td>Shipment date</td>
+                            <td class="float-end" th:utext="${payment.shipmentDate}">...</td>
                         </tr>
                     </table>
                     <h2 class="basic__pro__title">
-                        Transactions
+                        Transfer payment
                     </h2>
                     <table class="table table-borderless">
-                        <tbody>
-                        <tr>
-                            <td>Payment</td>
-                            <td>Via paypay</td>
-                            <td>0ctober 7,2020</td>
-                            <td>$22222.00</td>
-                        </tr>
-                        </tbody>
+                        <th:block th:if="${payment.transferPayment != null}">
+                            <tr>
+                                <td>Payment method</td>
+                                <td class="float-end" th:utext="${payment.transferPayment.seller.paymentMethod.name}">
+                                    ...
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Transfer date</td>
+                                <td class="float-end" th:utext="${payment.transferPayment.transferDate}">...</td>
+                            </tr>
+                            <tr>
+                                <td>Seller</td>
+                                <td class="float-end" th:utext="${payment.transferPayment.seller.username}">...</td>
+                            </tr>
+                            <tr>
+                                <td>Amount</td>
+                                <td class="float-end" th:utext="'$' + ${payment.transferPayment.amount}">...</td>
+                            </tr>
+                        </th:block>
+                        <th:block th:if="${payment.transferPayment == null}">
+                            <p>Transfer payment is not implemented.</p>
+                        </th:block>
+
                     </table>
                 </div>
             </div>

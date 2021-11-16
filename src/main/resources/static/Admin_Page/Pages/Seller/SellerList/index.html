@@ -35,7 +35,7 @@
                     <h1 class="page__title col">
                         Seller
                     </h1>
-                    <button class="add__btn ">New Seller</button>
+                    <button class="add__btn" onclick="window.location.href = 'add'">New Seller</button>
                 </div>
                 <div class="all__product__container">
                     <div class="input-group mb-3">
@@ -49,14 +49,14 @@
                             <th scope="col">Name</th>
                             <th scope="col">Gender</th>
                             <th scope="col">Birthday</th>
-                            <th scope="col">Phone number</th>
+                            <th scope="col">Phone</th>
                             <th scope="col">Address</th>
                             <th scope="col">Action</th>
                           </tr>
                         </thead>
                         <tbody>
-                          <tr>
-                            <th scope="row">1</th>
+                          <tr th:each="seller:${sellers}">
+                            <th scope="row" th:utext="${seller.id}">1</th>
                             <td>
                                 <div class="product__info float-start" style="display: flex; justify-content: center;">
                                     <div class="product__image">
@@ -64,19 +64,19 @@
                                     </div>
                                     <div style="width: 15px"></div>
                                     <div class="product__detail">
-                                        <p style="font-weight: 700;">Seller Name Here</p>
-                                        <p>example@email.com</p>
+                                        <p style="font-weight: 700;" th:utext="${seller.firstName + seller.lastName}">Seller Name Here</p>
+                                        <p th:utext="${seller.email}">example@email.com</p>
                                     </div>
                                 </div>
                             </td>
-                            <td>Male</td>
-                            <td>17/09/2001</td>
-                            <td>0794676336</td>
-                            <td>210/10 Sambram, Buôn Ma Thuột, DakLak </td>
+                            <td th:utext="${seller.gender}">Male</td>
+                            <td th:utext="${seller.birthday}">17/09/2001</td>
+                            <td th:utext="${seller.phone}">0794676336</td>
+                            <td th:utext="${seller.address}">210/10 Sambram, Buôn Ma Thuột, DakLak </td>
                             <td>
                                 <div class="btn__action">
-                                    <a href="#" class="btn btn-warning" type="button">Edit</a>
-                                    <button type="button" class="btn btn-danger">Delete</button>
+                                    <a th:href="'edit?id=' + ${seller.id}" class="btn btn-warning" type="button">Edit</a>
+                                    <button th:onclick="'deleteSeller(' + ${seller.id} + ');'" type="button" class="btn btn-danger">Delete</button>
                                 </div>
                             </td>
                           </tr>
@@ -89,7 +89,6 @@
             </div>
         </div>
     </div>
-    <script src="https://kit.fontawesome.com/e82e1ec9a6.js" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
         integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"

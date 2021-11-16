@@ -30,7 +30,7 @@ public class PaymentService extends BaseService<PaymentEntity> implements IPayme
 
     @Override
     public PaymentEntity findOne(Integer id) {
-        return null;
+        return paymentRepo.findById(id).orElse(null);
     }
 
     @Override

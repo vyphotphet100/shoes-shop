@@ -52,13 +52,15 @@ public class ProductService extends BaseService<ProductEntity> implements IProdu
         BeanUtils.copyProperties(entity, productEntity, getNullPropertyNames(entity));
 
         // up picture to cloud
+        String fileName = "product_" + productEntity.getCode() + ".png";
         if (!entity.getPictureUrl().startsWith("http")  && !entity.getPictureUrl().contains("file?name=")) {
             byte[] pictueBytes = Base64.getDecoder().decode(entity.getPictureUrl().split(",")[1]);
-            if (!MyUtils.upFileToGoogleCloud("product_" + productEntity.getCode() + ".png", pictueBytes))
+            if (!MyUtils.upFileToGoogleCloud(fileName, pictueBytes))
                 return this.exceptionObject(new ProductEntity(), "Something's wrong when adding picture product");
+            MyUtils.getFileFromGoogleCloud(fileName);
         }
 
-        productEntity.setPictureUrl("/file?name=" + "product_" + productEntity.getCode() + ".png");
+        productEntity.setPictureUrl("/file?name=" + fileName);
         productEntity = productRepo.save(productEntity);
         productEntity.setMessage("Update product successfully");
         return productEntity;

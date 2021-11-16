@@ -35,7 +35,7 @@
                 <h1 th:utext="${customer.firstName} + ' ' + ${customer.lastName}" class="page__title col">
                     Customer Name Here
                 </h1>
-<!--                <button class="add__btn ">Delete</button>-->
+                <button class="add__btn" th:onclick="'deleteCustomer(' + ${customer.id} + ');'">Delete</button>
 <!--                <button class="add__btn ">Save changes</button>-->
             </div>
             <div class="row" style="padding: 0 20px;">
@@ -61,12 +61,6 @@
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Gender</label>
-
-<!--                            <select th:field="*{gender}">-->
-<!--                                <option th:each="type : ${customer.gender}"-->
-<!--                                        th:value="${type}"-->
-<!--                                        th:utext="${type}">Gender</option>-->
-<!--                            </select>-->
 
                             <select th:field="*{gender}" th:switch="${customer.gender}" class="form-select">
                                 <option th:case="null" th:value="null">Select Gender</option>
@@ -101,7 +95,7 @@
                 <div style="width: 25px"></div>
                 <div class="price__product col">
                     <h2 class="basic__pro__title">
-                        Orders
+                        Order Items
                     </h2>
                     <table class="table">
                         <thead>

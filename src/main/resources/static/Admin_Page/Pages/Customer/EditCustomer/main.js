@@ -26,3 +26,22 @@ function showFileName( event ) {
   var fileName = input.files[0].name;
   infoArea.textContent = 'File name: ' + fileName;
 }
+
+function deleteCustomer(id) {
+    if (!confirm('Are you sure to delete this user?'))
+        return;
+
+    var user = $.ajax({
+        url: '/admin/customer/delete?id=' + id,
+        type: 'DELETE',
+        async: false,
+        contentType: 'application/json',
+        success: function(userEntity) {
+            alert("Delete user successfully");
+            window.location.href = '/admin/customer/customer-list';
+        },
+        error: function(error) {
+            alert("Something went wrong")
+        }
+    });
+}
