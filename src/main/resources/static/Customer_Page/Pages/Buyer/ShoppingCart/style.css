@@ -1,0 +1,50 @@
+@import url("https://fonts.googleapis.com/css2?family=Jost&display=swap");
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+html {
+  overflow-x: hidden;
+}
+.shopping__cart_container {
+  padding: 0 100px;
+  font-family: Jost;
+  margin-bottom: 100px;
+}
+.shopping__cart_container h1 {
+  font-size: 20px;
+  margin: 0 0 15px;
+  font-weight: bold;
+}
+.total__fee__table {
+  width: 400px;
+  float: right;
+  margin-top: 30px;
+  font-weight: 580;
+}
+.total__fee__table .fee__type {
+  float: left;
+  border: none;
+}
+.shopping__cart__bottom__button {
+  margin-top: 230px;
+  display: flex;
+  justify-content: center;
+}
+.shopping__cart__bottom__button .continue__btn,
+.shopping__cart__bottom__button .checkout__btn {
+  text-decoration: none;
+  padding: 8px 30px;
+  border: 2px solid #222222;
+  color: #ffffff;
+  background-color: #222222;
+  cursor: pointer;
+  font-size: 14px;
+  text-transform: uppercase;
+}
+.shopping__cart__bottom__button .continue__btn:hover,
+.checkout__btn:hover {
+  color: #222222;
+  background-color: #ffffff;
+}
