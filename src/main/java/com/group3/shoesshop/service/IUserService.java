@@ -16,5 +16,4 @@ public interface IUserService extends IBaseService<UserEntity>{
 
     Integer getOrderedItem(Integer customerId);
     float getTotalSpent(Integer customerId);
-
 }

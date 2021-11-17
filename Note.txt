@@ -25,3 +25,5 @@
 
     + Những thứ chưa xong nhưng chưa cần làm:
         + Search user
+
+    + Đang làm check out phần payment method
