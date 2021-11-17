@@ -10,7 +10,9 @@ public interface IUserService extends IBaseService<UserEntity>{
 
     UserEntity findByUsernameAndPassword(String username, String password);
     List<UserEntity> findAllSeller();
+    List<UserEntity> findAllSellerByKeyword(String keyword);
     List<UserEntity> findAllBuyer();
+    List<UserEntity> findAllBuyerByKeyword(String keyword);
 
     Integer getOrderedItem(Integer customerId);
     float getTotalSpent(Integer customerId);

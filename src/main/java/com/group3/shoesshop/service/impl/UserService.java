@@ -9,8 +9,6 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.Base64;
 import java.util.List;
 
 @Service
@@ -89,8 +87,18 @@ public class UserService extends BaseService<UserEntity> implements IUserService
     }
 
     @Override
+    public List<UserEntity> findAllSellerByKeyword(String keyword) {
+        return userRepo.findAllSellerByKeyword(keyword);
+    }
+
+    @Override
     public List<UserEntity> findAllBuyer() {
         return userRepo.findAllByRoleCodeAndIsActive("BUYER", true);
+    }
+
+    @Override
+    public List<UserEntity> findAllBuyerByKeyword(String keyword) {
+        return userRepo.findAllBuyerByKeyword(keyword);
     }
 
     @Override

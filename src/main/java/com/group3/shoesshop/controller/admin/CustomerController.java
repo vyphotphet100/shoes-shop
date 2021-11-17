@@ -25,7 +25,7 @@ public class CustomerController {
     private String baseUrl = "Admin_Page/Pages/Customer/";
 
     @GetMapping(value = "/admin/customer/customer-list")
-    public ModelAndView customerList() {
+    public ModelAndView customerList(@RequestParam(value = "keyword", required = false) String keyword) {
         ModelAndView modelAndView = new ModelAndView("Admin_Page/Pages/Customer/CustomerList/index");
 
         modelAndView.addObject("customers", userService.findAllBuyer());
