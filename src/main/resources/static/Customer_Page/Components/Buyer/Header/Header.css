@@ -1,0 +1,134 @@
+@import url("https://fonts.googleapis.com/css2?family=Jost&display=swap");
+
+html {
+  font-family: Jost;
+}
+.b-example-divider {
+  height: 3rem;
+  background-color: rgba(0, 0, 0, 0.1);
+  border: solid rgba(0, 0, 0, 0.15);
+  border-width: 1px 0;
+  box-shadow: inset 0 0.5em 1.5em rgba(0, 0, 0, 0.1),
+    inset 0 0.125em 0.5em rgba(0, 0, 0, 0.15);
+}
+
+.form-control-dark {
+  color: #fff;
+  background-color: var(--bs-dark);
+  border-color: var(--bs-gray);
+}
+.form-control-dark:focus {
+  color: #fff;
+  background-color: var(--bs-dark);
+  border-color: #fff;
+  box-shadow: 0 0 0 0.25rem rgba(255, 255, 255, 0.25);
+}
+
+.bi {
+  vertical-align: -0.125em;
+  fill: currentColor;
+}
+
+.text-small {
+  font-size: 85%;
+}
+
+.dropdown-toggle {
+  outline: 0;
+}
+@media all and (min-width: 992px) {
+  .navbar .nav-item .dropdown-menu {
+    display: none;
+  }
+  .navbar .nav-item:hover .dropdown-menu {
+    display: block;
+  }
+  .navbar .nav-item .dropdown-menu {
+    margin-top: 0;
+  }
+}
+.header__right ul {
+  list-style: none;
+  display: flex;
+  color: #222222;
+}
+.header__right i {
+  font-size: 20px;
+  padding: 15px;
+  cursor: pointer;
+}
+.header__right a {
+  text-decoration: none;
+  color: #222222;
+}
+.header__right button {
+  outline: none;
+  background-color: transparent;
+  border: none;
+}
+.header__right .offcanvas-top {
+  height: 110px;
+  overflow: hidden;
+}
+.header__right .offcanvas-top .offcanvas-header h5 {
+  text-align: center;
+}
+.header__right .offcanvas-body {
+  background-color: transparent;
+  margin-top: -30px;
+  text-align: center;
+  overflow-y: hidden;
+}
+.header__right .offcanvas .offcanvas-body .input-group button {
+  background-color: #777777;
+  color: white;
+}
+.header__right .offcanvas .offcanvas-body .input-group button:hover {
+  color: #222222;
+  background-color: transparent;
+  border: 1px solid #222222;
+}
+.header__right .offcanvas .offcanvas-body .input-group {
+  padding: 0 400px;
+}
+.header__right .offcanvas .offcanvas-body .input-group .form__select {
+  width: 200px;
+}
+.dropdown__items {
+  display: none;
+}
+ul li:hover .dropdown__items {
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 100%;
+  width: 150px;
+  box-shadow: rgb(0 0 0 / 11%);
+  background-color: whitesmoke;
+  text-align: center;
+  border: 1px;
+  border-radius: 2px;
+  transform: none;
+  box-shadow: -2px 8px 55px 12px rgba(175, 175, 175, 0.37);
+  -webkit-box-shadow: -2px 8px 55px 12px rgba(175, 175, 175, 0.37);
+  -moz-box-shadow: -2px 8px 55px 12px rgba(175, 175, 175, 0.37);
+}
+.dropdown__items ul li {
+  list-style: none;
+  margin-left: -35px;
+}
+.dropdown__items ul li a {
+  color: #777777 !important;
+  padding: 20px;
+}
+.dropdown__items ul li a:hover {
+  color: #222222 !important;
+  background-color: #777777;
+}
+.nav-link {
+  color: #222222 !important;
+}
+
+.down__section {
+  margin-bottom: -15px;
+}
