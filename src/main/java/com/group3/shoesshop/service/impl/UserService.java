@@ -5,10 +5,12 @@ import com.group3.shoesshop.entity.OrderItemEntity;
 import com.group3.shoesshop.entity.UserEntity;
 import com.group3.shoesshop.repository.UserRepository;
 import com.group3.shoesshop.service.IUserService;
+import org.apache.catalina.User;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -98,6 +100,14 @@ public class UserService extends BaseService<UserEntity> implements IUserService
 
     @Override
     public List<UserEntity> findAllBuyerByKeyword(String keyword) {
+//        List<UserEntity> res = new ArrayList<>();
+//        for (String subKey: keyword.split(" ")) {
+//            List<UserEntity> userEntities = userRepo.findAllBuyerByKeyword(subKey);
+//            for (UserEntity userEntity: userEntities)
+//                if (!res.contains(userEntity))
+//                    res.add(userEntity);
+//        }
+
         return userRepo.findAllBuyerByKeyword(keyword);
     }
 

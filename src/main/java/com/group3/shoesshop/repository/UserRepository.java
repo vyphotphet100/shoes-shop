@@ -21,13 +21,14 @@ public interface UserRepository extends JpaRepository<UserEntity, Integer> {
             "u.role.code = 'BUYER' AND " +
             "(u.firstName like %:keyword% OR " +
             "u.lastName like %:keyword% OR " +
-            "CONCAT(u.id, '') like %:keyword%)")
+            "CONCAT(CONCAT(u.firstName, ' '), u.lastName) like %:keyword%)")
     List<UserEntity> findAllBuyerByKeyword(@Param("keyword") String keyword);
 
     @Query(value = "SELECT u FROM UserEntity u WHERE " +
             "u.role.code = 'SELLER' AND " +
             "(u.firstName like %:keyword% OR " +
             "u.lastName like %:keyword% OR " +
-            "CONCAT(u.id, '') like %:keyword%)")
+            "CONCAT(u.id, '') like %:keyword% OR " +
+            "CONCAT(CONCAT(u.firstName, ' '), u.lastName) like %:keyword%)")
     List<UserEntity> findAllSellerByKeyword(@Param("keyword") String keyword);
 }

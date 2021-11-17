@@ -28,7 +28,10 @@ public class CustomerController {
     public ModelAndView customerList(@RequestParam(value = "keyword", required = false) String keyword) {
         ModelAndView modelAndView = new ModelAndView("Admin_Page/Pages/Customer/CustomerList/index");
 
-        modelAndView.addObject("customers", userService.findAllBuyer());
+        if (keyword == null)
+            modelAndView.addObject("customers", userService.findAllBuyer());
+        else
+            modelAndView.addObject("customers", userService.findAllBuyerByKeyword(keyword));
 
         return modelAndView;
     }
