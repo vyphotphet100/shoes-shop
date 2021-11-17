@@ -1,7 +1,7 @@
 - Thiết kế Service Layer
 
 -UI:
-  + Customer
+  + Admin
     + Hoàn thành xong Customer list và Edit customer
     + Hoàn thành xong Edit Seller và Seller List
     + Hoàn thành xong Create seller
@@ -15,7 +15,9 @@
     + Hoàn thành orders
     + Hoàn thành login
     + Thiếu Phần DashBoard
-  + Add customer page
+  + Customer page
+    + Sửa tên của Account Side Bar
+
 - Backend:
     + Hoàn thành:
         + Admin
