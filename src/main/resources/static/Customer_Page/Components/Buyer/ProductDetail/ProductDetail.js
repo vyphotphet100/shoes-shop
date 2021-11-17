@@ -37,8 +37,8 @@ template.innerHTML = `
                 <div class="booking__product__detail">
                     <br>
                     <p>Brand: <span id='brand'></span></p>
-                    <p>Product Model: <span id='model'></p>
-                    <p>Availability: <span id='stock'></p>
+                    <p>Product Category: <span id='category'></p>
+                    <p>Is Available: <span id='stock'></p>
                     <br>
                 </div>
                 <div class="booking__price">
@@ -94,7 +94,7 @@ class ProductDetail extends HTMLElement {
         this.shadowRoot.querySelector('h1').innerText = this.getAttribute('productName');
         this.shadowRoot.querySelector('#price').innerText = this.getAttribute('productPrice');
         this.shadowRoot.querySelector('#brand').innerText = this.getAttribute('brand');
-        this.shadowRoot.querySelector('#model').innerText = this.getAttribute('model');
+        this.shadowRoot.querySelector('#category').innerText = this.getAttribute('category');
         this.shadowRoot.querySelector('#stock').innerText = this.getAttribute('stock');
         this.shadowRoot.querySelector('#description').innerText = this.getAttribute('description');
         this.shadowRoot.querySelector('img').src = this.getAttribute('productImage');
