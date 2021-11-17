@@ -15,7 +15,7 @@
     + Hoàn thành orders
     + Hoàn thành login
     + Thiếu Phần DashBoard
-
+  + Add customer page
 - Backend:
     + Hoàn thành:
         + Admin
