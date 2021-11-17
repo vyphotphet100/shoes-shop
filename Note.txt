@@ -17,6 +17,7 @@
     + Thiếu Phần DashBoard
   + Customer page
     + Sửa tên của Account Side Bar
+    + Xóa folder Buyer
 
 - Backend:
     + Hoàn thành:
