@@ -5,7 +5,8 @@ VALUES ('ADMIN', 'Admin'),
 
 INSERT INTO `payment_method`(`name`)
 VALUES ('Paypal'),
-       ('VNPAY');
+       ('VNPAY'),
+       ('COD');
 
 INSERT INTO `user`(`first_name`, `last_name`, `gender`, `birthday`, `address`, `phone`, `email`, `username`, `password`,
                    `is_active`, `role_code`, `payment_method_id`)
@@ -41,11 +42,7 @@ VALUES ('BRAND1', 'Brand Name 1'),
 INSERT INTO `category`(`code`, `name`)
 VALUES ('CATEGORY1', 'Category Name 1'),
        ('CATEGORY2', 'Category Name 2'),
-       ('CATEGORY3', 'Category Name 3'),
-       ('CATEGORY4', 'Category Name 4'),
-       ('CATEGORY5', 'Category Name 5'),
-       ('CATEGORY6', 'Category Name 6'),
-       ('CATEGORY7', 'Category Name 7');
+       ('CATEGORY3', 'Category Name 3');
 
 
 INSERT INTO `product`(`code`, `description`, `in_stock`, `picture_url`, `price`, `quantity`,
