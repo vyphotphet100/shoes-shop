@@ -25,6 +25,7 @@
         + Seller:
             + Product
             + Payment
-
+        + Customer
+            + Hoàn thành mapping url cho các page
     + Những thứ chưa xong nhưng chưa cần làm:
         + Search user
