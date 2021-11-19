@@ -19,6 +19,7 @@
     + Sửa tên của Account Side Bar
     + Xóa folder Buyer
     + Sửa Folder Shopping Cart
+    + Thêm Folder Thanks for buying product
 
 - Backend:
     + Hoàn thành:
