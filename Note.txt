@@ -18,6 +18,7 @@
   + Customer page
     + Sửa tên của Account Side Bar
     + Xóa folder Buyer
+    + Sửa Folder Shopping Cart
 
 - Backend:
     + Hoàn thành:
