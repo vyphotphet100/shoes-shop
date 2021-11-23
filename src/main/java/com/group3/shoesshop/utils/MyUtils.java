@@ -3,8 +3,11 @@ package com.group3.shoesshop.utils;
 import com.google.auth.oauth2.GoogleCredentials;
 import com.google.cloud.storage.*;
 import com.google.common.collect.Lists;
+import com.group3.shoesshop.constant.Constant;
+import com.group3.shoesshop.entity.UserEntity;
 import org.springframework.util.ResourceUtils;
 
+import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.io.FileInputStream;
 import java.nio.file.Files;
@@ -85,5 +88,13 @@ public class MyUtils {
             ex.printStackTrace();
             return null;
         }
+    }
+
+    public static UserEntity getUserFromSession(HttpServletRequest request) {
+        UserEntity userSession = (UserEntity) request.getSession().getAttribute(Constant.USER_SESSION);
+        if (userSession == null)
+            return null;
+
+        return userSession;
     }
 }

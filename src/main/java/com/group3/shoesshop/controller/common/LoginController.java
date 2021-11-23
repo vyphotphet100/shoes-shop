@@ -47,6 +47,6 @@ public class LoginController {
     @GetMapping(value = "/logout")
     public ModelAndView logOut(HttpServletRequest request) {
         request.getSession().setAttribute(Constant.USER_SESSION, null);
-        return new ModelAndView("redirect:/login");
+        return new ModelAndView("redirect:/customer/my-account/login");
     }
 }

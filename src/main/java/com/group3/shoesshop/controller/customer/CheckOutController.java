@@ -1,6 +1,7 @@
 package com.group3.shoesshop.controller.customer;
 
 import com.group3.shoesshop.constant.Constant;
+import com.group3.shoesshop.controller.common.BaseController;
 import com.group3.shoesshop.entity.OrderItemEntity;
 import com.group3.shoesshop.entity.UserEntity;
 import com.group3.shoesshop.service.IOrderItemService;
@@ -16,7 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Controller
-public class CheckOutController extends BaseController{
+public class CheckOutController extends BaseController {
 
     @Autowired
     private IUserService userService;

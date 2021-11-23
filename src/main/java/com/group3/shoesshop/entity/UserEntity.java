@@ -71,4 +71,6 @@ public class UserEntity extends BaseEntity {
     @OneToMany(mappedBy = "seller")
     private List<TransferPaymentEntity> sellerTransferPayments = new ArrayList<>();
 
+    @Transient
+    private String confirmPassword;
 }
