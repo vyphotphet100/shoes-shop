@@ -28,7 +28,7 @@ public class BaseEntity {
     @Column(name = "created_date")
     @CreatedDate
     @Temporal(TIMESTAMP)
-    private Date createDate;
+    private Date createdDate;
 
     @Column(name = "modified_by")
     @LastModifiedBy

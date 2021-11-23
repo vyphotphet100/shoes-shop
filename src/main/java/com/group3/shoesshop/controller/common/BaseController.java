@@ -1,4 +1,4 @@
-package com.group3.shoesshop.controller.customer;
+package com.group3.shoesshop.controller.common;
 
 import com.group3.shoesshop.constant.Constant;
 import com.group3.shoesshop.service.IBrandService;
@@ -23,7 +23,7 @@ public abstract class BaseController {
 
     protected ModelAndView returnModelAndView(HttpServletRequest request, ModelAndView mav) {
         // fake data to test
-        request.getSession().setAttribute(Constant.USER_SESSION, userService.findOne(6));
+        //request.getSession().setAttribute(Constant.USER_SESSION, userService.findOne(6));
 
         mav.addObject("brands", brandService.findAll());
         mav.addObject("categories", categoryService.findAll());
