@@ -1,5 +1,6 @@
 package com.group3.shoesshop.service;
 
+import com.group3.shoesshop.entity.OrderItemEntity;
 import com.group3.shoesshop.entity.UserEntity;
 
 import java.util.List;
@@ -16,5 +17,6 @@ public interface IUserService extends IBaseService<UserEntity>{
 
     Integer getOrderedItem(Integer customerId);
     float getTotalSpent(Integer customerId);
+    UserEntity addProductToCart(Integer userId, String productCode,Integer quantityBought);
 
 }

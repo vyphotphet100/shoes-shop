@@ -14,6 +14,7 @@
     </title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
           integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ=="
           crossorigin="anonymous" referrerpolicy="no-referrer"/>
@@ -31,7 +32,8 @@
 <product-detail th:productName="${product.title}" th:productPrice="'$'+${product.price}"
                 th:brand="${product.brand.name}" th:stock="${product.inStock}" th:model="${product.category.name}"
                 th:description="${product.description}"
-                th:productImage="${product.pictureUrl}"></product-detail>
+                th:productImage="${product.pictureUrl}"
+                th:productCode="${product.code}"></product-detail>
 <section class="owl">
     <h2>RELATED PRODUCT</h2>
     <div class="wrapper">
@@ -53,10 +55,6 @@
             <!--                          productImg='https://assets.adidas.com/images/w_600,f_auto,q_auto/6a0d6246e26a4852825dad3900baddfd_9366/Giay_Ultraboost_DNA_x_LEGO(r)_Colors_trang_FZ3983_01_standard.jpg'></product-card>-->
         </div>
     </div>
-    <!-- Button trigger modal -->
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#announcement">
-        Launch demo modal
-    </button>
 
 </section>
 <!-- Modal -->
@@ -64,17 +62,16 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <h5 class="modal-title" id="exampleModalLongTitle">Announcement</h5>
+                <button onclick="$('#announcement').modal('hide');" type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="modal-body">
+            <div class="modal-body" id="announcement_content">
                 ...
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
+                <button onclick="$('#announcement').modal('hide');" type="button" class="btn btn-primary">Got it</button>
             </div>
         </div>
     </div>

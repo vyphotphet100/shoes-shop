@@ -2,12 +2,16 @@ package com.group3.shoesshop.service.impl;
 
 import com.group3.shoesshop.converter.dto_entity.mapper.UserMapper;
 import com.group3.shoesshop.entity.OrderItemEntity;
+import com.group3.shoesshop.entity.ProductEntity;
 import com.group3.shoesshop.entity.UserEntity;
+import com.group3.shoesshop.repository.OrderItemRepository;
+import com.group3.shoesshop.repository.ProductRepository;
 import com.group3.shoesshop.repository.UserRepository;
 import com.group3.shoesshop.service.IUserService;
 import org.apache.catalina.User;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -20,6 +24,12 @@ public class UserService extends BaseService<UserEntity> implements IUserService
 
     @Autowired
     private UserMapper userMapper;
+
+    @Autowired
+    private ProductRepository productRepo;
+
+    @Autowired
+    private OrderItemRepository orderItemRepo;
 
     @Override
     public List<UserEntity> findAll() {
@@ -131,6 +141,36 @@ public class UserService extends BaseService<UserEntity> implements IUserService
             totalSpent += orderItem.getTotalCost();
 
         return totalSpent;
+    }
+
+    @Override
+    public UserEntity addProductToCart(Integer userId, String productCode, Integer quantityBought) {
+        ProductEntity product = productRepo.findById(productCode).orElse(null);
+        UserEntity user = userRepo.findById(userId).orElse(null);
+
+        if (product == null || user == null)
+            return null;
+
+        // check exist
+        for(OrderItemEntity orderItemEntity: user.getOrderItems()) {
+            if (orderItemEntity.getProduct().getCode().equals(productCode) &&
+                orderItemEntity.getQuantityBought().equals(quantityBought) &&
+                orderItemEntity.getCustomer().getId().equals(userId)) {
+                return this.exceptionObject(new UserEntity(), "This product existed in your cart.");
+            }
+        }
+
+        OrderItemEntity orderItem = new OrderItemEntity();
+        orderItem.setProduct(product);
+        orderItem.setQuantityBought(quantityBought);
+        orderItem.setTotalCost(product.getPrice()*quantityBought);
+        orderItem.setCustomer(user);
+        orderItem = orderItemRepo.save(orderItem);
+        if (!orderItem.getHttpStatus().equals(HttpStatus.OK))
+            return this.exceptionObject(new UserEntity(), "Something went wrong.");
+
+        user.setMessage("Add product to cart successfully.");
+        return user;
     }
 
 }

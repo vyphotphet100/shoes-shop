@@ -8,6 +8,8 @@ import com.group3.shoesshop.service.IProductService;
 import com.group3.shoesshop.utils.MyUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -21,7 +23,12 @@ public class ProductService extends BaseService<ProductEntity> implements IProdu
 
     @Override
     public List<ProductEntity> findAll() {
-        return productRepo.findAllByIsAvailable(true);
+        return productRepo.findAllByIsAvailable( true);
+    }
+
+    @Override
+    public List<ProductEntity> findAllWithPageable(Pageable pageable) {
+        return productRepo.findAllByIsAvailable(pageable, true);
     }
 
     @Override
@@ -101,5 +108,49 @@ public class ProductService extends BaseService<ProductEntity> implements IProdu
         }
 
         return res;
+    }
+
+    @Override
+    public List<ProductEntity> findAllByCategoryCodeAndBrandCode(String categoryCode, String brandCode) {
+        return productRepo.findAllByCategoryCodeAndBrandCode(categoryCode, brandCode);
+    }
+
+    @Override
+    public List<ProductEntity> findAllByCategoryCodeAndBrandCodeWithPageable(String categoryCode, String brandCode, Pageable pageable) {
+        return productRepo.findAllByCategoryCodeAndBrandCode(pageable, categoryCode, brandCode);
+    }
+
+    @Override
+    public List<ProductEntity> findAllByCategoryCode(String categoryCode) {
+        return productRepo.findAllByCategoryCode(categoryCode);
+    }
+
+    @Override
+    public List<ProductEntity> findAllByCategoryCodeWithPageable(String categoryCode, Pageable pageable) {
+        return productRepo.findAllByCategoryCode(pageable, categoryCode);
+    }
+
+    @Override
+    public List<ProductEntity> filterByPrice(List<ProductEntity> productEntities, Integer lowest, Integer highest) {
+        List<ProductEntity> resEntities = new ArrayList<>();
+        for (ProductEntity productEntity: productEntities) {
+            if (productEntity.getPrice() >= lowest &&
+                    productEntity.getPrice() <= highest)
+                resEntities.add(productEntity);
+        }
+
+        return resEntities;
+    }
+
+    @Override
+    public List<ProductEntity> filterBySize(List<ProductEntity> productEntities, Integer lowest, Integer highest) {
+        List<ProductEntity> resEntities = new ArrayList<>();
+        for (ProductEntity productEntity: productEntities) {
+            if (productEntity.getSize() >= lowest &&
+                    productEntity.getSize() <= highest)
+                resEntities.add(productEntity);
+        }
+
+        return resEntities;
     }
 }
