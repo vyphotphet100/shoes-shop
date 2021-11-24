@@ -1,0 +1,106 @@
+<nav th:fragment="sidebar" id="sidebar">
+    <div class="p-5 pt-5">
+        <h5 style="text-transform: uppercase;">Categories</h5>
+        <ul class="list-unstyled components mb-5">
+            <li th:each="category:${categories[0]}">
+                <a th:href="'#category1'" th:utext="${category.name}"
+                   data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Mens Shoes</a>
+                <ul class="collapse list-unstyled" th:id="'category1'">
+                    <li th:each="brand:${brands}">
+                        <a th:href="'/customer/product/product-list?limit=12&categoryCode=' + ${category.code} + '&brandCode=' + ${brand.code}"
+                           th:utext="${brand.name}">Casual</a>
+                    </li>
+                </ul>
+            </li>
+            <li th:each="category:${categories[1]}">
+                <a th:href="'#category1'" th:utext="${category.name}"
+                   data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Mens Shoes</a>
+                <ul class="collapse list-unstyled" th:id="'category1'">
+                    <li th:each="brand:${brands}">
+                        <a th:href="'/customer/product/product-list?limit=12&categoryCode=' + ${category.code} + '&brandCode=' + ${brand.code}"
+                           th:utext="${brand.name}">Casual</a>
+                    </li>
+                </ul>
+            </li>
+            <li th:each="category:${categories[2]}">
+                <a th:href="'#category1'" th:utext="${category.name}"
+                   data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Mens Shoes</a>
+                <ul class="collapse list-unstyled" th:id="'category1'">
+                    <li th:each="brand:${brands}">
+                        <a th:href="'/customer/product/product-list?limit=12&categoryCode=' + ${category.code} + '&brandCode=' + ${brand.code}"
+                           th:utext="${brand.name}">Casual</a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+        <div class="mb-5">
+            <h5 style="text-transform: uppercase;">Refine search</h5>
+            <ul class="list-unstyled components mb-5">
+                <li>
+                    <a href="#price" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Price</a>
+                    <ul class="collapse list-unstyled" id="price">
+                        <li>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" value="1" id="flexCheckDefault"
+                                       name="price">
+                                <label class="form-check-label" for="flexCheckDefault"></label>
+                                <h5>$50-$200</h5>
+                                </label>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" value="2" id="flexCheckDefault"
+                                       name="price">
+                                <label class="form-check-label" for="flexCheckDefault"></label>
+                                <h5>$200-$500</h5>
+                                </label>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" value="3" id="flexCheckDefault"
+                                       name="price">
+                                <label class="form-check-label" for="flexCheckDefault"></label>
+                                <h5>>$500</h5>
+                                </label>
+                            </div>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#size" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Size</a>
+                    <ul class="collapse list-unstyled" id="size">
+                        <li>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" value="1" id="flexCheckDefault"
+                                       name="size">
+                                <label class="form-check-label" for="flexCheckDefault"></label>
+                                <h5>38-40</h5>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" value="2" id="flexCheckDefault"
+                                       name="size">
+                                <label class="form-check-label" for="flexCheckDefault"></label>
+                                <h5>40-42</h5>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" value="3" id="flexCheckDefault"
+                                       name="size">
+                                <label class="form-check-label" for="flexCheckDefault"></label>
+                                <h5>>42</h5>
+                            </div>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <div class="mb-5">
+            <a href="#" class="refine-search-btn" onclick="refineSearch();">REFINE SEARCH</a>
+        </div>
+    </div>
+</nav>

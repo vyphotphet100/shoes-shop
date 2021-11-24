@@ -19,10 +19,10 @@ template.innerHTML = `
             <img>
         </div>
         <div class='hover_left'>
-            <h2 title='Add to cart'>Add to cart</h2>
+            <h2 title='Add to cart' id="add_to_cart">Add to cart</h2>
         </div>
         <div class='product_infomation'>
-            <a href="../ProductDetailPage/index.html"><span></span></a>
+            <a id="quick_view2" href="#"><span></span></a>
             <div class='price_rating'>
                 <div class='price'><h3>$</h3></div>
                 <div class='rating'>
@@ -57,6 +57,14 @@ class ProductCard extends HTMLElement {
         this.shadowRoot.querySelector('h3').innerText = this.getAttribute('productPrice');
         this.shadowRoot.querySelector('img').src = this.getAttribute('productImg');
         this.shadowRoot.querySelector('#quick_view').href = 'product-detail?code=' + this.getAttribute('productCode');
+        this.shadowRoot.querySelector('#quick_view2').href = 'product-detail?code=' + this.getAttribute('productCode');
+
+        this.shadowRoot.querySelector('#add_to_cart').addEventListener('click', () => this.addToCart());
+    }
+
+    addToCart() {
+        var productCode = this.getAttribute('productCode');
+        addProductToCart(productCode, 1);
     }
 }
 

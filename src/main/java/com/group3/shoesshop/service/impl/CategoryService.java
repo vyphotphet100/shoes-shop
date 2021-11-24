@@ -31,7 +31,7 @@ public class CategoryService extends BaseService<CategoryEntity> implements ICat
 
     @Override
     public CategoryEntity findOne(String code) {
-        return null;
+        return categoryRepo.findById(code).orElse(null);
     }
 
     @Override

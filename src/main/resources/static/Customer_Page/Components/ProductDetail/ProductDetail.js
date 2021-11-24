@@ -60,9 +60,10 @@ template.innerHTML = `
                             </div>
                         </div>
                         <div class="add__to__cart">
-                            <button class="add__cart__btn" data-toggle="modal" data-target="#announcement">ADD TO CART</button>
+                            <button id="add_to_cart" class="add__cart__btn" data-toggle="modal" data-target="#announcement">ADD TO CART</button>
                         </div>
                     </div>
+                    <input type="hidden" id="product_code">
                 </div>
             </div>
         </div>
@@ -89,27 +90,39 @@ class ProductDetail extends HTMLElement {
         this.shadowRoot.querySelector('#price').innerText = this.getAttribute('productPrice');
         this.shadowRoot.querySelector('#brand').innerText = this.getAttribute('brand');
         this.shadowRoot.querySelector('#model').innerText = this.getAttribute('model');
-        var test = this.getAttribute('stock');
         if (this.getAttribute('stock') == 'true')
             this.shadowRoot.querySelector('#stock').innerText = 'In Stock';
         else
             this.shadowRoot.querySelector('#stock').innerText = 'Out of Stock';
         this.shadowRoot.querySelector('#description').innerText = this.getAttribute('description');
         this.shadowRoot.querySelector('img').src = this.getAttribute('productImage');
+        this.shadowRoot.querySelector('#product_code').value = this.getAttribute('productCode');
+
+        this.shadowRoot.querySelector('#add').addEventListener('click', () => this.addQty());
+        this.shadowRoot.querySelector('#reduce').addEventListener('click', () => this.reduceQty());
+        this.shadowRoot.querySelector('#add_to_cart').addEventListener('click', () => this.addToCart());
     }
 
     reduceQty() {
-        var value = this.shadowRoot.getElementById('qty__value').value;
-        value -= 1;
-        document.getElementById('qty__value').value = value;
+        var value = this.shadowRoot.querySelector('#qty__value').value;
+        if (value == 1 || value == '1')
+            return;
+        value =  parseInt(value) - 1;;
+        this.shadowRoot.querySelector('#qty__value').value = value;
         //console.log('123');
     }
 
     addQty() {
-        var value = this.shadowRoot.getElementById('qty__value').value;
-        value -= 1;
-        document.getElementById('qty__value').value = value;
+        var value = this.shadowRoot.querySelector('#qty__value').value;
+        value = parseInt(value) + 1;
+        this.shadowRoot.querySelector('#qty__value').value = value;
         //console.log('123');
+    }
+
+    addToCart() {
+        var quantity = this.shadowRoot.querySelector('#qty__value').value;
+        var productCode = this.shadowRoot.querySelector('#product_code').value;
+        addProductToCart(productCode, quantity);
     }
 
     connectedCallBack() {

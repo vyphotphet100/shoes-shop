@@ -22,6 +22,7 @@
     + Thêm Folder Thanks for buying product
 
 - Backend:
+    + Fake data ở trong CheckOutController
     + Hoàn thành:
         + Admin
         + Seller:
