@@ -29,7 +29,7 @@ public class InfomationController extends BaseController {
 
         return returnModelAndView(request, mav);
     }
-    @GetMapping(value = "/customer/information/tearm-and-conditions")
+    @GetMapping(value = "/customer/information/term-and-conditions")
     public ModelAndView teamAndConditions(HttpServletRequest request) {
         ModelAndView mav = new ModelAndView("/Customer_Page/Pages/Information/TearmAndConditions/index");
 
