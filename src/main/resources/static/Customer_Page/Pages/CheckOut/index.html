@@ -124,8 +124,8 @@
       <div class="accordion-body">
         <p>Please select the preferred payment method to use on this order.</p>
         <div th:each="paymentMethod:${paymentMethods}" class="form-check">
-          <input th:if="${paymentMethod.id == userSession.paymentMethod.id}" class="form-check-input" type="radio" checked>
-          <input th:if="${paymentMethod.id != userSession.paymentMethod.id}" class="form-check-input" type="radio">
+          <input th:if="${paymentMethod.id == userSession.paymentMethod.id}" class="form-check-input" name="paymentMethod" type="radio" checked>
+          <input th:if="${paymentMethod.id != userSession.paymentMethod.id}" class="form-check-input" name="paymentMethod" type="radio">
           <label th:utext="${paymentMethod.name}" class="form-check-label">
             COD - Cash On Delivery
           </label>
