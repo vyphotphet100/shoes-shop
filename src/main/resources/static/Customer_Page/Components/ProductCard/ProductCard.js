@@ -56,8 +56,8 @@ class ProductCard extends HTMLElement {
         this.shadowRoot.querySelector('span').innerText = this.getAttribute('productName');
         this.shadowRoot.querySelector('h3').innerText = this.getAttribute('productPrice');
         this.shadowRoot.querySelector('img').src = this.getAttribute('productImg');
-        this.shadowRoot.querySelector('#quick_view').href = 'product-detail?code=' + this.getAttribute('productCode');
-        this.shadowRoot.querySelector('#quick_view2').href = 'product-detail?code=' + this.getAttribute('productCode');
+        this.shadowRoot.querySelector('#quick_view').href = '/customer/product/product-detail?code=' + this.getAttribute('productCode');
+        this.shadowRoot.querySelector('#quick_view2').href = '/customer/product/product-detail?code=' + this.getAttribute('productCode');
 
         this.shadowRoot.querySelector('#add_to_cart').addEventListener('click', () => this.addToCart());
     }

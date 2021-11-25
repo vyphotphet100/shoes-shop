@@ -173,4 +173,19 @@ public class UserService extends BaseService<UserEntity> implements IUserService
         return user;
     }
 
+    @Override
+    public List<OrderItemEntity> getOrderItemsWithoutPayment(Integer userId) {
+        UserEntity userEntity = userRepo.findById(userId).orElse(null);
+        if (userEntity == null)
+            return new ArrayList<>();
+
+        List<OrderItemEntity> resEntities = new ArrayList<>();
+        for (OrderItemEntity orderItemEntity: userEntity.getOrderItems()){
+            if (orderItemEntity.getPayment() == null)
+                resEntities.add(orderItemEntity);
+        }
+
+        return resEntities;
+    }
+
 }

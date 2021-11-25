@@ -2,6 +2,9 @@
     <div class="p-5 pt-5">
         <h5 style="text-transform: uppercase;">Categories</h5>
         <ul class="list-unstyled components mb-5">
+            <li>
+                <a href="/customer/product/product-list?limit=12">All</a>
+            </li>
             <li th:each="category:${categories[0]}">
                 <a th:href="'#category1'" th:utext="${category.name}"
                    data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Mens Shoes</a>
