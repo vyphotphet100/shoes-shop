@@ -9,4 +9,5 @@ public interface IOrderItemService extends IBaseService<OrderItemEntity>{
     OrderItemEntity delete(Integer id);
 
     float getTotalCostOfOrderItemList(List<OrderItemEntity> orderItemEntities);
+    OrderItemEntity updateQuantityBought(Integer orderItemId, Integer quantityBought);
 }

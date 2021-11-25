@@ -18,5 +18,5 @@ public interface IUserService extends IBaseService<UserEntity>{
     Integer getOrderedItem(Integer customerId);
     float getTotalSpent(Integer customerId);
     UserEntity addProductToCart(Integer userId, String productCode,Integer quantityBought);
-
+    List<OrderItemEntity> getOrderItemsWithoutPayment(Integer userId); // order items in shopping cart
 }
