@@ -50,7 +50,7 @@
                 </th>
                 <td>
                     <div class="shopping__cart__component">
-                        <a href="#" th:utext="${orderItem.product.title}">Nike Air Force 1</a>
+                        <a th:href="'/customer/product/product-detail?code=' + ${orderItem.product.code}" th:utext="${orderItem.product.title}">Nike Air Force 1</a>
                     </div>
                 </td>
                 <td>

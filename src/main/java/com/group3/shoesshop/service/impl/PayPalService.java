@@ -2,6 +2,8 @@ package com.group3.shoesshop.service.impl;
 
 import com.group3.shoesshop.entity.OrderItemEntity;
 import com.group3.shoesshop.service.IPayPalService;
+import com.group3.shoesshop.utils.MyUtils;
+import com.group3.shoesshop.utils.PaymentUtils;
 import com.paypal.api.payments.*;
 import com.paypal.base.rest.APIContext;
 import com.paypal.base.rest.PayPalRESTException;
@@ -79,48 +81,8 @@ public class PayPalService implements IPayPalService {
     }
 
     private List<Transaction> getTransactionInformation(List<OrderItemEntity> orderItemEntities) {
-//        Details details = new Details();
-//        details.setShipping(orderDetail.getShipping().toString());
-//        details.setSubtotal(String.valueOf(orderDetail.getPrice()* orderDetail.getQuantity()));
-//        details.setTax("0");
-//
-//        Amount amount = new Amount();
-//        amount.setCurrency("USD");
-//        amount.setTotal(String.valueOf(Integer.parseInt(details.getSubtotal()) + orderDetail.getShipping()));
-//        amount.setDetails(details);
-//
-//        Transaction transaction = new Transaction();
-//        transaction.setAmount(amount);
-//        transaction.setDescription(orderDetail.getDescription());
-//
-//        ItemList itemList = new ItemList();
-//        List<Item> items = new ArrayList<>();
-//
-//        Item item = new Item();
-//        item.setCurrency("USD");
-//        item.setName(orderDetail.getProductName());
-//        item.setPrice(orderDetail.getPrice().toString());
-//        item.setTax("0");
-//        item.setQuantity(orderDetail.getQuantity().toString());
-//
-//        items.add(item);
-//        itemList.setItems(items);
-//        transaction.setItemList(itemList);
-//
-//        List<Transaction> listTransaction = new ArrayList<>();
-//        listTransaction.add(transaction);
-//
-//        return listTransaction;
-
-
         Transaction transaction = new Transaction();
-        String description = "This payment is for product(s):";
-        for (OrderItemEntity orderItemEntity : orderItemEntities) {
-            if (!orderItemEntity.equals(orderItemEntities.get(orderItemEntities.size() - 1)))
-                description += " " + orderItemEntity.getProduct().getTitle() + ",";
-            else
-                description += " " + orderItemEntity.getProduct().getTitle() + ".";
-        }
+        String description = PaymentUtils.generateDescriptionFromOrderItemList(orderItemEntities);
 
         transaction.setDescription(description);
 
@@ -144,13 +106,13 @@ public class PayPalService implements IPayPalService {
         transaction.setItemList(itemList);
 
         Details details = new Details();
-        details.setShipping("5");
+        details.setShipping("0");
         details.setSubtotal(String.valueOf(subTotal));
         details.setTax("0");
 
         Amount amount = new Amount();
         amount.setCurrency("USD");
-        amount.setTotal(String.valueOf(Float.valueOf(details.getSubtotal()) + 5));
+        amount.setTotal(details.getSubtotal());
         amount.setDetails(details);
         transaction.setAmount(amount);
 

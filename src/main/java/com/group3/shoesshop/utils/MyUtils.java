@@ -4,6 +4,7 @@ import com.google.auth.oauth2.GoogleCredentials;
 import com.google.cloud.storage.*;
 import com.google.common.collect.Lists;
 import com.group3.shoesshop.constant.Constant;
+import com.group3.shoesshop.entity.OrderItemEntity;
 import com.group3.shoesshop.entity.UserEntity;
 import org.springframework.util.ResourceUtils;
 
@@ -12,6 +13,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.List;
 import java.util.Random;
 import java.util.ResourceBundle;
 

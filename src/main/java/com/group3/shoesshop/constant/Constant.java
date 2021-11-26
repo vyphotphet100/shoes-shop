@@ -9,4 +9,6 @@ public class Constant {
     public static String ROLE_CUSTOMER = "BUYER";
 
     public static String READY_ORDER_ITEMS = "READY_ORDER_ITEMS";
+
+    public static int EXCHANGE_RATE_USD_VND = 22679;
 }

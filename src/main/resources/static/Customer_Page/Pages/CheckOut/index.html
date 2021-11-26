@@ -91,7 +91,7 @@
                             </div>
                             <div class="mb-3">
                                 <label class="form-label"><span>*</span>Phone</label>
-                                <input type="number" class="form-control" placeholder="Enter your Telephone here!"
+                                <input id="phone" type="number" class="form-control" placeholder="Enter your Telephone here!"
                                        th:value="${session.get('USER_SESSION')['phone']}" required>
                             </div>
                         </div>
@@ -99,7 +99,7 @@
                             <legend>Your Address</legend>
                             <div class="mb-3">
                                 <label class="form-label"><span>*</span>Address</label>
-                                <input style="height:127px;" type="text" class="form-control"
+                                <input id="address" style="height:127px;" type="text" class="form-control"
                                        placeholder="Enter your Address here!"
                                        th:value="${session.get('USER_SESSION')['address']}" required>
                             </div>

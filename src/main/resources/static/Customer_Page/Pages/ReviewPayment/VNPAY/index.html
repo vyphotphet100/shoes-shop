@@ -26,7 +26,7 @@
 </div>
 <div align="center">
     <h1>Please Review Before Paying</h1>
-    <form action="/customer/paying/execute-payment" method="post">
+    <form action="/customer/paying/execute-payment" id="frmCreateOrder" method="post">
         <table>
 
             <tr>
@@ -81,10 +81,6 @@
                 <table>
                     <tr>
                         <td colspan="2"><b>Payment Details:</b></td>
-                        <td>
-                            <input type="hidden" name="paymentId" th:value="${param.paymentId}" />
-                            <input type="hidden" name="PayerID" th:value="${param.PayerID}" />
-                        </td>
                     </tr>
                     <tr>
                         <td>Shipping Address:</td>
@@ -92,15 +88,15 @@
                     </tr>
                     <tr>
                         <td>Description:</td>
-                        <td th:utext="${transaction.description}"></td>
+                        <td th:utext="${description}"></td>
                     </tr>
                     <tr>
                         <td>Subtotal:</td>
-                        <td th:utext="${transaction.amount.details.subtotal} + ' USD'"> USD</td>
+                        <td th:utext="${total} + ' USD'"> USD</td>
                     </tr>
                     <tr>
                         <td>Total:</td>
-                        <td th:utext="${transaction.amount.total} + ' USD'"> USD</td>
+                        <td th:utext="${total} + ' USD -> '+ ${#numbers.formatDecimal(total*exchangeRate, 0, 'COMMA', 2, 'POINT')} + ' VND'"> USD</td>
                     </tr>
                     <tr><td><br/></td></tr>
                     <tr>
@@ -108,15 +104,15 @@
                     </tr>
                     <tr>
                         <td>First Name:</td>
-                        <td th:utext="${payer.firstName}"></td>
+                        <td th:utext="${userSession.firstName}"></td>
                     </tr>
                     <tr>
                         <td>Last Name:</td>
-                        <td th:utext="${payer.lastName}"></td>
+                        <td th:utext="${userSession.lastName}"></td>
                     </tr>
                     <tr>
                         <td>Email:</td>
-                        <td th:utext="${payer.email}"></td>
+                        <td th:utext="${userSession.email}"></td>
                     </tr>
                 </table>
             </tr>

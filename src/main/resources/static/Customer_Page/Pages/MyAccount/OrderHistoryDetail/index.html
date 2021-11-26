@@ -50,7 +50,7 @@
                             <td th:utext="${orderItem.customer.lastName}">Hoàn Doe</td>
                             <td th:if="${orderItem.payment.shipmentDate == null}">Shipping</td>
                             <td th:if="${orderItem.payment.shipmentDate != null}" th:utext="${orderItem.payment.shipmentDate}">Shipping</td>
-                            <td th:utext="${orderItem.createdDate}">30/10/2021</td>
+                            <td th:utext="${orderItem.payment.paymentDate}">30/10/2021</td>
                             <td th:utext="${orderItem.customer.paymentMethod.name}">COD (Cash on delivery)</td>
                         </tr>
                         </tbody>

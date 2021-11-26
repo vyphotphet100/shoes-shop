@@ -10,6 +10,7 @@ import com.group3.shoesshop.entity.PaymentEntity;
 import com.group3.shoesshop.entity.UserEntity;
 import com.group3.shoesshop.service.*;
 import com.group3.shoesshop.utils.MyUtils;
+import com.group3.shoesshop.utils.PaymentUtils;
 import com.paypal.api.payments.PayerInfo;
 import com.paypal.api.payments.Payment;
 import com.paypal.api.payments.ShippingAddress;
@@ -49,6 +50,9 @@ public class PayingController extends BaseController {
 
     @Autowired
     private IPaymentService paymentService;
+
+    @Autowired
+    private IVNPAYService VNPAYService;
 
     @GetMapping(value = "/customer/paying/shopping-cart")
     public ModelAndView shoppingCart(HttpServletRequest request) {
@@ -132,62 +136,137 @@ public class PayingController extends BaseController {
         List<OrderItemEntity> readyOrderItems = (List<OrderItemEntity>) request.getSession().getAttribute(Constant.READY_ORDER_ITEMS);
 
         String redirectLink = null;
-        if (userSession.getPaymentMethod().getId().equals(1))
+        if (userSession.getPaymentMethod().getId().equals(1)) // PayPal
             redirectLink = payPalService.authorizePayment(readyOrderItems);
+        else if (userSession.getPaymentMethod().getId().equals(2) ||
+                userSession.getPaymentMethod().getId().equals(3)) // VNPAY/COD
+            redirectLink = "/customer/paying/review-payment";
+
         orderItemDto.getListResult().add(redirectLink);
         return new ResponseEntity<OrderItemDTO>(orderItemDto, orderItemDto.getHttpStatus());
     }
 
     @GetMapping(value = "/customer/paying/review-payment")
-    public ModelAndView reviewPayment(HttpServletRequest request, @RequestParam String paymentId, @RequestParam String PayerID) {
-        ModelAndView mav = new ModelAndView("Customer_Page/Pages/ReviewPayment/index");
+    public ModelAndView reviewPayment(HttpServletRequest request,
+                                      @RequestParam(required = false) String paymentId,
+                                      @RequestParam(required = false) String PayerID) {
+        UserEntity userSession = MyUtils.getUserFromSession(request);
+        if (userSession == null)
+            return new ModelAndView("redirect:/customer/my-account/login");
+
+        ModelAndView mav = null;
         List<OrderItemEntity> readyOrderItems = (List<OrderItemEntity>) request.getSession().getAttribute(Constant.READY_ORDER_ITEMS);
-        mav.addObject("readyOrderItems", readyOrderItems);
 
+        if (userSession.getPaymentMethod().getId().equals(1)) { // PayPal
+            mav = new ModelAndView("Customer_Page/Pages/ReviewPayment/index");
+            mav.addObject("readyOrderItems", readyOrderItems);
+            if (paymentId == null || PayerID == null)
+                return new ModelAndView("redirect:/customer/my-account/login");
 
-        try {
-            Payment payment = payPalService.getPaymentDetails(paymentId);
+            try {
+                Payment payment = payPalService.getPaymentDetails(paymentId);
 
-            PayerInfo payerInfo = payment.getPayer().getPayerInfo();
-            Transaction transaction = payment.getTransactions().get(0);
+                PayerInfo payerInfo = payment.getPayer().getPayerInfo();
+                Transaction transaction = payment.getTransactions().get(0);
 
-            mav.addObject("payer", payerInfo);
-            mav.addObject("transaction", transaction);
+                mav.addObject("payer", payerInfo);
+                mav.addObject("transaction", transaction);
 
+                return returnModelAndView(request, mav);
+
+            } catch (PayPalRESTException ex) {
+                ex.printStackTrace();
+            }
+        } else if (userSession.getPaymentMethod().getId().equals(2) ||
+                userSession.getPaymentMethod().getId().equals(3)) { // VNPAY/COD
+            mav = new ModelAndView("Customer_Page/Pages/ReviewPayment/VNPAY/index");
+            mav.addObject("readyOrderItems", readyOrderItems);
+            String description = PaymentUtils.generateDescriptionFromOrderItemList(readyOrderItems);
+            float total = PaymentUtils.getTotalCostOfOrderItemList(readyOrderItems);
+            mav.addObject("exchangeRate", Constant.EXCHANGE_RATE_USD_VND);
+            mav.addObject("description", description);
+            mav.addObject("total", total);
             return returnModelAndView(request, mav);
-
-        } catch (PayPalRESTException ex) {
-            request.setAttribute("errorMessage", ex.getMessage());
-            ex.printStackTrace();
         }
+
 
         return returnModelAndView(request, mav);
     }
 
     @PostMapping(value = "/customer/paying/execute-payment")
-    public ModelAndView executePayment(HttpServletRequest request, @RequestParam String paymentId, @RequestParam String PayerID) {
+    public ModelAndView executePayment(HttpServletRequest request,
+                                       @RequestParam(required = false) String paymentId,
+                                       @RequestParam(required = false) String PayerID,
+                                       @RequestParam(required = false) String vnp_PayDate) {
 
-        try {
-            Payment payment = payPalService.executePayment(paymentId, PayerID);
+        UserEntity userSession = MyUtils.getUserFromSession(request);
+        if (userSession == null)
+            return new ModelAndView("redirect:/customer/my-account/login");
 
-            PayerInfo payerInfo = payment.getPayer().getPayerInfo();
-            Transaction transaction = payment.getTransactions().get(0);
+        List<OrderItemEntity> readyOrderItems = (List<OrderItemEntity>) request.getSession().getAttribute(Constant.READY_ORDER_ITEMS);
+        if (readyOrderItems == null)
+            return new ModelAndView("redirect:/customer/my-account/login");
 
-            // save payment
-            List<OrderItemEntity> readyOrderItems = (List<OrderItemEntity>)request.getSession().getAttribute(Constant.READY_ORDER_ITEMS);
-            for (OrderItemEntity orderItemEntity: readyOrderItems) {
-                PaymentEntity paymentEntity = new PaymentEntity();
-                paymentEntity.setOrderItem(orderItemEntity);
-                paymentEntity.setPaymentDate(new Date());
-                paymentService.save(paymentEntity);
+        if (userSession.getPaymentMethod().getId().equals(1)) { // PayPal
+            try {
+                if (paymentId == null || PayerID == null)
+                    return new ModelAndView("redirect:/customer/my-account/login");
+
+                Payment payment = payPalService.executePayment(paymentId, PayerID);
+
+//            PayerInfo payerInfo = payment.getPayer().getPayerInfo();
+//            Transaction transaction = payment.getTransactions().get(0);
+
+            } catch (PayPalRESTException ex) {
+                ex.printStackTrace();
+                return null;
             }
-
-            return new ModelAndView("redirect:/customer/paying/thanks");
-
-        } catch (PayPalRESTException ex) {
-            ex.printStackTrace();
-            return null;
+        } else if (userSession.getPaymentMethod().getId().equals(2)) { // VNPAY
+            try {
+                if (vnp_PayDate == null) {
+                    String redirectLink = VNPAYService.getRedirectLink(request, readyOrderItems);
+                    return new ModelAndView("redirect:" + redirectLink);
+                }
+            } catch (Exception ex) {
+                ex.printStackTrace();
+                return null;
+            }
         }
+
+        // save payment
+        for (OrderItemEntity orderItemEntity : readyOrderItems) {
+            PaymentEntity paymentEntity = new PaymentEntity();
+            paymentEntity.setOrderItem(orderItemEntity);
+            paymentEntity.setPaymentDate(new Date());
+            paymentService.save(paymentEntity);
+        }
+        return new ModelAndView("redirect:/customer/paying/thanks");
+    }
+
+    @GetMapping(value = "/customer/paying/execute-payment")
+    public ModelAndView executePaymentGet(HttpServletRequest request,
+                                          @RequestParam(required = false) String paymentId,
+                                          @RequestParam(required = false) String PayerID,
+                                          @RequestParam(required = false) String vnp_PayDate) {
+        return this.executePayment(request, paymentId, PayerID, vnp_PayDate);
+    }
+
+    @PutMapping(value = "/customer/paying/update-user-before-paying")
+    public void updateUserBeforePaying(HttpServletRequest request, @RequestBody UserEntity user) {
+        UserEntity userSession = MyUtils.getUserFromSession(request);
+        if (userSession == null)
+            return;
+
+        String phone = (String) user.getListRequest().get(0);
+        String address = (String) user.getListRequest().get(1);
+        Integer paymentMethodId = (Integer) user.getListRequest().get(2);
+
+        user.setId(userSession.getId());
+        user.setPhone(phone);
+        user.setAddress(address);
+        user.setPaymentMethod(paymentMethodService.findOne(paymentMethodId));
+        user = userService.update(user);
+        request.getSession().setAttribute(Constant.USER_SESSION, user);
     }
 
     @GetMapping(value = "/customer/paying/thanks")
