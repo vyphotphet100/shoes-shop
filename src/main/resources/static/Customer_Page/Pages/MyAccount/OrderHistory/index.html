@@ -55,7 +55,7 @@
                             <td th:if="${orderItem.payment.shipmentDate == null}">Shipping</td>
                             <td th:if="${orderItem.payment.shipmentDate != null}" th:utext="${orderItem.payment.shipmentDate}">Shipping</td>
                             <td th:utext="${orderItem.totalCost}">$185.00</td>
-                            <td th:utext="${orderItem.createdDate}">30/10/2021</td>
+                            <td th:utext="${orderItem.payment.paymentDate}">30/10/2021</td>
                             <td><a class="view__detail" th:href="'/customer/my-account/order-history-detail?id=' + ${orderItem.id}"><i
                                     class="fas fa-eye"></i></a></td>
                         </tr>
