@@ -43,6 +43,7 @@
         Mật khẩu OTP	    123456
 
 - PAYPAL:
+    + URL: https://sandbox.paypal.com/
     + Customer:
         Username: sb-8yx4368712016@personal.example.com
         Password: BzYD(5?E
