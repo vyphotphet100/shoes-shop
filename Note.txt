@@ -32,3 +32,21 @@
             + Hoàn thành mapping url cho các page
     + Những thứ chưa xong nhưng chưa cần làm:
         + Search user
+
+- VNPAY:
+    - Trang login cho chủ doanh nghiệp: https://sandbox.vnpayment.vn/merchantv2/
+    - Thông tin thẻ để test:
+        Ngân hàng	        NCB
+        Số thẻ	            9704198526191432198
+        Tên chủ thẻ	        NGUYEN VAN A
+        Ngày phát hành	    07/15
+        Mật khẩu OTP	    123456
+
+- PAYPAL:
+    + URL: https://sandbox.paypal.com/
+    + Customer:
+        Username: sb-8yx4368712016@personal.example.com
+        Password: BzYD(5?E
+    + Business:
+        Username: sb-trf4u8333966@business.example.com
+        Password: j/7j5Ovw

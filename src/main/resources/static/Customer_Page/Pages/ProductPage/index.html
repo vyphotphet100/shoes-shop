@@ -30,7 +30,8 @@
     </div>
     <div id="content product_container" class=" p-md-5 pt-5">
         <div class="introduction">
-            <h2>Men's Shoes</h2>
+            <h2 th:if="${param.get('categoryCode') != null && products.size() >= 1}" th:utext="${products[0].category.name}">Men's Shoes</h2>
+            <h2 th:if="${param.get('categoryCode') == null}" >All</h2>
             <img src="https://opencart.mahardhi.com/MT04/noriva/01/image/cache/catalog/banners/cat_banner-1394x240.jpg">
             <p>Shop Laptop feature only the best laptop deals on the market. By comparing laptop deals from the likes of
                 PC World, Comet, Dixons, The Link and Carphone Warehouse, Shop Laptop has the most comprehensive

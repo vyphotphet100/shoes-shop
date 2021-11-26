@@ -11,11 +11,11 @@ import java.util.List;
 @Service
 public class PaymentMethodService extends BaseService<PaymentMethodEntity> implements IPaymentMethodService {
     @Autowired
-    private PaymentMethodRepository paymentMethodRepository;
+    private PaymentMethodRepository paymentMethodRepo;
 
     @Override
     public List<PaymentMethodEntity> findAll() {
-        return paymentMethodRepository.findAll();
+        return paymentMethodRepo.findAll();
     }
 
     @Override
@@ -30,7 +30,7 @@ public class PaymentMethodService extends BaseService<PaymentMethodEntity> imple
 
     @Override
     public PaymentMethodEntity findOne(Integer id) {
-        return null;
+        return paymentMethodRepo.findById(id).orElse(null);
     }
 
     @Override
