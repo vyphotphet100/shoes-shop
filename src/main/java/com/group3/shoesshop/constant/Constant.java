@@ -1,6 +1,7 @@
 package com.group3.shoesshop.constant;
 
 public class Constant {
+    public static String ROOT_PATH = null;
     public static String USER_SESSION = "USER_SESSION";
 
     // Role

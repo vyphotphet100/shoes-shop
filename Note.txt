@@ -50,3 +50,9 @@
     + Business:
         Username: sb-trf4u8333966@business.example.com
         Password: j/7j5Ovw
+
+- VPS:
+    VNC password: Vy1234
+    Username: root
+    Password: Caodinhsyvy2001@
+
