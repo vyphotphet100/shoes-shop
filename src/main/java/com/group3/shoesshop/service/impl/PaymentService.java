@@ -1,8 +1,11 @@
 package com.group3.shoesshop.service.impl;
 
+import com.group3.shoesshop.entity.OrderItemEntity;
 import com.group3.shoesshop.entity.PaymentEntity;
 import com.group3.shoesshop.repository.PaymentRepository;
 import com.group3.shoesshop.service.IPaymentService;
+import com.paypal.api.payments.Payment;
+import com.paypal.base.rest.PayPalRESTException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,7 +23,7 @@ public class PaymentService extends BaseService<PaymentEntity> implements IPayme
 
     @Override
     public PaymentEntity save(PaymentEntity entity) {
-        return null;
+        return paymentRepo.save(entity);
     }
 
     @Override
