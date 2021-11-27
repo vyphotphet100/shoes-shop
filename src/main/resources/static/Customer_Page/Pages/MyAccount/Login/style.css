@@ -22,7 +22,7 @@ h1 {
   border: 1px solid black;
 }
 .card-body__1 {
-  width: 530px;
+  width: auto;
   height: auto;
   border: 1px solid #777777;
   padding: 19px;
@@ -64,7 +64,7 @@ h1 {
   font-weight: bold;
 }
 .card-body__2 {
-  width: 530px;
+  width: auto;
   height: auto;
   border: 1px solid #777777;
   padding: 19px;
