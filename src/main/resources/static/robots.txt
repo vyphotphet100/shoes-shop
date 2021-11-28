@@ -1,0 +1,5 @@
+User-agent: *
+Disallow: /admin/
+Disallow: /seller/
+
+Sitemap: http://shoes-shop.ddns.net/customer/information/sitemap

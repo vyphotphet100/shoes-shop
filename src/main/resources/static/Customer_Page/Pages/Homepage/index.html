@@ -4,14 +4,25 @@
       lang="en">
 
 <head>
+    <title>Home | Noriva</title>
+    <meta name="description"
+          content="Noriva - The paradise of shoes, where you can buy anything for your sport activities.">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta property="og:title" content="Noriva - The paradise of shoes">
+    <meta property="og:type" content="company">
+    <meta property="og:url" content="http://shoes-shop.ddns.net/home">
+    <meta property="og:image"
+          content="https://images.pexels.com/photos/6776614/pexels-photo-6776614.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940">
+
+    <meta name="keywords" content="noriva, shoes shop, men shoes, sportswear, clothes"/>
+
+
     <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
-    <title>Home</title>
-    </title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
@@ -95,17 +106,6 @@
                           th:productPrice="${product.price}"
                           th:productImg="${product.pictureUrl}"
                           th:productCode="${product.code}"></product-card>
-
-            <!--            <product-card productName='Nike Air Force 1' productPrice='$125.00'-->
-            <!--                          productImg='https://assets.adidas.com/images/w_600,f_auto,q_auto/9326e8db8d8e4e509e42ad26010cf693_9366/Giay_adidas_4DFWD_Pulse_DJen_Q46451_01_standard.jpg'></product-card>-->
-            <!--            <product-card productName='Nike Air Force 2' productPrice='$135.00'-->
-            <!--                          productImg='https://assets.adidas.com/images/w_600,f_auto,q_auto/c7227d99699243099c24ac5e00406c2c_9366/Giay_co_lung_Forum_trang_FY4976_01_standard.jpg'></product-card>-->
-            <!--            <product-card productName='Nike Air Force 3' productPrice='$134.00'-->
-            <!--                          productImg='https://assets.adidas.com/images/w_600,f_auto,q_auto/68ae7ea7849b43eca70aac1e00f5146d_9366/Giay_Stan_Smith_trang_FX5502_01_standard.jpg'></product-card>-->
-            <!--            <product-card productName='Nike Air Force 4' productPrice='$151.00'-->
-            <!--                          productImg='https://assets.adidas.com/images/w_600,f_auto,q_auto/8c687d94b5654d4bb435a97f00d5a475_9366/Giay_Grand_Court_trang_F36392_01_standard.jpg'></product-card>-->
-            <!--            <product-card productName='Nike Air Force 5' productPrice='$134.00'-->
-            <!--                          productImg='https://assets.adidas.com/images/w_600,f_auto,q_auto/6a0d6246e26a4852825dad3900baddfd_9366/Giay_Ultraboost_DNA_x_LEGO(r)_Colors_trang_FZ3983_01_standard.jpg'></product-card>-->
         </div>
     </div>
 </section>
@@ -139,16 +139,6 @@
                           th:productPrice="${product.price}"
                           th:productImg="${product.pictureUrl}"
                           th:productCode="${product.code}"></product-card>
-            <!--            <product-card productName='Nike Air Force 1' productPrice='$125.00'-->
-            <!--                          productImg='https://assets.adidas.com/images/w_600,f_auto,q_auto/9326e8db8d8e4e509e42ad26010cf693_9366/Giay_adidas_4DFWD_Pulse_DJen_Q46451_01_standard.jpg'></product-card>-->
-            <!--            <product-card productName='Nike Air Force 2' productPrice='$135.00'-->
-            <!--                          productImg='https://assets.adidas.com/images/w_600,f_auto,q_auto/c7227d99699243099c24ac5e00406c2c_9366/Giay_co_lung_Forum_trang_FY4976_01_standard.jpg'></product-card>-->
-            <!--            <product-card productName='Nike Air Force 3' productPrice='$134.00'-->
-            <!--                          productImg='https://assets.adidas.com/images/w_600,f_auto,q_auto/68ae7ea7849b43eca70aac1e00f5146d_9366/Giay_Stan_Smith_trang_FX5502_01_standard.jpg'></product-card>-->
-            <!--            <product-card productName='Nike Air Force 4' productPrice='$151.00'-->
-            <!--                          productImg='https://assets.adidas.com/images/w_600,f_auto,q_auto/8c687d94b5654d4bb435a97f00d5a475_9366/Giay_Grand_Court_trang_F36392_01_standard.jpg'></product-card>-->
-            <!--            <product-card productName='Nike Air Force 5' productPrice='$134.00'-->
-            <!--                          productImg='https://assets.adidas.com/images/w_600,f_auto,q_auto/6a0d6246e26a4852825dad3900baddfd_9366/Giay_Ultraboost_DNA_x_LEGO(r)_Colors_trang_FZ3983_01_standard.jpg'></product-card>-->
         </div>
     </div>
 </section>
@@ -210,5 +200,21 @@
 <script src="/Customer_Page/Components/ProductCard/ProductCardCarouselMain.js"></script>
 <!--<script src="/Customer_Page/Components/Footer/Footer.js"></script>-->
 <script src="/Customer_Page/Pages/Homepage/main.js"></script>
+
+<script type="application/ld+json">
+    {
+        "@context": "http://shoes-shop.ddns.net",
+        "@type": "Service",
+        "serviceType": "Noriva - Shoes shop homepage",
+        "provider": {
+            "@type": "LocalBusiness",
+            "name": "Noriva"
+        },
+        "areaServed": {
+            "@type": "City",
+            "name": "Ho Chi Minh City"
+        }
+    }
+</script>
 
 </html>
