@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="utf-8">
@@ -202,12 +203,12 @@
 <div class="wrapper">
     <!-- Sidebar  -->
     <div id="side__bar">
-        <div th:replace="/Seller_Page/Components/SlideBar/Sidebar :: sidebar"></div>
+        <div th:replace="Seller_Page/Components/SlideBar/Sidebar :: sidebar"></div>
     </div>
     <!-- Page Content  -->
     <div id="content">
         <div id="header">
-            <div th:replace="/Seller_Page/Components/Header/Header :: header"></div>
+            <div th:replace="Seller_Page/Components/Header/Header :: header"></div>
         </div>
         <div class="page__container">
             <form th:method="put" th:object="${product}">
@@ -328,7 +329,7 @@
             </form>
         </div>
         <div id="footer">
-            <div th:replace="/Seller_Page/Components/Footer/Footer :: footer"></div>
+            <div th:replace="Seller_Page/Components/Footer/Footer :: footer"></div>
         </div>
     </div>
 

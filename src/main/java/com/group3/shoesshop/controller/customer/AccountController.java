@@ -40,14 +40,14 @@ public class AccountController extends BaseController {
 
     @GetMapping(value = "/customer/my-account/account")
     public ModelAndView account(HttpServletRequest request) {
-        ModelAndView mav = new ModelAndView("/Customer_Page/Pages/MyAccount/Account/index");
+        ModelAndView mav = new ModelAndView("Customer_Page/Pages/MyAccount/Account/index");
 
         return returnModelAndView(request, mav);
     }
 
     @GetMapping(value = "/customer/my-account/change-password")
     public ModelAndView changePassword(HttpServletRequest request) {
-        ModelAndView mav = new ModelAndView("/Customer_Page/Pages/MyAccount/ChangePassword/index");
+        ModelAndView mav = new ModelAndView("Customer_Page/Pages/MyAccount/ChangePassword/index");
 
         return returnModelAndView(request, mav);
     }
@@ -84,7 +84,7 @@ public class AccountController extends BaseController {
 
     @GetMapping(value = "/customer/my-account/edit-account")
     public ModelAndView editAccount(HttpServletRequest request) {
-        ModelAndView mav = new ModelAndView("/Customer_Page/Pages/MyAccount/EditAccount/index");
+        ModelAndView mav = new ModelAndView("Customer_Page/Pages/MyAccount/EditAccount/index");
 
         return returnModelAndView(request, mav);
     }
@@ -104,7 +104,7 @@ public class AccountController extends BaseController {
 
     @GetMapping(value = "/customer/my-account/create-seller")
     public ModelAndView createSeller(HttpServletRequest request, UserEntity user) {
-        ModelAndView mav = new ModelAndView("/Customer_Page/Pages/MyAccount/CreateSeller/index");
+        ModelAndView mav = new ModelAndView("Customer_Page/Pages/MyAccount/CreateSeller/index");
 
         if (user == null)
             mav.addObject("user", new UserEntity());
@@ -135,7 +135,7 @@ public class AccountController extends BaseController {
         if (MyUtils.getUserFromSession(request) != null)
             return new ModelAndView("redirect:/customer/my-account/account");
 
-        ModelAndView mav = new ModelAndView("/Customer_Page/Pages/MyAccount/Login/index");
+        ModelAndView mav = new ModelAndView("Customer_Page/Pages/MyAccount/Login/index");
         if (user == null)
             mav.addObject("user", new UserEntity());
         else
@@ -162,7 +162,7 @@ public class AccountController extends BaseController {
 
     @GetMapping(value = "/customer/my-account/register")
     public ModelAndView register(HttpServletRequest request, UserEntity user) {
-        ModelAndView mav = new ModelAndView("/Customer_Page/Pages/MyAccount/Register/index");
+        ModelAndView mav = new ModelAndView("Customer_Page/Pages/MyAccount/Register/index");
         if (user != null)
             mav.addObject("user", user);
         else
@@ -188,7 +188,7 @@ public class AccountController extends BaseController {
 
     @GetMapping(value = "/customer/my-account/order-history-detail")
     public ModelAndView orderHistoryDetail(HttpServletRequest request, @RequestParam Integer id) {
-        ModelAndView mav = new ModelAndView("/Customer_Page/Pages/MyAccount/OrderHistoryDetail/index");
+        ModelAndView mav = new ModelAndView("Customer_Page/Pages/MyAccount/OrderHistoryDetail/index");
 
         if (id == null)
             return null;
@@ -203,7 +203,7 @@ public class AccountController extends BaseController {
 
     @GetMapping(value = "/customer/my-account/order-history")
     public ModelAndView orderHistory(HttpServletRequest request) {
-        ModelAndView mav = new ModelAndView("/Customer_Page/Pages/MyAccount/OrderHistory/index");
+        ModelAndView mav = new ModelAndView("Customer_Page/Pages/MyAccount/OrderHistory/index");
         UserEntity user = userService.findOne(MyUtils.getUserFromSession(request).getId());
         mav.addObject("user", user);
         return returnModelAndView(request, mav);

@@ -13,12 +13,12 @@ import javax.servlet.http.HttpServletRequest;
 public class HomeController extends BaseController {
     @GetMapping(value = "/")
     public ModelAndView root(HttpServletRequest request) {
-        return new ModelAndView("/Customer_Page/Pages/Homepage/root");
+        return new ModelAndView("Customer_Page/Pages/Homepage/root");
     }
 
     @GetMapping(value = "/home")
     public ModelAndView home(HttpServletRequest request, @RequestParam(required = false) String rootPath) {
-        ModelAndView mav = new ModelAndView("/Customer_Page/Pages/Homepage/index");
+        ModelAndView mav = new ModelAndView("Customer_Page/Pages/Homepage/index");
         if (rootPath != null)
             Constant.ROOT_PATH = rootPath;
 

@@ -1,6 +1,9 @@
 package com.group3.shoesshop.controller.seller;
 
 import com.group3.shoesshop.constant.Constant;
+import com.group3.shoesshop.converter.dto_entity.DTOEntityConverter;
+import com.group3.shoesshop.converter.dto_entity.mapper.ProductMapper;
+import com.group3.shoesshop.dto.ProductDTO;
 import com.group3.shoesshop.entity.ProductEntity;
 import com.group3.shoesshop.entity.UserEntity;
 import com.group3.shoesshop.service.IBrandService;
@@ -8,6 +11,7 @@ import com.group3.shoesshop.service.ICategoryService;
 import com.group3.shoesshop.service.IProductService;
 import com.group3.shoesshop.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -43,6 +47,19 @@ public class ProductController {
 
     @Autowired
     private ICategoryService categoryService;
+
+    @Autowired
+    private DTOEntityConverter dtoEntityConverter;
+
+    @Autowired
+    private ProductMapper productMapper;
+
+    @DeleteMapping(value = "/seller/product/delete")
+    public ResponseEntity<ProductDTO> deleteProduct(@RequestParam String code) {
+        ProductEntity productEntity = productService.delete(code);
+        ProductDTO productDto = dtoEntityConverter.toDTO(productEntity, productMapper);
+        return new ResponseEntity<ProductDTO>(productDto, productDto.getHttpStatus());
+    }
 
     @GetMapping(value = "/seller/product/edit")
     public ModelAndView editProductGet(@RequestParam String code) {

@@ -9,27 +9,59 @@
                 <a th:href="'#category1'" th:utext="${category.name}"
                    data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Mens Shoes</a>
                 <ul class="collapse list-unstyled" th:id="'category1'">
-                    <li th:each="brand:${brands}">
+                    <li th:each="brand:${brands[0]}">
+                        <a th:href="'/customer/product/product-list?limit=12&categoryCode=' + ${category.code} + '&brandCode=' + ${brand.code}"
+                           th:utext="${brand.name}">Casual</a>
+                    </li>
+                    <li th:each="brand:${brands[1]}">
+                        <a th:href="'/customer/product/product-list?limit=12&categoryCode=' + ${category.code} + '&brandCode=' + ${brand.code}"
+                           th:utext="${brand.name}">Casual</a>
+                    </li>
+                    <li th:each="brand:${brands[2]}">
+                        <a th:href="'/customer/product/product-list?limit=12&categoryCode=' + ${category.code} + '&brandCode=' + ${brand.code}"
+                           th:utext="${brand.name}">Casual</a>
+                    </li>
+                    <li th:each="brand:${brands[3]}">
                         <a th:href="'/customer/product/product-list?limit=12&categoryCode=' + ${category.code} + '&brandCode=' + ${brand.code}"
                            th:utext="${brand.name}">Casual</a>
                     </li>
                 </ul>
             </li>
             <li th:each="category:${categories[1]}">
-                <a th:href="'#category1'" th:utext="${category.name}"
+                <a th:href="'#category2'" th:utext="${category.name}"
                    data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Mens Shoes</a>
-                <ul class="collapse list-unstyled" th:id="'category1'">
-                    <li th:each="brand:${brands}">
+                <ul class="collapse list-unstyled" th:id="'category2'">
+                    <li th:each="brand:${brands[0]}">
+                        <a th:href="'/customer/product/product-list?limit=12&categoryCode=' + ${category.code} + '&brandCode=' + ${brand.code}"
+                           th:utext="${brand.name}">Casual</a>
+                    </li>
+                    <li th:each="brand:${brands[1]}">
+                        <a th:href="'/customer/product/product-list?limit=12&categoryCode=' + ${category.code} + '&brandCode=' + ${brand.code}"
+                           th:utext="${brand.name}">Casual</a>
+                    </li>
+                    <li th:each="brand:${brands[2]}">
+                        <a th:href="'/customer/product/product-list?limit=12&categoryCode=' + ${category.code} + '&brandCode=' + ${brand.code}"
+                           th:utext="${brand.name}">Casual</a>
+                    </li>
+                    <li th:each="brand:${brands[3]}">
                         <a th:href="'/customer/product/product-list?limit=12&categoryCode=' + ${category.code} + '&brandCode=' + ${brand.code}"
                            th:utext="${brand.name}">Casual</a>
                     </li>
                 </ul>
             </li>
             <li th:each="category:${categories[2]}">
-                <a th:href="'#category1'" th:utext="${category.name}"
+                <a th:href="'#category3'" th:utext="${category.name}"
                    data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Mens Shoes</a>
-                <ul class="collapse list-unstyled" th:id="'category1'">
-                    <li th:each="brand:${brands}">
+                <ul class="collapse list-unstyled" th:id="'category3'">
+                    <li th:each="brand:${brands[4]}">
+                        <a th:href="'/customer/product/product-list?limit=12&categoryCode=' + ${category.code} + '&brandCode=' + ${brand.code}"
+                           th:utext="${brand.name}">Casual</a>
+                    </li>
+                    <li th:each="brand:${brands[5]}">
+                        <a th:href="'/customer/product/product-list?limit=12&categoryCode=' + ${category.code} + '&brandCode=' + ${brand.code}"
+                           th:utext="${brand.name}">Casual</a>
+                    </li>
+                    <li th:each="brand:${brands[6]}">
                         <a th:href="'/customer/product/product-list?limit=12&categoryCode=' + ${category.code} + '&brandCode=' + ${brand.code}"
                            th:utext="${brand.name}">Casual</a>
                     </li>
@@ -103,7 +135,7 @@
             </ul>
         </div>
         <div class="mb-5">
-            <a href="#" class="refine-search-btn" onclick="refineSearch();">REFINE SEARCH</a>
+            <a href="#" class="refine-search-btn" onclick="refineSearch();">SEARCH</a>
         </div>
     </div>
 </nav>
