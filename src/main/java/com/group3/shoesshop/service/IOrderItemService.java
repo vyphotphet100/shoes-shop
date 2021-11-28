@@ -10,4 +10,13 @@ public interface IOrderItemService extends IBaseService<OrderItemEntity>{
 
     float getTotalCostOfOrderItemList(List<OrderItemEntity> orderItemEntities);
     OrderItemEntity updateQuantityBought(Integer orderItemId, Integer quantityBought);
+    float getTotalCostOfOrdered();
+    float getTotalCostOfOrderedBySellerId(Integer sellerId);
+
+    float getAverageCost();
+    float getAverageCostBySellerId(Integer sellerId);
+    Integer getTotalOrdered();
+    Integer getTotalOrderedBySellerId(Integer sellerId);
+
+    List<OrderItemEntity> findAllByCustomerIdAndSellerId(Integer customerId, Integer sellerId);
 }

@@ -35,4 +35,11 @@ public class InfomationController extends BaseController {
 
         return returnModelAndView(request, mav);
     }
+
+    @GetMapping(value = "/customer/information/sitemap")
+    public ModelAndView siteMap(HttpServletRequest request) {
+        ModelAndView mav = new ModelAndView("/Customer_Page/Pages/Information/SiteMap/index");
+
+        return returnModelAndView(request, mav);
+    }
 }

@@ -6,12 +6,10 @@ import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import org.springframework.http.HttpStatus;
 
-import javax.persistence.Column;
-import javax.persistence.MappedSuperclass;
-import javax.persistence.Temporal;
-import javax.persistence.Transient;
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -20,6 +18,7 @@ import static javax.persistence.TemporalType.TIMESTAMP;
 
 @MappedSuperclass
 @Getter @Setter
+@EntityListeners(AuditingEntityListener.class)
 public class BaseEntity {
     @Column(name = "created_by")
     @CreatedBy

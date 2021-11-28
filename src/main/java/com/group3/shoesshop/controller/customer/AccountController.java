@@ -152,9 +152,9 @@ public class AccountController extends BaseController {
 
         // redirect to true page
         if (resEntity.getRole().getCode().equals(Constant.ROLE_ADMIN))
-            return new ModelAndView("redirect:/admin/customer/customer-list");
+            return new ModelAndView("redirect:/admin/dashboard");
         else if (resEntity.getRole().getCode().equals(Constant.ROLE_SELLER))
-            return new ModelAndView("redirect:/seller/product/product-list");
+            return new ModelAndView("redirect:/seller/dashboard");
         else
             return new ModelAndView("redirect:/home");
 

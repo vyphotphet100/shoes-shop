@@ -13,7 +13,6 @@ import com.group3.shoesshop.utils.MyUtils;
 import com.group3.shoesshop.utils.PaymentUtils;
 import com.paypal.api.payments.PayerInfo;
 import com.paypal.api.payments.Payment;
-import com.paypal.api.payments.ShippingAddress;
 import com.paypal.api.payments.Transaction;
 import com.paypal.base.rest.PayPalRESTException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -158,7 +157,7 @@ public class PayingController extends BaseController {
         List<OrderItemEntity> readyOrderItems = (List<OrderItemEntity>) request.getSession().getAttribute(Constant.READY_ORDER_ITEMS);
 
         if (userSession.getPaymentMethod().getId().equals(1)) { // PayPal
-            mav = new ModelAndView("Customer_Page/Pages/ReviewPayment/index");
+            mav = new ModelAndView("Customer_Page/Pages/ReviewPayment/PayPal/index");
             mav.addObject("readyOrderItems", readyOrderItems);
             if (paymentId == null || PayerID == null)
                 return new ModelAndView("redirect:/customer/my-account/login");

@@ -48,15 +48,22 @@ public class ProductController extends BaseController {
                                     @RequestParam(required = false) String[] brandCode,
                                     @RequestParam(required = true) Integer[] limit,
                                     @RequestParam(required = false) Integer[] price,
-                                    @RequestParam(required = false) Integer[] size) {
+                                    @RequestParam(required = false) Integer[] size,
+                                    @RequestParam(required = false) String[] keyword) {
         ModelAndView mav = new ModelAndView("Customer_Page/Pages/ProductPage/index");
         List<ProductEntity> productEntities = new ArrayList<>();
         Pageable pageable = PageRequest.of(0, limit[limit.length-1]);
 
-        if (categoryCode != null && brandCode != null)
+        if (categoryCode != null && keyword != null)
+            productEntities = productService.findAllByCategoryCodeWithPageableAndKeyword(categoryCode[categoryCode.length-1], pageable, keyword[keyword.length-1]);
+        else if (categoryCode == null && keyword != null)
+            productEntities = productService.findAllWithPageableAndKeyword(pageable, keyword[keyword.length-1]);
+        else if (categoryCode != null && brandCode != null)
             productEntities = productService.findAllByCategoryCodeAndBrandCodeWithPageable(categoryCode[categoryCode.length-1], brandCode[brandCode.length-1], pageable);
         else if (categoryCode != null && brandCode == null)
             productEntities = productService.findAllByCategoryCodeWithPageable(categoryCode[categoryCode.length-1], pageable);
+        else if (categoryCode == null && brandCode != null)
+            productEntities = productService.findAllByBrandCodeWithPageable(brandCode[brandCode.length-1], pageable);
         else if (categoryCode == null && brandCode == null)
             productEntities = productService.findAllWithPageable(pageable);
 

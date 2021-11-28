@@ -68,4 +68,73 @@ public class OrderItemService extends BaseService<OrderItemEntity> implements IO
         orderItemEntity.setMessage("Update quantity successfully.");
         return orderItemEntity;
     }
+
+    @Override
+    public float getTotalCostOfOrdered() {
+        float totalCost = 0;
+        List<OrderItemEntity> orderItemEntities = orderItemRepo.findAll();
+        for (OrderItemEntity orderItemEntity: orderItemEntities) {
+            if (orderItemEntity.getPayment() != null)
+                totalCost += orderItemEntity.getTotalCost();
+        }
+
+        return totalCost;
+    }
+
+    @Override
+    public float getTotalCostOfOrderedBySellerId(Integer sellerId) {
+        float totalCost = 0;
+        List<OrderItemEntity> orderItemEntities = orderItemRepo.findAll();
+        for (OrderItemEntity orderItemEntity: orderItemEntities) {
+            if (orderItemEntity.getPayment() != null &&
+                    orderItemEntity.getProduct().getSeller().getId().equals(sellerId))
+                totalCost += orderItemEntity.getTotalCost();
+        }
+
+        return totalCost;
+    }
+
+    @Override
+    public float getAverageCost() {
+        float totalCost = this.getTotalCostOfOrdered();
+        Integer total = this.getTotalOrdered();
+        return totalCost/total;
+    }
+
+    @Override
+    public float getAverageCostBySellerId(Integer sellerId) {
+        float totalCost = this.getTotalCostOfOrderedBySellerId(sellerId);
+        Integer total = this.getTotalOrderedBySellerId(sellerId);
+        return totalCost/total;
+    }
+
+    @Override
+    public Integer getTotalOrdered() {
+        Integer total = 0;
+        List<OrderItemEntity> orderItemEntities = orderItemRepo.findAll();
+        for (OrderItemEntity orderItemEntity: orderItemEntities) {
+            if (orderItemEntity.getPayment() != null)
+                total++;
+        }
+
+        return total;
+    }
+
+    @Override
+    public Integer getTotalOrderedBySellerId(Integer sellerId) {
+        Integer total = 0;
+        List<OrderItemEntity> orderItemEntities = orderItemRepo.findAll();
+        for (OrderItemEntity orderItemEntity: orderItemEntities) {
+            if (orderItemEntity.getPayment() != null &&
+                    orderItemEntity.getProduct().getSeller().getId().equals(sellerId))
+                total++;
+        }
+
+        return total;
+    }
+
+    @Override
+    public List<OrderItemEntity> findAllByCustomerIdAndSellerId(Integer customerId, Integer sellerId) {
+        return orderItemRepo.findAllByCustomerIdAndProductSellerId(customerId, sellerId);
+    }
 }

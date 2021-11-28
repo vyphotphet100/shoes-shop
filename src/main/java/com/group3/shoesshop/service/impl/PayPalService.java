@@ -1,5 +1,6 @@
 package com.group3.shoesshop.service.impl;
 
+import com.group3.shoesshop.constant.Constant;
 import com.group3.shoesshop.entity.OrderItemEntity;
 import com.group3.shoesshop.service.IPayPalService;
 import com.group3.shoesshop.utils.MyUtils;
@@ -74,8 +75,8 @@ public class PayPalService implements IPayPalService {
 
     private RedirectUrls getRedirectURLs() {
         RedirectUrls redirectUrls = new RedirectUrls();
-        redirectUrls.setCancelUrl("http://localhost:8080/PaypalTest_war/cancel.jsp");
-        redirectUrls.setReturnUrl("http://localhost:8080/customer/paying/review-payment");
+        redirectUrls.setCancelUrl(Constant.ROOT_PATH + "customer/paying/checkout");
+        redirectUrls.setReturnUrl(Constant.ROOT_PATH + "customer/paying/review-payment");
 
         return redirectUrls;
     }
