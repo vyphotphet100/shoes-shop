@@ -9,8 +9,7 @@ import com.group3.shoesshop.entity.UserEntity;
 import org.springframework.util.ResourceUtils;
 
 import javax.servlet.http.HttpServletRequest;
-import java.io.File;
-import java.io.FileInputStream;
+import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.List;
@@ -30,33 +29,40 @@ public class MyUtils {
     }
 
     public static Boolean upFileToGoogleCloud(String fileName, byte[] data) {
-        try {
-            ResourceBundle rb = ResourceBundle.getBundle("google_cloud");
+//        try {
+//            ResourceBundle rb = ResourceBundle.getBundle("google_cloud");
+//
+//            String projectId = rb.getString("project.id");
+//            String bucketName = rb.getString("bucket.name");
+//            String authFilePath = rb.getString("auth.file.path");
+//            String platformLink = rb.getString("platform.link");
+//
+//            File authFile = ResourceUtils.getFile(authFilePath);
+//            GoogleCredentials credentials = GoogleCredentials.fromStream(new FileInputStream(authFile.toPath().toString()))
+//                    .createScoped(Lists.newArrayList(platformLink));
+//            Storage storage = StorageOptions.newBuilder().setProjectId(projectId).setCredentials(credentials).build().getService();
+//            BlobId blobId = BlobId.of(bucketName, fileName);
+//            BlobInfo blobInfo = BlobInfo.newBuilder(blobId).build();
+////            File file = ResourceUtils.getFile("classpath:test_object.txt");
+////            byte[] sendFile = Files.readAllBytes(file.toPath());
+//            storage.create(blobInfo, data);
+//
+//            System.out.println(
+//                    "File " + fileName + " uploaded to bucket " + bucketName);
+//
+//            return true;
+//        } catch (Exception ex) {
+//            ex.printStackTrace();
+//            return false;
+//        }
 
-            String projectId = rb.getString("project.id");
-            String bucketName = rb.getString("bucket.name");
-            String authFilePath = rb.getString("auth.file.path");
-            String platformLink = rb.getString("platform.link");
-
-            File authFile = ResourceUtils.getFile(authFilePath);
-            GoogleCredentials credentials = GoogleCredentials.fromStream(new FileInputStream(authFile.toPath().toString()))
-                    .createScoped(Lists.newArrayList(platformLink));
-            Storage storage = StorageOptions.newBuilder().setProjectId(projectId).setCredentials(credentials).build().getService();
-            BlobId blobId = BlobId.of(bucketName, fileName);
-            BlobInfo blobInfo = BlobInfo.newBuilder(blobId).build();
-//            File file = ResourceUtils.getFile("classpath:test_object.txt");
-//            byte[] sendFile = Files.readAllBytes(file.toPath());
-            storage.create(blobInfo, data);
-
-            System.out.println(
-                    "File " + fileName + " uploaded to bucket " + bucketName);
-
+        try (FileOutputStream fos = new FileOutputStream("downloaded/" + fileName)) {
+            fos.write(data);
             return true;
-        } catch (Exception ex) {
-            ex.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
             return false;
         }
-
     }
 
     public static byte[] getFileFromGoogleCloud(String fileName){

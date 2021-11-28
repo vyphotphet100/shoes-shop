@@ -2,11 +2,13 @@ package com.group3.shoesshop.service.impl;
 
 import com.group3.shoesshop.converter.dto_entity.mapper.UserMapper;
 import com.group3.shoesshop.entity.OrderItemEntity;
+import com.group3.shoesshop.entity.PaymentEntity;
 import com.group3.shoesshop.entity.ProductEntity;
 import com.group3.shoesshop.entity.UserEntity;
 import com.group3.shoesshop.repository.OrderItemRepository;
 import com.group3.shoesshop.repository.ProductRepository;
 import com.group3.shoesshop.repository.UserRepository;
+import com.group3.shoesshop.service.IPaymentService;
 import com.group3.shoesshop.service.IUserService;
 import org.apache.catalina.User;
 import org.springframework.beans.BeanUtils;
@@ -30,6 +32,9 @@ public class UserService extends BaseService<UserEntity> implements IUserService
 
     @Autowired
     private OrderItemRepository orderItemRepo;
+
+    @Autowired
+    private IPaymentService paymentService;
 
     @Override
     public List<UserEntity> findAll() {
@@ -126,7 +131,7 @@ public class UserService extends BaseService<UserEntity> implements IUserService
         UserEntity customer = userRepo.findById(customerId).orElse(null);
 
         Integer ordered = 0;
-        for (OrderItemEntity orderItem: customer.getOrderItems())
+        for (OrderItemEntity orderItem : customer.getOrderItems())
             ordered += orderItem.getQuantityBought();
 
         return ordered;
@@ -136,8 +141,8 @@ public class UserService extends BaseService<UserEntity> implements IUserService
     public float getTotalSpent(Integer customerId) {
         UserEntity customer = userRepo.findById(customerId).orElse(null);
 
-        float totalSpent=0;
-        for (OrderItemEntity orderItem: customer.getOrderItems())
+        float totalSpent = 0;
+        for (OrderItemEntity orderItem : customer.getOrderItems())
             totalSpent += orderItem.getTotalCost();
 
         return totalSpent;
@@ -152,10 +157,10 @@ public class UserService extends BaseService<UserEntity> implements IUserService
             return null;
 
         // check exist
-        for(OrderItemEntity orderItemEntity: user.getOrderItems()) {
+        for (OrderItemEntity orderItemEntity : user.getOrderItems()) {
             if (orderItemEntity.getProduct().getCode().equals(productCode) &&
-                orderItemEntity.getQuantityBought().equals(quantityBought) &&
-                orderItemEntity.getCustomer().getId().equals(userId)) {
+                    orderItemEntity.getQuantityBought().equals(quantityBought) &&
+                    orderItemEntity.getCustomer().getId().equals(userId)) {
                 return this.exceptionObject(new UserEntity(), "This product existed in your cart.");
             }
         }
@@ -163,7 +168,7 @@ public class UserService extends BaseService<UserEntity> implements IUserService
         OrderItemEntity orderItem = new OrderItemEntity();
         orderItem.setProduct(product);
         orderItem.setQuantityBought(quantityBought);
-        orderItem.setTotalCost(product.getPrice()*quantityBought);
+        orderItem.setTotalCost(product.getPrice() * quantityBought);
         orderItem.setCustomer(user);
         orderItem = orderItemRepo.save(orderItem);
         if (!orderItem.getHttpStatus().equals(HttpStatus.OK))
@@ -180,9 +185,21 @@ public class UserService extends BaseService<UserEntity> implements IUserService
             return new ArrayList<>();
 
         List<OrderItemEntity> resEntities = new ArrayList<>();
-        for (OrderItemEntity orderItemEntity: userEntity.getOrderItems()){
+        for (OrderItemEntity orderItemEntity : userEntity.getOrderItems()) {
             if (orderItemEntity.getPayment() == null)
                 resEntities.add(orderItemEntity);
+        }
+
+        return resEntities;
+    }
+
+    @Override
+    public List<UserEntity> findAllCustomerBySellerId(Integer sellerId) {
+        List<UserEntity> resEntities = new ArrayList<>();
+        List<PaymentEntity> paymentEntities = paymentService.findAllBySellerId(sellerId);
+        for (PaymentEntity paymentEntity : paymentEntities) {
+            if (!resEntities.contains(paymentEntity.getOrderItem().getCustomer()))
+                resEntities.add(paymentEntity.getOrderItem().getCustomer());
         }
 
         return resEntities;

@@ -15,6 +15,14 @@ public interface IProductService extends IBaseService<ProductEntity>{
     List<ProductEntity> findAllByCategoryCodeAndBrandCodeWithPageable(String categoryCode, String brandCode, Pageable pageable);
     List<ProductEntity> findAllByCategoryCode(String categoryCode);
     List<ProductEntity> findAllByCategoryCodeWithPageable(String categoryCode, Pageable pageable);
+    List<ProductEntity> findAllByBrandCodeWithPageable(String brandCode, Pageable pageable);
+    List<ProductEntity> findAllByCategoryCodeWithPageableAndKeyword(String categoryCode, Pageable pageable, String keyword);
+    List<ProductEntity> findAllWithPageableAndKeyword(Pageable pageable, String keyword);
+
     List<ProductEntity> filterByPrice(List<ProductEntity> productEntities, Integer lowest, Integer highest);
     List<ProductEntity> filterBySize(List<ProductEntity> productEntities, Integer lowest, Integer highest);
+
+    Integer getTotalQuantity();
+
+    List<ProductEntity> findAllInStockProductBySellerId(Integer sellerId);
 }

@@ -21,12 +21,13 @@ public class LoginController {
 
     @GetMapping(value = "/login")
     public ModelAndView loginGet(UserEntity user) {
-        ModelAndView mav = new ModelAndView("Common_Page/Login/index");
-        if (user == null)
-            mav.addObject("user", new UserEntity());
-        else
-            mav.addObject("user", user);
-        return mav;
+//        ModelAndView mav = new ModelAndView("Common_Page/Login/index");
+//        if (user == null)
+//            mav.addObject("user", new UserEntity());
+//        else
+//            mav.addObject("user", user);
+//        return mav;
+        return new ModelAndView("redirect:/customer/my-account/login");
     }
 
     @PostMapping(value = "/login")

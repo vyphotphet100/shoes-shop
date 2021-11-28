@@ -109,9 +109,9 @@
                         </thead>
                         <tbody>
 
-                        <tr th:each="orderItem:${customer.orderItems}">
+                        <tr th:each="orderItem:${customer.orderItems}" th:if="${orderItem.payment != null}">
                             <th th:utext="'#' + ${orderItem.id}" scope="row">#123412</th>
-                            <td th:utext="${orderItem.createDate}">May 15, 2019</td>
+                            <td th:utext="${orderItem.payment.paymentDate}">May 15, 2019</td>
                             <td th:utext="${orderItem.product.code}">Code</td>
                             <td th:utext="${orderItem.quantityBought}  + ' item(s)'">4 items</td>
                             <td th:utext="'$' + ${orderItem.totalCost}">$2</td>
@@ -121,7 +121,7 @@
                         </tbody>
                     </table>
                     <div>
-                        <p th:utext="'Ordered: $' + ${ordered}" class="col">Ordered: 12 items</p>
+                        <p th:utext="'Ordered: ' + ${ordered}" class="col">Ordered: 12 items</p>
                         <p th:utext="'Total spent: $' + ${totalSpent}" class="col">Total spent: 200 triệu</p>
                     </div>
                 </div>

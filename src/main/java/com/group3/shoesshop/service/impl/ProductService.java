@@ -131,6 +131,21 @@ public class ProductService extends BaseService<ProductEntity> implements IProdu
     }
 
     @Override
+    public List<ProductEntity> findAllByBrandCodeWithPageable(String brandCode, Pageable pageable) {
+        return productRepo.findAllByBrandCode(pageable, brandCode);
+    }
+
+    @Override
+    public List<ProductEntity> findAllByCategoryCodeWithPageableAndKeyword(String categoryCode, Pageable pageable, String keyword) {
+        return productRepo.findAllByCategoryCodeWithKeyword(categoryCode, keyword);
+    }
+
+    @Override
+    public List<ProductEntity> findAllWithPageableAndKeyword(Pageable pageable, String keyword) {
+        return productRepo.findAllByWithKeyword(keyword);
+    }
+
+    @Override
     public List<ProductEntity> filterByPrice(List<ProductEntity> productEntities, Integer lowest, Integer highest) {
         List<ProductEntity> resEntities = new ArrayList<>();
         for (ProductEntity productEntity: productEntities) {
@@ -148,6 +163,29 @@ public class ProductService extends BaseService<ProductEntity> implements IProdu
         for (ProductEntity productEntity: productEntities) {
             if (productEntity.getSize() >= lowest &&
                     productEntity.getSize() <= highest)
+                resEntities.add(productEntity);
+        }
+
+        return resEntities;
+    }
+
+    @Override
+    public Integer getTotalQuantity() {
+        Integer totalQuantity = 0;
+        List<ProductEntity> productEntities = productRepo.findAll();
+        for (ProductEntity productEntity: productEntities) {
+            totalQuantity += productEntity.getQuantity();
+        }
+
+        return totalQuantity;
+    }
+
+    @Override
+    public List<ProductEntity> findAllInStockProductBySellerId(Integer sellerId) {
+        List<ProductEntity> productEntities = this.findAllByAvailableAndSellerId(true, sellerId);
+        List<ProductEntity> resEntities = new ArrayList<>();
+        for (ProductEntity productEntity: productEntities) {
+            if (productEntity.getInStock().equals(true))
                 resEntities.add(productEntity);
         }
 

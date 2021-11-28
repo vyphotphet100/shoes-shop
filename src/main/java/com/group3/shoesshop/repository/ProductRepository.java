@@ -16,4 +16,15 @@ public interface ProductRepository extends JpaRepository<ProductEntity, String> 
     List<ProductEntity> findAllByCategoryCodeAndBrandCode(Pageable pageable, String categoryCode, String brandCode);
     List<ProductEntity> findAllByCategoryCode(String categoryCode);
     List<ProductEntity> findAllByCategoryCode(Pageable pageable, String categoryCode);
+    List<ProductEntity> findAllByBrandCode(Pageable pageable, String brandCode);
+
+    // search
+    @Query(value = "SELECT p FROM ProductEntity p WHERE " +
+            "p.title like %:keyword%")
+    List<ProductEntity> findAllByWithKeyword(String keyword);
+
+    @Query(value = "SELECT p FROM ProductEntity p WHERE " +
+            "p.category.code = :categoryCode AND " +
+            "p.title like %:keyword%")
+    List<ProductEntity> findAllByCategoryCodeWithKeyword(String categoryCode, String keyword);
 }
