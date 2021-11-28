@@ -11,7 +11,7 @@
     <groupId>com.group3</groupId>
     <artifactId>shoes-shop</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <packaging>war</packaging>
+    <packaging>jar</packaging>
     <name>Shoes-shop</name>
     <description>Demo project for Spring Boot</description>
     <properties>

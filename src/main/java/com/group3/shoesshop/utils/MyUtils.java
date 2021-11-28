@@ -55,6 +55,10 @@ public class MyUtils {
 //            ex.printStackTrace();
 //            return false;
 //        }
+        File theDir = new File("downloaded");
+        if (!theDir.exists()){
+            theDir.mkdirs();
+        }
 
         try (FileOutputStream fos = new FileOutputStream("downloaded/" + fileName)) {
             fos.write(data);

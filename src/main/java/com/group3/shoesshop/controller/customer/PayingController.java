@@ -59,7 +59,7 @@ public class PayingController extends BaseController {
         if (userEntity == null)
             return new ModelAndView("redirect:/customer/my-account/login");
 
-        ModelAndView mav = new ModelAndView("/Customer_Page/Pages/ShoppingCart/index");
+        ModelAndView mav = new ModelAndView("Customer_Page/Pages/ShoppingCart/index");
         List<OrderItemEntity> orderItems = userService.getOrderItemsWithoutPayment(userEntity.getId());
         mav.addObject("orderItems", orderItems);
         return returnModelAndView(request, mav);

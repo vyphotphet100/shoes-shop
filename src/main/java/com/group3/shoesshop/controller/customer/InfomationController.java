@@ -11,34 +11,34 @@ import javax.servlet.http.HttpServletRequest;
 public class InfomationController extends BaseController {
     @GetMapping(value = "/customer/information/about-us")
     public ModelAndView aboutUs(HttpServletRequest request) {
-        ModelAndView mav = new ModelAndView("/Customer_Page/Pages/Information/AboutUs/index");
+        ModelAndView mav = new ModelAndView("Customer_Page/Pages/Information/AboutUs/index");
 
         return returnModelAndView(request, mav);
     }
 
     @GetMapping(value = "/customer/information/contact-us")
     public ModelAndView contactUs(HttpServletRequest request) {
-        ModelAndView mav = new ModelAndView("/Customer_Page/Pages/Information/ContactUs/index");
+        ModelAndView mav = new ModelAndView("Customer_Page/Pages/Information/ContactUs/index");
 
         return returnModelAndView(request, mav);
     }
 
     @GetMapping(value = "/customer/information/privacy-policy")
     public ModelAndView privacyPolicy(HttpServletRequest request) {
-        ModelAndView mav = new ModelAndView("/Customer_Page/Pages/Information/PrivacyPolicy/index");
+        ModelAndView mav = new ModelAndView("Customer_Page/Pages/Information/PrivacyPolicy/index");
 
         return returnModelAndView(request, mav);
     }
     @GetMapping(value = "/customer/information/term-and-conditions")
     public ModelAndView teamAndConditions(HttpServletRequest request) {
-        ModelAndView mav = new ModelAndView("/Customer_Page/Pages/Information/TearmAndConditions/index");
+        ModelAndView mav = new ModelAndView("Customer_Page/Pages/Information/TearmAndConditions/index");
 
         return returnModelAndView(request, mav);
     }
 
     @GetMapping(value = "/customer/information/sitemap")
     public ModelAndView siteMap(HttpServletRequest request) {
-        ModelAndView mav = new ModelAndView("/Customer_Page/Pages/Information/SiteMap/index");
+        ModelAndView mav = new ModelAndView("Customer_Page/Pages/Information/SiteMap/index");
 
         return returnModelAndView(request, mav);
     }
