@@ -70,11 +70,13 @@ template.innerHTML = `
         <div class="product__description">
             <h2>DESCRIPTION</h2>
             <br>
-            <p>
+            <div class="paragraph">
+                <p>
                 <br>
-                <span id='description'></span>
+                    <span id='description'></span>
                 <br>
-            </p>
+                </p>
+            </div>
         </div>
     </div>
 `;

@@ -134,4 +134,9 @@ input::-webkit-inner-spin-button {
   margin-bottom: 20px;
   border-bottom: 1px solid #777777;
 }
+.paragraph{
+  height: 300px;
+  overflow: scroll;
+  overflow-x: hidden;
+}
 `
