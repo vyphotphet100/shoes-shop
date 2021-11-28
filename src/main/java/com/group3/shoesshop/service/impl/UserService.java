@@ -160,7 +160,8 @@ public class UserService extends BaseService<UserEntity> implements IUserService
         for (OrderItemEntity orderItemEntity : user.getOrderItems()) {
             if (orderItemEntity.getProduct().getCode().equals(productCode) &&
                     orderItemEntity.getQuantityBought().equals(quantityBought) &&
-                    orderItemEntity.getCustomer().getId().equals(userId)) {
+                    orderItemEntity.getCustomer().getId().equals(userId) &&
+                    orderItemEntity.getPayment() == null) {
                 return this.exceptionObject(new UserEntity(), "This product existed in your cart.");
             }
         }
