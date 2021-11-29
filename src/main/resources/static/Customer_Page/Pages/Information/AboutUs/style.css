@@ -45,3 +45,22 @@ body {
   color: #777777;
   font-size: 14px;
 }
+@media only screen and (max-width: 400px){
+  .about__us__paragraph{
+    display: grid;
+  }
+  .about__us__paragraph__text{
+    width: 100vw;
+    margin-left: 130px;
+  }
+  .about__us__paragraph__img img{
+    height: auto;
+    width: auto;
+  }
+  .about__container{
+    margin-bottom: 100px;
+  }
+  h1{
+    text-align: center;
+  }
+}

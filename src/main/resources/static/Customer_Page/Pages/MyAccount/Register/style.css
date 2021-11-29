@@ -27,3 +27,14 @@ span {
   background-color: white;
   color: #222222;
 }
+@media only screen and (max-width: 400px){
+  .about__us__container{
+    margin: 0 20px;
+  }
+  h1, .descript{
+    text-align: center;
+  }
+  .back{
+    display: none;
+  }
+}

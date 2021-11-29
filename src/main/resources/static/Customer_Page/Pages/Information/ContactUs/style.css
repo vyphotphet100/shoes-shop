@@ -23,5 +23,11 @@ body {
 .contact__us__container .card .card-link:hover {
   color: #222222;
 }
-@media only screen and (min-width: 768px) {
+@media only screen and (max-width: 400px) {
+  .contact__us__container{
+    margin: 0 40px;
+  }
+  h1{
+    text-align: center;
+  }
 }
