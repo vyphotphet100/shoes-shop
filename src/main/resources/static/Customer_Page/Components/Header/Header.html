@@ -2,77 +2,80 @@
     <link rel="stylesheet" href="/Customer_Page/Components/Header/Header.css">
     <div style="background-color: #dadada;" class="sticky-top">
         <div class="container">
-            <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4">
-                <a href="/"
-                   class="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none">
-                    <img src="https://opencart.mahardhi.com/MT04/noriva/01/image/catalog/logo.png" alt="Logo">
-                </a>
+            <div class="header__container">
+                <div class="logo">
+                    <a href="/">
+                        <img src="https://opencart.mahardhi.com/MT04/noriva/01/image/catalog/logo.png" alt="Logo">
+                    </a>
+                </div>
 
-                <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
-                    <li><a href="/home" class="nav-link px-2 link-dark">Home</a></li>
-                    <li class="nav-item dropdown" th:each="category:${categories[0]}" >
-                        <a class="nav-link"
-                           th:href="'/customer/product/product-list?limit=12&categoryCode=' + ${category.code}"
-                           th:utext="${category.name}"> Men's Shoes </a>
-                        <div class="dropdown__items">
-                            <ul>
-                                <li th:each="brand:${brands[0]}"><a class="dropdown-item"
-                                                                 th:href="'/customer/product/product-list?limit=12&categoryCode=' + ${category.code} + '&brandCode=' + ${brand.code}"
-                                                                 th:utext="${brand.name}"> Casual</a></li>
-                                <li th:each="brand:${brands[1]}"><a class="dropdown-item"
-                                                                 th:href="'/customer/product/product-list?limit=12&categoryCode=' + ${category.code} + '&brandCode=' + ${brand.code}"
-                                                                 th:utext="${brand.name}"> Casual</a></li>
-                                <li th:each="brand:${brands[2]}"><a class="dropdown-item"
-                                                                 th:href="'/customer/product/product-list?limit=12&categoryCode=' + ${category.code} + '&brandCode=' + ${brand.code}"
-                                                                 th:utext="${brand.name}"> Casual</a></li>
-                                <li th:each="brand:${brands[3]}"><a class="dropdown-item"
-                                                                 th:href="'/customer/product/product-list?limit=12&categoryCode=' + ${category.code} + '&brandCode=' + ${brand.code}"
-                                                                 th:utext="${brand.name}"> Casual</a></li>
-                            </ul>
-                        </div>
-                    </li>
-                    <li class="nav-item dropdown" th:each="category:${categories[1]}" >
-                        <a class="nav-link"
-                           th:href="'/customer/product/product-list?limit=12&categoryCode=' + ${category.code}"
-                           th:utext="${category.name}"> Men's Shoes </a>
-                        <div class="dropdown__items">
-                            <ul>
-                                <li th:each="brand:${brands[0]}"><a class="dropdown-item"
-                                                                    th:href="'/customer/product/product-list?limit=12&categoryCode=' + ${category.code} + '&brandCode=' + ${brand.code}"
-                                                                    th:utext="${brand.name}"> Casual</a></li>
-                                <li th:each="brand:${brands[1]}"><a class="dropdown-item"
-                                                                    th:href="'/customer/product/product-list?limit=12&categoryCode=' + ${category.code} + '&brandCode=' + ${brand.code}"
-                                                                    th:utext="${brand.name}"> Casual</a></li>
-                                <li th:each="brand:${brands[2]}"><a class="dropdown-item"
-                                                                    th:href="'/customer/product/product-list?limit=12&categoryCode=' + ${category.code} + '&brandCode=' + ${brand.code}"
-                                                                    th:utext="${brand.name}"> Casual</a></li>
-                                <li th:each="brand:${brands[3]}"><a class="dropdown-item"
-                                                                    th:href="'/customer/product/product-list?limit=12&categoryCode=' + ${category.code} + '&brandCode=' + ${brand.code}"
-                                                                    th:utext="${brand.name}"> Casual</a></li>
-                            </ul>
-                        </div>
-                    </li>
-                    <li class="nav-item dropdown" th:each="category:${categories[2]}" >
-                        <a class="nav-link"
-                           th:href="'/customer/product/product-list?limit=12&categoryCode=' + ${category.code}"
-                           th:utext="${category.name}"> Men's Shoes </a>
-                        <div class="dropdown__items">
-                            <ul>
-                                <li th:each="brand:${brands[4]}"><a class="dropdown-item"
-                                                                    th:href="'/customer/product/product-list?limit=12&categoryCode=' + ${category.code} + '&brandCode=' + ${brand.code}"
-                                                                    th:utext="${brand.name}"> Casual</a></li>
-                                <li th:each="brand:${brands[5]}"><a class="dropdown-item"
-                                                                    th:href="'/customer/product/product-list?limit=12&categoryCode=' + ${category.code} + '&brandCode=' + ${brand.code}"
-                                                                    th:utext="${brand.name}"> Casual</a></li>
-                                <li th:each="brand:${brands[6]}"><a class="dropdown-item"
-                                                                    th:href="'/customer/product/product-list?limit=12&categoryCode=' + ${category.code} + '&brandCode=' + ${brand.code}"
-                                                                    th:utext="${brand.name}"> Casual</a></li>
-                            </ul>
-                        </div>
-                    </li>
-                </ul>
+                <div class="categories">
+                    <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+                        <li><a href="/home" class="nav-link home__btn px-2 link-dark">Home</a></li>
+                        <li class="nav-item dropdown" th:each="category:${categories[0]}" >
+                            <a class="nav-link"
+                               th:href="'/customer/product/product-list?limit=12&categoryCode=' + ${category.code}"
+                               th:utext="${category.name}"> Men's Shoes </a>
+                            <div class="dropdown__items">
+                                <ul>
+                                    <li th:each="brand:${brands[0]}"><a class="dropdown-item"
+                                                                        th:href="'/customer/product/product-list?limit=12&categoryCode=' + ${category.code} + '&brandCode=' + ${brand.code}"
+                                                                        th:utext="${brand.name}"> Casual</a></li>
+                                    <li th:each="brand:${brands[1]}"><a class="dropdown-item"
+                                                                        th:href="'/customer/product/product-list?limit=12&categoryCode=' + ${category.code} + '&brandCode=' + ${brand.code}"
+                                                                        th:utext="${brand.name}"> Casual</a></li>
+                                    <li th:each="brand:${brands[2]}"><a class="dropdown-item"
+                                                                        th:href="'/customer/product/product-list?limit=12&categoryCode=' + ${category.code} + '&brandCode=' + ${brand.code}"
+                                                                        th:utext="${brand.name}"> Casual</a></li>
+                                    <li th:each="brand:${brands[3]}"><a class="dropdown-item"
+                                                                        th:href="'/customer/product/product-list?limit=12&categoryCode=' + ${category.code} + '&brandCode=' + ${brand.code}"
+                                                                        th:utext="${brand.name}"> Casual</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="nav-item dropdown" th:each="category:${categories[1]}" >
+                            <a class="nav-link"
+                               th:href="'/customer/product/product-list?limit=12&categoryCode=' + ${category.code}"
+                               th:utext="${category.name}"> Men's Shoes </a>
+                            <div class="dropdown__items">
+                                <ul>
+                                    <li th:each="brand:${brands[0]}"><a class="dropdown-item"
+                                                                        th:href="'/customer/product/product-list?limit=12&categoryCode=' + ${category.code} + '&brandCode=' + ${brand.code}"
+                                                                        th:utext="${brand.name}"> Casual</a></li>
+                                    <li th:each="brand:${brands[1]}"><a class="dropdown-item"
+                                                                        th:href="'/customer/product/product-list?limit=12&categoryCode=' + ${category.code} + '&brandCode=' + ${brand.code}"
+                                                                        th:utext="${brand.name}"> Casual</a></li>
+                                    <li th:each="brand:${brands[2]}"><a class="dropdown-item"
+                                                                        th:href="'/customer/product/product-list?limit=12&categoryCode=' + ${category.code} + '&brandCode=' + ${brand.code}"
+                                                                        th:utext="${brand.name}"> Casual</a></li>
+                                    <li th:each="brand:${brands[3]}"><a class="dropdown-item"
+                                                                        th:href="'/customer/product/product-list?limit=12&categoryCode=' + ${category.code} + '&brandCode=' + ${brand.code}"
+                                                                        th:utext="${brand.name}"> Casual</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="nav-item dropdown" th:each="category:${categories[2]}" >
+                            <a class="nav-link"
+                               th:href="'/customer/product/product-list?limit=12&categoryCode=' + ${category.code}"
+                               th:utext="${category.name}"> Men's Shoes </a>
+                            <div class="dropdown__items">
+                                <ul>
+                                    <li th:each="brand:${brands[4]}"><a class="dropdown-item"
+                                                                        th:href="'/customer/product/product-list?limit=12&categoryCode=' + ${category.code} + '&brandCode=' + ${brand.code}"
+                                                                        th:utext="${brand.name}"> Casual</a></li>
+                                    <li th:each="brand:${brands[5]}"><a class="dropdown-item"
+                                                                        th:href="'/customer/product/product-list?limit=12&categoryCode=' + ${category.code} + '&brandCode=' + ${brand.code}"
+                                                                        th:utext="${brand.name}"> Casual</a></li>
+                                    <li th:each="brand:${brands[6]}"><a class="dropdown-item"
+                                                                        th:href="'/customer/product/product-list?limit=12&categoryCode=' + ${category.code} + '&brandCode=' + ${brand.code}"
+                                                                        th:utext="${brand.name}"> Casual</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
 
-                <div class="col-md-3 text-end  header__right">
+                <div class="text-end  header__right">
                     <button type="button" class="btn" data-bs-toggle="offcanvas" data-bs-target="#offcanvasTop"
                             aria-controls="offcanvasTop"><i class="fas fa-search"></i>
                     </button>
@@ -109,7 +112,7 @@
                     <a href="/customer/paying/shopping-cart" class="btn"><i
                             class="fas fa-shopping-bag"></i></a>
                 </div>
-            </header>
+            </div>
         </div>
     </div>
     <section class="down__section"></section>

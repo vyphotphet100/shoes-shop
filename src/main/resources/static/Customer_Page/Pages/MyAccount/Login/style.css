@@ -73,3 +73,15 @@ h1 {
   color: #222222;
   font-size: 14px;
 }
+@media only screen and (max-width: 400px){
+  .card__1{
+    display: none;
+  }
+  h1{
+    text-align: center;
+  }
+  .about__us__paragraph{
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+}
