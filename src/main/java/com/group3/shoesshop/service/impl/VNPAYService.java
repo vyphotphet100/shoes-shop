@@ -18,7 +18,6 @@ import java.util.*;
 @Service
 public class VNPAYService implements IVNPAYService {
     public static String vnp_PayUrl = "https://sandbox.vnpayment.vn/paymentv2/vpcpay.html";
-    public static String vnp_Returnurl = Constant.ROOT_PATH + "customer/paying/execute-payment";
     public static String vnp_TmnCode = "EYS9XOIK";
     public static String vnp_HashSecret = "QEFMYVGWEZZVNDAMYVNPTNMJZOKVMGDR";
     public static String vnp_apiUrl = "https://sandbox.vnpayment.vn/merchant_webapi/merchant.html";
@@ -61,7 +60,8 @@ public class VNPAYService implements IVNPAYService {
         } else {
             vnp_Params.put("vnp_Locale", "vn");
         }
-        vnp_Params.put("vnp_ReturnUrl", this.vnp_Returnurl);
+        String vnp_Returnurl = Constant.ROOT_PATH + "customer/paying/execute-payment";
+        vnp_Params.put("vnp_ReturnUrl", vnp_Returnurl);
         vnp_Params.put("vnp_IpAddr", vnp_IpAddr);
 
         Date dt = new Date();
