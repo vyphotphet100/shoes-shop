@@ -132,3 +132,47 @@ ul li:hover .dropdown__items {
 .down__section {
   margin-bottom: -15px;
 }
+.header__container{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.container{
+  height: 80px;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 0;
+}
+@media only screen and (max-width: 1024px){
+  .btn{
+    padding: 5px;
+  }
+  .header__container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .home__btn{
+    display: none;
+  }
+}
+@media only screen and (max-width: 400px) {
+  .container{
+    height: 250px;
+  }
+  .header__container{
+    display: grid;
+    align-items: center;
+    justify-content: center;
+  }
+  .logo img{
+    justify-content: center;
+    padding: 20px 100px;
+  }
+  .header__right{
+    padding: 5px 100px;
+  }
+  .dropdown__items{
+    z-index: 1;
+  }
+}
