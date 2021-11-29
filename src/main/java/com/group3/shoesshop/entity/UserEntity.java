@@ -74,6 +74,9 @@ public class UserEntity extends BaseEntity implements UserDetails {
     @OneToMany(mappedBy = "seller")
     private List<TransferPaymentEntity> sellerTransferPayments = new ArrayList<>();
 
+    @Column(name = "chat_plugin_script", columnDefinition = "TEXT")
+    private String chatPluginScript;
+
     @Transient
     private String confirmPassword;
 
