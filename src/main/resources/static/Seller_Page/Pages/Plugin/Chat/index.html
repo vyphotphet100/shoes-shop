@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>Noriva Seller's page</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+          integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"/>
+
+    <!--    <link rel="stylesheet" href="/static/Admin_Page/Components/SlideBar/Sidebar.css">-->
+    <link rel="stylesheet" href="/Seller_Page/Pages/Plugin/Chat/style.css">
+</head>
+
+<body>
+<div class="wrapper">
+    <!-- Sidebar  -->
+    <div id="side__bar">
+        <div th:replace="Seller_Page/Components/SlideBar/Sidebar :: sidebar"></div>
+    </div>
+    <!-- Page Content  -->
+    <div id="content">
+        <div id="header">
+            <div th:replace="Seller_Page/Components/Header/Header :: header"></div>
+        </div>
+        <div class="page__container">
+            <form th:method="post" th:object="${user}">
+                <div class="page__top row">
+                    <h1 class="page__title col">
+                        Add Chat Plugin
+                    </h1>
+                    <button typye="submit" class="add__btn">Save</button>
+                </div>
+                <div class="row" style="padding: 0 20px;">
+                    <div th:if="${user.httpStatus.value() == 200 and user.message != null}"
+                         th:utext="${user.message}" class="alert alert-success" role="alert"></div>
+                    <div th:if="${user.httpStatus.value()} != 200" th:utext="${user.message}"
+                         class="alert alert-danger" role="alert"></div>
+                    <div class="basic__product__info col">
+                        <h2 class="basic__pro__title">
+                            Chat Plugin
+                        </h2>
+
+                        <div class="mb-3">
+                            <label class="form-label">Script</label>
+                            <textarea th:field="*{chatPluginScript}"
+                                      th:utext="${user.chatPluginScript}"
+                                      class="form-control"
+                                      style="height: 150px;"
+                                      placeholder="Give your chat plugin script of your page here."
+                                      id="floatingTextarea"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div id="footer">
+            <div th:replace="Seller_Page/Components/Footer/Footer :: footer"></div>
+        </div>
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+<!--    <script src="/static/Admin_Page/Components/Header/Header.js"></script>-->
+<!--    <script src="/static/Admin_Page/Components/SlideBar/Sidebar.js"></script>-->
+<!--    <script src="/static/Admin_Page/Components/SlideBar/main.js"></script>-->
+<!--    <script src="/static/Admin_Page/Components/Footer/Footer.js"></script>-->
+
+<script type="text/javascript" src="/Seller_Page/Pages/Plugin/Chat/main.js"></script>
+<script src="https://kit.fontawesome.com/e82e1ec9a6.js" crossorigin="anonymous"></script>
+</body>
+
+</html>

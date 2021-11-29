@@ -26,6 +26,7 @@ public class UserDTO extends BaseDTO{
     private List<Integer> orderItemIds = new ArrayList<>();
     private List<Integer> adminTransferPaymentIds = new ArrayList<>();
     private List<Integer> sellerTransferPaymentIds = new ArrayList<>();
+    private String chatPluginScript;
 
 
     ////
