@@ -21,7 +21,13 @@ body {
     margin-top: -150px;
     margin-bottom: 30px;
   }
-  .owl h2 {
-    margin-bottom: 20px;
+}
+@media only screen and (max-width: 400px) {
+  .owl {
+    margin-top: 50px;
+    margin-bottom: 30px;
+  }
+  .wrapper {
+    margin-left: 55px;
   }
 }

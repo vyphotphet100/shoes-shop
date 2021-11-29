@@ -1,20 +1,25 @@
 export const style = `
 @import url("https://fonts.googleapis.com/css2?family=Jost&display=swap");
 * {
-  padding: 0;
   margin: 0;
+  padding: 0;
   box-sizing: border-box;
+}
+body {
+  font-family: Jost;
 }
 
 .product__detail {
-  width: 1530px;
-  height: 1400px;
+  width: 100vw;
+  height: auto;
   font-family: Jost;
   overflow-x: hidden;
+  padding: 0 100px;
 }
 .product__detail__container {
   display: flex;
   justify-content: center;
+  align-items: center;
 }
 .product__name h2 {
   font-size: 26px;
@@ -22,9 +27,11 @@ export const style = `
   margin-left: 180px;
   margin-bottom: 20px;
 }
-.product__detail__image img,
+.product__detail__image img {
+  width: 500px;
+}
 .product__detail__booking {
-  width: 37vw;
+  width: 500px;
   height: auto;
 }
 .product__detail__image {
@@ -125,6 +132,7 @@ input::-webkit-inner-spin-button {
 .product__description {
   margin-top: 100px;
   padding: 0 100px;
+  height: auto;
 }
 .product__description h2 {
   text-align: center;
@@ -134,9 +142,50 @@ input::-webkit-inner-spin-button {
   margin-bottom: 20px;
   border-bottom: 1px solid #777777;
 }
-.paragraph{
+
+.paragraph {
   height: 300px;
   overflow: scroll;
   overflow-x: hidden;
 }
+@media only screen and (max-width: 1024px) {
+  .product__detail {
+    padding: 0 100px;
+  }
+  .product__name h2 {
+    margin: 0px;
+    margin-bottom: 20px;
+  }
+  .product__detail__image img,
+  .product__detail__booking {
+    width: 400px;
+  }
+}
+@media only screen and (max-width: 400px) {
+  .product__detail {
+    padding: 0;
+  }
+  .product__name h2 {
+    text-align: center;
+  }
+  .product__detail__container {
+    display: grid;
+  }
+  .product__detail__image {
+    margin-left: 50px;
+  }
+  .product__detail__image img {
+    width: 330px;
+    justify-content: center;
+  }
+  .product__detail__booking {
+    width: 330px;
+    margin-left: 50px;
+    margin-right: 50px;
+  }
+  .product__description {
+    padding: 0 20px;
+  }
+}
+
 `
