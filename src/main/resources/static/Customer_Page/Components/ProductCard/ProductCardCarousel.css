@@ -1,9 +1,5 @@
-* {
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
-}
 .wrapper {
+  height: auto;
   margin-left: 10px;
   padding: 30px 100px;
   align-items: center;
@@ -11,11 +7,21 @@
 }
 @media only screen and (max-width: 1024px) {
   .wrapper {
-    padding: 0 130px;
+    padding-left: 130px;
+    align-items: center;
+    justify-content: center;
   }
 }
-@media only screen and (max-width: 375px) {
+@media only screen and (max-width: 400px) {
   .wrapper {
-    padding: 0;
+    padding: 15px;
+    align-items: center;
+    justify-content: center;
+  }
+}
+@media only screen and (max-width: 1366px) {
+  .wrapper {
+    align-items: center;
+    justify-content: center;
   }
 }
