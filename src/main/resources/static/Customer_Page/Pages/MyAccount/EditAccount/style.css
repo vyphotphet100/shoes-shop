@@ -27,3 +27,9 @@ span {
   background-color: white;
   color: #222222;
 }
+@media only screen and (max-width: 400px){
+  .about__us__container{
+    margin-right: 30px;
+    margin-left: 30px;
+  }
+}

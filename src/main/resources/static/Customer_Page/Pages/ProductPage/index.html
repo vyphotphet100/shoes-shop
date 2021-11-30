@@ -28,7 +28,7 @@
     <div id="slide_bar">
         <div th:replace="Customer_Page/Components/CategorySideBar/CategorySideBar :: sidebar"></div>
     </div>
-    <div id="content product_container" class=" p-md-5 pt-5">
+    <div id="content product_container" class="pt-5">
         <div class="introduction">
             <h2 th:if="${param.get('categoryCode') != null && products.size() >= 1}" th:utext="${products[0].category.name}">Men's Shoes</h2>
             <h2 th:if="${param.get('categoryCode') == null}" >All</h2>

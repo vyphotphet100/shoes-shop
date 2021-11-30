@@ -76,6 +76,7 @@ body {
   color: #212529;
   text-align: left;
   background-color: #fff;
+  overflow-x: hidden;
 }
 
 [tabindex="-1"]:focus {
@@ -10878,4 +10879,12 @@ a[data-toggle="collapse"] {
 }
 .bs_item_bottom a:hover {
   color: #222222;
+}
+.refine-search-btn{
+  margin-left: 25px;
+}
+@media only screen and (max-width: 400px){
+  .refine-search-btn{
+    margin-left: 80px;
+  }
 }
