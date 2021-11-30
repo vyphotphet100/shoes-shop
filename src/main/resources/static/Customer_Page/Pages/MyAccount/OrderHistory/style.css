@@ -4,6 +4,9 @@
   margin: 0;
   box-sizing: border-box;
 }
+html{
+  overflow-x: hidden;
+}
 h1 {
   font-size: 20px;
 }
@@ -16,4 +19,15 @@ h1 {
 .view__detail:hover {
   color: black;
   background-color: white;
+}
+@media only screen and (max-width: 400px){
+  /*table{*/
+  /*  display: block;*/
+  /*  overflow-x: auto;*/
+  /*  white-space: nowrap;*/
+  /*}*/
+  /*tbody{*/
+  /*  display: table;*/
+  /*  width: 100%;*/
+  /*}*/
 }

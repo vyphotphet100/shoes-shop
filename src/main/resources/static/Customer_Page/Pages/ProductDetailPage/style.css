@@ -7,8 +7,8 @@
 body {
   font-family: Jost;
 }
-.owl {
-  margin-top: -300px;
+.owl{
+  margin-bottom: 100px;
 }
 .owl h2 {
   font-size: 24px;
@@ -18,7 +18,6 @@ body {
 }
 @media only screen and (max-width: 1024px) {
   .owl {
-    margin-top: -150px;
     margin-bottom: 30px;
   }
 }

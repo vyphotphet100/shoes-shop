@@ -8,6 +8,7 @@ html {
   font-family: Jost sans-serif;
   overflow-x: hidden;
   width: 100vw;
+  height: 100vh;
 }
 
 .showcase {
@@ -159,11 +160,13 @@ html {
   text-align: center;
   font-size: 24px;
   color: #222222;
-  font-weight: 500px;
+  font-weight: 500;
 }
 .sportware__container {
   margin-top: 50px;
   margin-bottom: 50px;
+  height: auto;
+  z-index: 0;
 }
 .row.sportware-items {
   margin: 0 20px;
@@ -204,6 +207,9 @@ html {
   border: 3px solid #222222;
   color: #ffffff;
   background-color: #222222;
+}
+#footer{
+  margin-top: 400px;
 }
 .sportware .shopping__button:hover {
   background-color: #ffffff;
@@ -263,15 +269,16 @@ html {
     padding: 0;
     margin: 0;
     text-align: center;
-    margin-left: -85px;
   }
 
   .section-title {
     padding: 0;
-    margin-left: -90px;
   }
 
-  .row.sportware-items {
-    margin-left: -60px;
+  .wrapper{
+    margin-left: 58px;
+  }
+  #footer{
+    margin-top: 1100px;
   }
 }
