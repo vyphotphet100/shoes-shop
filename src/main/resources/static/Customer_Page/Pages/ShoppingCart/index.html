@@ -29,76 +29,78 @@
 <div class="shopping__cart_container">
     <h1>SHOPPING CART</h1>
     <div class="shopping__cart__table">
-        <table class="table table-bordered">
-            <thead class="thead-dark">
-            <tr>
-                <th scope="col">Image</th>
-                <th scope="col">Product Name</th>
-                <th scope="col">Brand</th>
-                <th scope="col">Quantity</th>
-                <th scope="col">Unit Price</th>
-                <th scope="col">Total Price</th>
-                <th scope="col">Pay</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr th:each="orderItem:${orderItems}">
-                <th scope="row">
-                    <div class="shopping__cart__image">
-                        <img th:src="${orderItem.product.pictureUrl}">
-                    </div>
-                </th>
-                <td>
-                    <div class="shopping__cart__component">
-                        <a th:href="'/customer/product/product-detail?code=' + ${orderItem.product.code}" th:utext="${orderItem.product.title}">Nike Air Force 1</a>
-                    </div>
-                </td>
-                <td>
-                    <div class="shopping__cart__component">
-                        <p th:utext="${orderItem.product.brand.name}">Nike</p>
-                    </div>
-                </td>
-                <td>
-                    <div class="shopping__cart__component">
-                        <input type="number" th:id="'quantity_'+${orderItem.id}" th:value="${orderItem.quantityBought}" th:onchange="'updateTotalPrice('+${orderItem.id}+')'">
-                        <button class="update__quantity" th:onclick="'resetQuantity('+${orderItem.id}+')'">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                 class="bi bi-arrow-repeat" viewBox="0 0 16 16">
-                                <path
-                                        d="M11.534 7h3.932a.25.25 0 0 1 .192.41l-1.966 2.36a.25.25 0 0 1-.384 0l-1.966-2.36a.25.25 0 0 1 .192-.41zm-11 2h3.932a.25.25 0 0 0 .192-.41L2.692 6.23a.25.25 0 0 0-.384 0L.342 8.59A.25.25 0 0 0 .534 9z"/>
-                                <path fill-rule="evenodd"
-                                      d="M8 3c-1.552 0-2.94.707-3.857 1.818a.5.5 0 1 1-.771-.636A6.002 6.002 0 0 1 13.917 7H12.9A5.002 5.002 0 0 0 8 3zM3.1 9a5.002 5.002 0 0 0 8.757 2.182.5.5 0 1 1 .771.636A6.002 6.002 0 0 1 2.083 9H3.1z"/>
-                            </svg>
-                        </button>
-                        <button class="delete__product" th:onclick="'deleteOrderItem('+${orderItem.id}+')'">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                 class="bi bi-x-circle-fill" viewBox="0 0 16 16">
-                                <path
-                                        d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293 5.354 4.646z"/>
-                            </svg>
-                        </button>
-                    </div>
-                </td>
-                <td>
-                    <div class="shopping__cart__component">
-                        <p th:utext="'$'+${orderItem.product.price}" th:id="'price_show_'+${orderItem.id}">$200.00</p>
-                        <input type="hidden" th:id="'price_'+${orderItem.id}" th:value="${orderItem.product.price}">
-                    </div>
-                </td>
-                <td>
-                    <div class="shopping__cart__component">
-                        <p th:id="'total_cost_show_'+${orderItem.id}" th:utext="'$'+${orderItem.totalCost}">$200.00</p>
-                        <input type="hidden" th:id="'total_cost_'+${orderItem.id}" th:value="${orderItem.totalCost}">
-                    </div>
-                </td>
-                <td>
-                    <div class="shopping__cart__component">
-                        <input type="checkbox" class="pay" name="pay_checkbox" th:id="'pay_'+${orderItem.id}" onchange="updateTotalCost();">
-                    </div>
-                </td>
-            </tr>
-            </tbody>
-        </table>
+        <div style="overflow-x:auto;">
+            <table class="table table-bordered">
+                <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Image</th>
+                    <th scope="col">Product Name</th>
+                    <th scope="col">Brand</th>
+                    <th scope="col">Quantity</th>
+                    <th scope="col">Unit Price</th>
+                    <th scope="col">Total Price</th>
+                    <th scope="col">Pay</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="orderItem:${orderItems}">
+                    <th scope="row">
+                        <div class="shopping__cart__image">
+                            <img th:src="${orderItem.product.pictureUrl}">
+                        </div>
+                    </th>
+                    <td>
+                        <div class="shopping__cart__component">
+                            <a th:href="'/customer/product/product-detail?code=' + ${orderItem.product.code}" th:utext="${orderItem.product.title}">Nike Air Force 1</a>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="shopping__cart__component">
+                            <p th:utext="${orderItem.product.brand.name}">Nike</p>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="shopping__cart__component">
+                            <input type="number" th:id="'quantity_'+${orderItem.id}" th:value="${orderItem.quantityBought}" th:onchange="'updateTotalPrice('+${orderItem.id}+')'">
+                            <button class="update__quantity" th:onclick="'resetQuantity('+${orderItem.id}+')'">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                     class="bi bi-arrow-repeat" viewBox="0 0 16 16">
+                                    <path
+                                            d="M11.534 7h3.932a.25.25 0 0 1 .192.41l-1.966 2.36a.25.25 0 0 1-.384 0l-1.966-2.36a.25.25 0 0 1 .192-.41zm-11 2h3.932a.25.25 0 0 0 .192-.41L2.692 6.23a.25.25 0 0 0-.384 0L.342 8.59A.25.25 0 0 0 .534 9z"/>
+                                    <path fill-rule="evenodd"
+                                          d="M8 3c-1.552 0-2.94.707-3.857 1.818a.5.5 0 1 1-.771-.636A6.002 6.002 0 0 1 13.917 7H12.9A5.002 5.002 0 0 0 8 3zM3.1 9a5.002 5.002 0 0 0 8.757 2.182.5.5 0 1 1 .771.636A6.002 6.002 0 0 1 2.083 9H3.1z"/>
+                                </svg>
+                            </button>
+                            <button class="delete__product" th:onclick="'deleteOrderItem('+${orderItem.id}+')'">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                     class="bi bi-x-circle-fill" viewBox="0 0 16 16">
+                                    <path
+                                            d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293 5.354 4.646z"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="shopping__cart__component">
+                            <p th:utext="'$'+${orderItem.product.price}" th:id="'price_show_'+${orderItem.id}">$200.00</p>
+                            <input type="hidden" th:id="'price_'+${orderItem.id}" th:value="${orderItem.product.price}">
+                        </div>
+                    </td>
+                    <td>
+                        <div class="shopping__cart__component">
+                            <p th:id="'total_cost_show_'+${orderItem.id}" th:utext="'$'+${orderItem.totalCost}">$200.00</p>
+                            <input type="hidden" th:id="'total_cost_'+${orderItem.id}" th:value="${orderItem.totalCost}">
+                        </div>
+                    </td>
+                    <td>
+                        <div class="shopping__cart__component">
+                            <input type="checkbox" class="pay" name="pay_checkbox" th:id="'pay_'+${orderItem.id}" onchange="updateTotalCost();">
+                        </div>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
         <div class="total__fee__table">
             <table class="table table-bordered">
                 <tbody>

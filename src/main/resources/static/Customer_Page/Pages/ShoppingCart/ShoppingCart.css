@@ -4,6 +4,9 @@
   margin: 0;
   box-sizing: border-box;
 }
+.shopping__cart__table{
+  padding: 0;
+}
 .shopping__cart__image {
   display: flex;
   justify-content: center;

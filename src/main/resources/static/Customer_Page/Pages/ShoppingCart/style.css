@@ -48,3 +48,29 @@ html {
   color: #222222;
   background-color: #ffffff;
 }
+@media only screen and (max-width: 400px){
+  html{
+    overflow-x: hidden;
+  }
+  table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 100%;
+    border: 1px solid #ddd;
+  }
+
+  th,
+  td {
+    text-align: left;
+    padding: 8px;
+  }
+  h1{
+    text-align: center
+  }
+  .shopping__cart_container{
+    padding: 0 20px;
+  }
+  .fee__type{
+    visibility: hidden;
+  }
+}
