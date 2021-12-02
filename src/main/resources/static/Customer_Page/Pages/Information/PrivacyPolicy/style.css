@@ -45,3 +45,9 @@ body {
   color: #777777;
   font-size: 14px;
 }
+a{
+  color: #777777;
+}
+a:hover{
+  color: #222222;
+}
