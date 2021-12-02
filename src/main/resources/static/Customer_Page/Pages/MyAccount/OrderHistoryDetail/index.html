@@ -34,89 +34,95 @@
             <div class="about__us__paragraph">
                 <div class="about__us__paragraph__text">
                     <h2>Order Details</h2>
-                    <table class="table table-bordered mb-5">
-                        <thead>
-                        <tr>
-                            <th scope="col">Order ID</th>
-                            <th scope="col">Customer</th>
-                            <th scope="col">Shipment</th>
-                            <th scope="col">Date Added</th>
-                            <th scope="col">Payment Method</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <th th:utext="'#'+${orderItem.id}" scope="row">#31</th>
-                            <td th:utext="${orderItem.customer.lastName}">Hoàn Doe</td>
-                            <td th:if="${orderItem.payment.shipmentDate == null}">Shipping</td>
-                            <td th:if="${orderItem.payment.shipmentDate != null}" th:utext="${orderItem.payment.shipmentDate}">Shipping</td>
-                            <td th:utext="${orderItem.payment.paymentDate}">30/10/2021</td>
-                            <td th:utext="${orderItem.customer.paymentMethod.name}">COD (Cash on delivery)</td>
-                        </tr>
-                        </tbody>
-                    </table>
+                    <div style="overflow-x: auto">
+                        <table class="table table-bordered mb-5" style="margin: 0 20px">
+                            <thead>
+                            <tr>
+                                <th scope="col">Order ID</th>
+                                <th scope="col">Customer</th>
+                                <th scope="col">Shipment</th>
+                                <th scope="col">Date Added</th>
+                                <th scope="col">Payment Method</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <th th:utext="'#'+${orderItem.id}" scope="row">#31</th>
+                                <td th:utext="${orderItem.customer.lastName}">Hoàn Doe</td>
+                                <td th:if="${orderItem.payment.shipmentDate == null}">Shipping</td>
+                                <td th:if="${orderItem.payment.shipmentDate != null}" th:utext="${orderItem.payment.shipmentDate}">Shipping</td>
+                                <td th:utext="${orderItem.payment.paymentDate}">30/10/2021</td>
+                                <td th:utext="${orderItem.customer.paymentMethod.name}">COD (Cash on delivery)</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
 
-                    <table class="table table-bordered mb-5">
-                        <thead>
-                        <tr>
-                            <th scope="col">Payment Address</th>
-                            <th scope="col">Shipping Address</th>
+                    <div style="overflow-x: auto">
+                        <table class="table table-bordered mb-5" style="margin: 0 20px">
+                            <thead>
+                            <tr>
+                                <th scope="col">Payment Address</th>
+                                <th scope="col">Shipping Address</th>
 
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <td th:if="${orderItem.customer.paymentMethod.id == 3}" th:utext="${orderItem.customer.address}">Somewhere balaaaaaaaa</td>
-                            <td th:if="${orderItem.customer.paymentMethod.id != 3}">Online</td>
-                            <td th:utext="${orderItem.customer.address}">Somewhere blaaaaaaaaaa</td>
-                        </tr>
-                        </tbody>
-                    </table>
-                    <table class="table table-bordered">
-                        <thead>
-                        <tr>
-                            <th scope="col">Product Name</th>
-                            <th scope="col">Brand</th>
-                            <th scope="col">Quantity</th>
-                            <th scope="col">Unit Price</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <td>
-                                <div class="shopping__cart__component">
-                                    <p th:utext="${orderItem.product.title}" >Cái gì đấy</p>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="shopping__cart__component">
-                                    <p th:utext="${orderItem.product.brand.name}">UTE</p>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="shopping__cart__component">
-                                    <p th:utext="${orderItem.quantityBought}" >1</p>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="shopping__cart__component">
-                                    <p th:utext="'$'+${orderItem.product.price}" >$Vô giá</p>
-                                </div>
-                            </td>
-                        </tr>
-                        <td colspan="3">
-                            <div class="shopping__cart__component">
-                                <p style="float: right;">Total</p>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="shopping__cart__component">
-                                <p th:utext="'$'+${orderItem.totalCost}" style="color: red;">Tổng tiền nè lo thanh toán đi</p>
-                            </div>
-                        </td>
-                        </tr>
-                        </tbody>
-                    </table>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td th:if="${orderItem.customer.paymentMethod.id == 3}" th:utext="${orderItem.customer.address}">Somewhere balaaaaaaaa</td>
+                                <td th:if="${orderItem.customer.paymentMethod.id != 3}">Online</td>
+                                <td th:utext="${orderItem.customer.address}">Somewhere blaaaaaaaaaa</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                   <div style="overflow-x: auto">
+                       <table class="table table-bordered" style="margin: 0 20px">
+                           <thead>
+                           <tr>
+                               <th scope="col">Product Name</th>
+                               <th scope="col">Brand</th>
+                               <th scope="col">Quantity</th>
+                               <th scope="col">Unit Price</th>
+                           </tr>
+                           </thead>
+                           <tbody>
+                           <tr>
+                               <td>
+                                   <div class="shopping__cart__component">
+                                       <p th:utext="${orderItem.product.title}" >Cái gì đấy</p>
+                                   </div>
+                               </td>
+                               <td>
+                                   <div class="shopping__cart__component">
+                                       <p th:utext="${orderItem.product.brand.name}">UTE</p>
+                                   </div>
+                               </td>
+                               <td>
+                                   <div class="shopping__cart__component">
+                                       <p th:utext="${orderItem.quantityBought}" >1</p>
+                                   </div>
+                               </td>
+                               <td>
+                                   <div class="shopping__cart__component">
+                                       <p th:utext="'$'+${orderItem.product.price}" >$Vô giá</p>
+                                   </div>
+                               </td>
+                           </tr>
+                           <td colspan="3">
+                               <div class="shopping__cart__component">
+                                   <p style="float: right;">Total</p>
+                               </div>
+                           </td>
+                           <td>
+                               <div class="shopping__cart__component">
+                                   <p th:utext="'$'+${orderItem.totalCost}" style="color: red;">Tổng tiền nè lo thanh toán đi</p>
+                               </div>
+                           </td>
+                           </tr>
+                           </tbody>
+                       </table>
+                   </div>
                 </div>
             </div>
         </div>
