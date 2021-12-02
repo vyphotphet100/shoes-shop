@@ -31,10 +31,10 @@ html {
   border: 1px solid #222222;
 }
 .accordion .accordion-item .collapseOne .accordion-body {
-  height: auto;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  height: 1000px !important;
+  /*display: flex;*/
+  /*justify-content: space-between;*/
+  /*align-items: center;*/
 }
 h1 {
   margin: 20px 0 10px;
@@ -60,6 +60,9 @@ p {
   background-color: white;
   color: #222222;
 }
+.first{
+  margin-top: 15px;
+}
 legend {
   border-bottom: 1px solid #d3cfcf;
   font-size: 18px;
@@ -77,4 +80,43 @@ input {
 }
 span {
   color: red;
+}
+.option__container{
+  display: flex;
+  justify-content: space-between;
+}
+.option__1, .option__2{
+  width: 600px;
+}
+@media only screen and (max-width: 1024px) {
+  .option__1, .option__2{
+    width: 350px;
+  }
+}
+@media only screen and (max-width: 400px) {
+  .accordion-button{
+    padding: 0;
+  }
+  .accordion{
+    padding: 30px 20px;
+  }
+  .option__container{
+    display: grid;
+  }
+  .option__1, .option__2{
+    width: 250px;
+  }
+  table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 100%;
+    border: 1px solid #ddd;
+  }
+
+  th,
+  td {
+    text-align: left;
+    padding: 8px;
+  }
+
 }
