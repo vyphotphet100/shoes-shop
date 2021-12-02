@@ -67,7 +67,7 @@ html {
   border: none;
 }
 .header__right .offcanvas-top {
-  height: 110px;
+  height: 150px;
   overflow: hidden;
 }
 .header__right .offcanvas-top .offcanvas-header h5 {
@@ -75,7 +75,7 @@ html {
 }
 .header__right .offcanvas-body {
   background-color: transparent;
-  margin-top: -30px;
+  margin-top: -20px;
   text-align: center;
   overflow-y: hidden;
 }
@@ -155,6 +155,20 @@ ul li:hover .dropdown__items {
   .home__btn{
     display: none;
   }
+  .header__right .offcanvas .offcanvas-body .input-group{
+    display: flex;
+    flex-wrap: nowrap;
+    margin-left: -130px;
+  }
+  .form__select{
+    width: 100px !important;
+  }
+  .offcanvas-top{
+    height: 300px;
+  }
+  .form-control{
+    width: 300px;
+  }
 }
 @media only screen and (max-width: 400px) {
   .container{
@@ -174,5 +188,18 @@ ul li:hover .dropdown__items {
   }
   .dropdown__items{
     z-index: 1;
+  }
+  .offcanvas-top{
+    height: 300px;
+  }
+  header__right .offcanvas .offcanvas-body .input-group{
+    width: 370px;
+    margin-left: -370px;
+  }
+  .form-control{
+    width: 250px;
+  }
+  .navbar{
+    margin-left: -310px;
   }
 }
