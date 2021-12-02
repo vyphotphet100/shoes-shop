@@ -1,7 +1,5 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org"
-      lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" lang="en">
 
 <head>
     <meta charset="UTF-8">
@@ -12,9 +10,9 @@
           integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
           integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ=="
-          crossorigin="anonymous" referrerpolicy="no-referrer"/>
+          crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="/Customer_Page/Pages/ProductPage/style.css">
+    <link rel="stylesheet" href="/Customer_Page/Pages/ReviewPayment/VNPAY/style.css">
     <link rel="stylesheet" href="/Customer_Page/Components/CategorySideBar/CategorySideBar.css">
     <!--    <link rel="stylesheet" href="/Customer_Page/Components/Footer/Footer.css">-->
     <!--    <link rel="stylesheet" href="/Customer_Page/Components/Header/Header.css">-->
@@ -24,64 +22,65 @@
 <div id="header">
     <div th:replace="Customer_Page/Components/Header/Header :: header"></div>
 </div>
-<div align="center">
+<div class="review__paying">
     <h1>Please Review Before Paying</h1>
     <form action="/customer/paying/execute-payment" id="frmCreateOrder" method="post">
-        <table>
-
-            <tr>
+        <div class="detail__payment">
+            <table class="table table-bordered">
+                <thead class="thead-dark">
+                <tr>
+                    <th scope="col"><p class="para">Product name</p></th>
+                    <th scope="col"><p class="para">Category</p></th>
+                    <th scope="col"><p class="para">Brand</p></th>
+                    <th scope="col"><p class="para">Quantity</p></th>
+                    <th scope="col"><p class="para">Unit price</p></th>
+                    <th scope="col"><p class="para">Total cost</p></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="readyOrderItem:${readyOrderItems}">
+                    <td>
+                        <div class="shopping__cart__component">
+                            <p class="para" th:utext="${readyOrderItem.product.title}">Cái gì đấy</p>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="shopping__cart__component">
+                            <p class="para" th:utext="${readyOrderItem.product.category.name}">UTE</p>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="shopping__cart__component">
+                            <p class="para" th:utext="${readyOrderItem.product.brand.name}">UTE</p>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="shopping__cart__component">
+                            <p class="para" th:utext="${readyOrderItem.quantityBought}">1</p>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="shopping__cart__component">
+                            <p class="para" th:utext="${readyOrderItem.product.price}">$Vô giá</p>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="shopping__cart__component">
+                            <p class="para" th:utext="${readyOrderItem.totalCost}">$Uncountable</p>
+                        </div>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="payment__container">
+            <div class="details">
                 <table class="table table-bordered">
                     <thead class="thead-dark">
-                    <tr>
-                        <th scope="col">Product name</th>
-                        <th scope="col">Category</th>
-                        <th scope="col">Brand</th>
-                        <th scope="col">Quantity</th>
-                        <th scope="col">Unit price</th>
-                        <th scope="col">Total cost</th>
-                    </tr>
+                        <tr>
+                            <td colspan="2"><p class="para">Payment Details</p></td>
+                        </tr>
                     </thead>
-                    <tbody>
-                    <tr th:each="readyOrderItem:${readyOrderItems}">
-                        <td>
-                            <div class="shopping__cart__component">
-                                <p th:utext="${readyOrderItem.product.title}">Cái gì đấy</p>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="shopping__cart__component">
-                                <p th:utext="${readyOrderItem.product.category.name}">UTE</p>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="shopping__cart__component">
-                                <p th:utext="${readyOrderItem.product.brand.name}">UTE</p>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="shopping__cart__component">
-                                <p th:utext="${readyOrderItem.quantityBought}">1</p>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="shopping__cart__component">
-                                <p th:utext="${readyOrderItem.product.price}">$Vô giá</p>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="shopping__cart__component">
-                                <p th:utext="${readyOrderItem.totalCost}">$Uncountable</p>
-                            </div>
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
-            </tr>
-            <tr>
-                <table>
-                    <tr>
-                        <td colspan="2"><b>Payment Details:</b></td>
-                    </tr>
                     <tr>
                         <td>Shipping Address:</td>
                         <td th:utext="${userSession.address}"></td>
@@ -96,12 +95,19 @@
                     </tr>
                     <tr>
                         <td>Total:</td>
-                        <td th:utext="${total} + ' USD -> '+ ${#numbers.formatDecimal(total*exchangeRate, 0, 'COMMA', 2, 'POINT')} + ' VND'"> USD</td>
+                        <td
+                                th:utext="${total} + ' USD -> '+ ${#numbers.formatDecimal(total*exchangeRate, 0, 'COMMA', 2, 'POINT')} + ' VND'">
+                            USD</td>
                     </tr>
-                    <tr><td><br/></td></tr>
-                    <tr>
-                        <td colspan="2"><b>Payer Information:</b></td>
-                    </tr>
+                </table>
+            </div>
+            <div class="info">
+                <table class="table table-bordered">
+                    <thead class="thead-dark">
+                        <tr>
+                            <td colspan="2"><p class="para">Payer Information</p></td>
+                        </tr>
+                    </thead>
                     <tr>
                         <td>First Name:</td>
                         <td th:utext="${userSession.firstName}"></td>
@@ -115,15 +121,12 @@
                         <td th:utext="${userSession.email}"></td>
                     </tr>
                 </table>
-            </tr>
+            </div>
+        </div>
 
-            <tr>
-                <td colspan="2" align="center">
-                    <br>
-                    <input class="btn btn-outline-success" type="submit" value="Pay Now" />
-                </td>
-            </tr>
-        </table>
+        <div class="btn__group">
+            <input class=" pay" type="submit" value="Pay Now" />
+        </div>
     </form>
 </div>
 <br>
@@ -157,14 +160,11 @@
 <script src="https://kit.fontawesome.com/e82e1ec9a6.js" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-        crossorigin="anonymous"></script>
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-        crossorigin="anonymous"></script>
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-        crossorigin="anonymous"></script>
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 <!--<script src="/Customer_Page/Components/CategorySideBar/CategorySideBar.js"></script>-->
 <script src="/Customer_Page/Components/CategorySideBar/CategorySideBarMain.js"></script>
 <!--<script src="/Customer_Page/Components/Footer/Footer.js"></script>-->
