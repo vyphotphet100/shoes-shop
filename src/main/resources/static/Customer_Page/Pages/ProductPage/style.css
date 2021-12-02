@@ -61,14 +61,12 @@
   margin-top: -10px;
 }
 @media only screen and (max-width: 1024px) {
-  html{
-    max-width: 1024px;
-  }
   .item {
     display: inline-block;
     margin-right: 7px;
   }
   .all__container {
+    margin: 0 10px;
     max-width: 1024px;
     overflow-x: hidden;
   }
@@ -81,14 +79,8 @@
   }
 }
 @media only screen and (max-width: 400px) {
-  html{
-    overflow-x: hidden;
-  }
   .shop__des {
     width: 375px;
-  }
-  .introduction{
-    padding: 0 30px;
   }
   .introduction h2 {
     text-align: center;
@@ -104,6 +96,14 @@
     display: none;
   }
   .product_container {
-    margin-left: 73px;
+    margin-left: 60px;
+  }
+  .para__container{
+    height: 300px;
+    overflow-y: auto;
+    margin-bottom: 30px;
+    border: 1px solid #777777;
+    justify-content: center;
+    padding: 10px 0;
   }
 }
