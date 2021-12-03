@@ -103,8 +103,10 @@
             </div>
         </div>
         <div class="product_container">
-            <div class="item" th:if="${products.size() >= 1}" th:each="product:${products}">
+            <div class="item" th:if="${products.size() >= 1}"
+                 th:each="product:${products}">
                 <product-card id="card_item"
+                              th:if="${product.isAvailable == true}"
                               th:productName='${product.title}'
                               th:productPrice="'$' + ${product.price}"
                               th:productImg="${product.pictureUrl}"

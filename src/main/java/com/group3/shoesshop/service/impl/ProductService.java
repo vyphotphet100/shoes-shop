@@ -23,7 +23,7 @@ public class ProductService extends BaseService<ProductEntity> implements IProdu
 
     @Override
     public List<ProductEntity> findAll() {
-        return productRepo.findAllByIsAvailable( true);
+        return productRepo.findAllByIsAvailable(true);
     }
 
     @Override
@@ -62,7 +62,7 @@ public class ProductService extends BaseService<ProductEntity> implements IProdu
 
         // up picture to cloud
         String fileName = "product_" + productEntity.getCode() + ".png";
-        if (!entity.getPictureUrl().startsWith("http")  && !entity.getPictureUrl().contains("file?name=")) {
+        if (!entity.getPictureUrl().startsWith("http") && !entity.getPictureUrl().contains("file?name=")) {
             byte[] pictueBytes = Base64.getDecoder().decode(entity.getPictureUrl().split(",")[1]);
             if (!MyUtils.upFileToGoogleCloud(fileName, pictueBytes))
                 return this.exceptionObject(new ProductEntity(), "Something's wrong when adding picture product");
@@ -102,7 +102,7 @@ public class ProductService extends BaseService<ProductEntity> implements IProdu
             return null;
 
         List<ProductEntity> res = new ArrayList<>();
-        for (ProductEntity productEntity: userEntity.getProducts()) {
+        for (ProductEntity productEntity : userEntity.getProducts()) {
             if (productEntity.getIsAvailable().equals(available))
                 res.add(productEntity);
         }
@@ -112,69 +112,71 @@ public class ProductService extends BaseService<ProductEntity> implements IProdu
 
     @Override
     public List<ProductEntity> findAllByCategoryCodeAndBrandCode(String categoryCode, String brandCode) {
-        return productRepo.findAllByCategoryCodeAndBrandCode(categoryCode, brandCode);
+        return this.getProductByIsAvailable(productRepo.findAllByCategoryCodeAndBrandCode(categoryCode, brandCode), true);
     }
 
     @Override
     public List<ProductEntity> findAllByCategoryCodeAndBrandCodeWithPageable(String categoryCode, String brandCode, Pageable pageable) {
-        return productRepo.findAllByCategoryCodeAndBrandCode(pageable, categoryCode, brandCode);
+        return this.getProductByIsAvailable(productRepo.findAllByCategoryCodeAndBrandCode(pageable, categoryCode, brandCode), true);
     }
 
     @Override
     public List<ProductEntity> findAllByCategoryCode(String categoryCode) {
-        return productRepo.findAllByCategoryCode(categoryCode);
+        return this.getProductByIsAvailable(productRepo.findAllByCategoryCode(categoryCode), true);
     }
 
     @Override
     public List<ProductEntity> findAllByCategoryCodeWithPageable(String categoryCode, Pageable pageable) {
-        return productRepo.findAllByCategoryCode(pageable, categoryCode);
+        return this.getProductByIsAvailable(productRepo.findAllByCategoryCode(pageable, categoryCode), true);
     }
 
     @Override
     public List<ProductEntity> findAllByBrandCodeWithPageable(String brandCode, Pageable pageable) {
-        return productRepo.findAllByBrandCode(pageable, brandCode);
+        return this.getProductByIsAvailable(productRepo.findAllByBrandCode(pageable, brandCode), true);
     }
 
     @Override
     public List<ProductEntity> findAllByCategoryCodeWithPageableAndKeyword(String categoryCode, Pageable pageable, String keyword) {
-        return productRepo.findAllByCategoryCodeWithKeyword(categoryCode, keyword);
+        return this.getProductByIsAvailable(productRepo.findAllByCategoryCodeWithKeyword(categoryCode, keyword), true);
     }
 
     @Override
     public List<ProductEntity> findAllWithPageableAndKeyword(Pageable pageable, String keyword) {
-        return productRepo.findAllByWithKeyword(keyword);
+        return this.getProductByIsAvailable(productRepo.findAllByWithKeyword(keyword), true);
     }
 
     @Override
     public List<ProductEntity> filterByPrice(List<ProductEntity> productEntities, Integer lowest, Integer highest) {
         List<ProductEntity> resEntities = new ArrayList<>();
-        for (ProductEntity productEntity: productEntities) {
+        for (ProductEntity productEntity : productEntities) {
             if (productEntity.getPrice() >= lowest &&
                     productEntity.getPrice() <= highest)
                 resEntities.add(productEntity);
         }
 
-        return resEntities;
+        return this.getProductByIsAvailable(resEntities, true);
     }
 
     @Override
     public List<ProductEntity> filterBySize(List<ProductEntity> productEntities, Integer lowest, Integer highest) {
         List<ProductEntity> resEntities = new ArrayList<>();
-        for (ProductEntity productEntity: productEntities) {
-            if (productEntity.getSize() >= lowest &&
+        for (ProductEntity productEntity : productEntities) {
+            if (productEntity.getSize() != null &&
+                    productEntity.getSize() >= lowest &&
                     productEntity.getSize() <= highest)
                 resEntities.add(productEntity);
         }
 
-        return resEntities;
+        return this.getProductByIsAvailable(resEntities, true);
     }
 
     @Override
     public Integer getTotalQuantity() {
         Integer totalQuantity = 0;
         List<ProductEntity> productEntities = productRepo.findAll();
-        for (ProductEntity productEntity: productEntities) {
-            totalQuantity += productEntity.getQuantity();
+        for (ProductEntity productEntity : productEntities) {
+            if (productEntity.getQuantity() != null)
+                totalQuantity += productEntity.getQuantity();
         }
 
         return totalQuantity;
@@ -184,11 +186,11 @@ public class ProductService extends BaseService<ProductEntity> implements IProdu
     public List<ProductEntity> findAllInStockProductBySellerId(Integer sellerId) {
         List<ProductEntity> productEntities = this.findAllByAvailableAndSellerId(true, sellerId);
         List<ProductEntity> resEntities = new ArrayList<>();
-        for (ProductEntity productEntity: productEntities) {
+        for (ProductEntity productEntity : productEntities) {
             if (productEntity.getInStock().equals(true))
                 resEntities.add(productEntity);
         }
 
-        return resEntities;
+        return this.getProductByIsAvailable(resEntities, true);
     }
 }

@@ -2,13 +2,16 @@ package com.group3.shoesshop.service.impl;
 
 import com.group3.shoesshop.dto.BaseDTO;
 import com.group3.shoesshop.entity.BaseEntity;
+import com.group3.shoesshop.entity.ProductEntity;
 import com.group3.shoesshop.service.IBaseService;
 import org.springframework.beans.BeanWrapper;
 import org.springframework.beans.BeanWrapperImpl;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Service
@@ -39,5 +42,14 @@ public abstract class BaseService<T> implements IBaseService<T> {
         }
         String[] result = new String[emptyNames.size()];
         return emptyNames.toArray(result);
+    }
+
+    protected List<ProductEntity> getProductByIsAvailable(List<ProductEntity> productEntities, Boolean available) {
+        List<ProductEntity> resEntities = new ArrayList<>();
+        for (ProductEntity productEntity: productEntities)
+            if (productEntity.getIsAvailable().equals(available))
+                resEntities.add(productEntity);
+
+        return resEntities;
     }
 }
