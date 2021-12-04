@@ -13,10 +13,11 @@
                         Dashboard
                     </a>
                 </li>
-                <li class="active">
+                <li class="active" th:if="${session.get('USER_SESSION').myAuthorities.contains('PRODUCT_MANAGING')}">
                     <a style="font-size: 14px;" href="#catalog" data-toggle="collapse" aria-expanded="false"
                        class="dropdown-toggle"><i style="padding: 7px 5px;" class="fas fa-database"></i>
-                        Catalog</a>
+                        Catalog
+                    </a>
                     <ul class="collapse list-unstyled" id="catalog">
                         <li>
                             <a href="/admin/product/add">Add Product</a>
@@ -29,7 +30,7 @@
                         <!--                        </li>-->
                     </ul>
                 </li>
-                <li class="active">
+                <li class="active" th:if="${session.get('USER_SESSION').myAuthorities.contains('CUSTOMER_MANAGING')}">
                     <a style="font-size: 14px;" href="#customer" data-toggle="collapse" aria-expanded="false"
                        class="dropdown-toggle"><i style="padding: 7px 5px;" class="far fa-user"></i> Customers</a>
                     <ul class="collapse list-unstyled" id="customer">
@@ -41,7 +42,7 @@
                         <!--                        </li>-->
                     </ul>
                 </li>
-                <li class="active">
+                <li class="active" >
                     <a style="font-size: 14px;" href="#orders" data-toggle="collapse" aria-expanded="false"
                        class="dropdown-toggle"> <i style="padding: 7px 5px;" class="fas fa-shopping-cart"></i>
                         Payment</a>
@@ -54,7 +55,7 @@
                         <!--                        </li>-->
                     </ul>
                 </li>
-                <li class="active">
+                <li class="active" th:if="${session.get('USER_SESSION').myAuthorities.contains('SELLER_MANAGING')}">
                     <a style="font-size: 14px;" href="#sellers" data-toggle="collapse" aria-expanded="false"
                        class="dropdown-toggle"> <i style="padding: 7px 5px;" class="fas fa-user-tie"></i>
                         Sellers</a>

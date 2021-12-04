@@ -38,7 +38,9 @@
     <h2>RELATED PRODUCT</h2>
     <div class="wrapper">
         <div class="carousel owl-carousel">
-            <product-card th:each="relatedProduct:${product.category.products}" th:productName="${relatedProduct.title}"
+            <product-card th:each="relatedProduct:${product.category.products}"
+                          th:if="${relatedProduct.isAvailable == true}"
+                          th:productName="${relatedProduct.title}"
                           th:productPrice="${relatedProduct.price}"
                           th:productImg="${relatedProduct.pictureUrl}"
                           th:productCode="${relatedProduct.code}"></product-card>

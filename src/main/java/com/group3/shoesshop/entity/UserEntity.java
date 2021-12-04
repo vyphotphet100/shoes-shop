@@ -80,6 +80,9 @@ public class UserEntity extends BaseEntity implements UserDetails {
     @Transient
     private String confirmPassword;
 
+    @Transient
+    private List<String> myAuthorities = new ArrayList<>();
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return null;

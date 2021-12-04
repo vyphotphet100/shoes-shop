@@ -32,6 +32,17 @@ public class ProductService extends BaseService<ProductEntity> implements IProdu
     }
 
     @Override
+    public List<ProductEntity> findAllWithKeyword(String keyword) {
+        List<ProductEntity> productEntities = productRepo.findAllByIsAvailable(true);
+        List<ProductEntity> resEntities = new ArrayList<>();
+        for (ProductEntity productEntity: productEntities)
+            if (productEntity.getTitle().toLowerCase().contains(keyword.toLowerCase()))
+                resEntities.add(productEntity);
+
+        return resEntities;
+    }
+
+    @Override
     public ProductEntity save(ProductEntity entity) {
         entity.setCode(MyUtils.generateRandomString(5));
         if (entity.getPictureUrl() == null && entity.getPictureUrl().trim().equals(""))
@@ -108,6 +119,17 @@ public class ProductService extends BaseService<ProductEntity> implements IProdu
         }
 
         return res;
+    }
+
+    @Override
+    public List<ProductEntity> findAllByAvailableAndSellerIdWithKeyword(Boolean available, Integer id, String keyword) {
+        List<ProductEntity> productEntities = this.findAllByAvailableAndSellerId(true, id);
+        List<ProductEntity> resEntities = new ArrayList<>();
+        for (ProductEntity productEntity: productEntities)
+            if (productEntity.getTitle().toLowerCase().contains(keyword.toLowerCase()))
+                resEntities.add(productEntity);
+
+        return resEntities;
     }
 
     @Override

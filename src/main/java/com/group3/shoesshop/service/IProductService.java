@@ -10,7 +10,9 @@ public interface IProductService extends IBaseService<ProductEntity>{
     ProductEntity delete(String code);
 
     List<ProductEntity> findAllWithPageable(Pageable pageable);
+    List<ProductEntity> findAllWithKeyword(String keyword);
     List<ProductEntity> findAllByAvailableAndSellerId(Boolean available, Integer id);
+    List<ProductEntity> findAllByAvailableAndSellerIdWithKeyword(Boolean available, Integer id, String keyword);
     List<ProductEntity> findAllByCategoryCodeAndBrandCode(String categoryCode, String brandCode);
     List<ProductEntity> findAllByCategoryCodeAndBrandCodeWithPageable(String categoryCode, String brandCode, Pageable pageable);
     List<ProductEntity> findAllByCategoryCode(String categoryCode);

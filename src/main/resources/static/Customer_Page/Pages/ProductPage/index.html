@@ -18,6 +18,7 @@
     <link rel="stylesheet" href="/Customer_Page/Components/CategorySideBar/CategorySideBar.css">
     <!--    <link rel="stylesheet" href="/Customer_Page/Components/Footer/Footer.css">-->
     <!--    <link rel="stylesheet" href="/Customer_Page/Components/Header/Header.css">-->
+    <link rel="stylesheet" type="text/css" href="/Customer_Page/Pages/ProductPage/pagination.min.css">
 </head>
 
 <body>
@@ -30,8 +31,9 @@
     </div>
     <div id="content product_container" class="pt-5">
         <div class="introduction">
-            <h2 th:if="${param.get('categoryCode') != null && products.size() >= 1}" th:utext="${products[0].category.name}">Men's Shoes</h2>
-            <h2 th:if="${param.get('categoryCode') == null}" >All</h2>
+            <h2 th:if="${param.get('categoryCode') != null && products.size() >= 1}"
+                th:utext="${products[0].category.name}">Men's Shoes</h2>
+            <h2 th:if="${param.get('categoryCode') == null}">All</h2>
             <img src="https://media.discordapp.net/attachments/706817191563231233/914518102652383242/unknown.png">
             <div class="para__container">
                 <div class="shop__des">
@@ -78,13 +80,15 @@
             <!--            </div>-->
             <div class="show_item">
                 <h5>Category:</h5>
-                <p th:if="${param.get('categoryCode') != null && products.size() >= 1}" th:utext="${products[0].category.name}"></p>
-                <p th:if="${param.get('categoryCode') == null}" >All</p>
+                <p th:if="${param.get('categoryCode') != null && products.size() >= 1}"
+                   th:utext="${products[0].category.name}"></p>
+                <p th:if="${param.get('categoryCode') == null}">All</p>
             </div>
             <div class="show_item">
                 <h5>Brand:</h5>
-                <p th:if="${param.get('brandCode') != null && products.size() >= 1}" th:utext="${products[0].brand.name}"></p>
-                <p th:if="${param.get('brandCode') == null}" >All</p>
+                <p th:if="${param.get('brandCode') != null && products.size() >= 1}"
+                   th:utext="${products[0].brand.name}"></p>
+                <p th:if="${param.get('brandCode') == null}">All</p>
             </div>
             <div class="show_item">
                 <h5>Show:</h5>
@@ -112,6 +116,11 @@
                               th:productImg="${product.pictureUrl}"
                               th:productCode="${product.code}"/>
             </div>
+            <div class="box">
+                <ul id="pagination" class="pagination"></ul>
+                <input type="hidden" th:value="${totalProduct}" id="totalProduct">
+            </div>
+            <br>
         </div>
     </div>
 </div>
@@ -155,8 +164,44 @@
         crossorigin="anonymous"></script>
 <!--<script src="/Customer_Page/Components/CategorySideBar/CategorySideBar.js"></script>-->
 <script src="/Customer_Page/Components/CategorySideBar/CategorySideBarMain.js"></script>
+<script type="text/javascript" src="/Customer_Page/Pages/ProductPage/pagination.min.js"></script>
 <!--<script src="/Customer_Page/Components/Footer/Footer.js"></script>-->
 <!--<script src="/Customer_Page/Components/Header/Header.js"></script>-->
 <script src="/Customer_Page/Pages/ProductPage/main.js"></script>
+
+<script>
+    // pagination
+    var url = new URL(window.location.href);
+    var limit = url.searchParams.getAll('limit')[url.searchParams.getAll('limit').length - 1];
+    var offset = null;
+    if (url.searchParams.get('offset') != null)
+        offset = url.searchParams.getAll('offset')[url.searchParams.getAll('offset').length - 1];
+    else
+        offset = 1;
+
+    $('#pagination').pagination({
+        total: $('#totalProduct').val(),
+        current: offset,
+        length: limit,
+        size: 2,
+        prev: 'Previous',
+        next: 'Next',
+        /**
+         * [click description]
+         * @param  {[object]} options = {
+         *      current: options.current,
+         *      length: options.length,
+         *      total: options.total
+         *  }
+         * @param  {[object]} $target [description]
+         * @return {[type]}         [description]
+         */
+        click: function (options, $target) {
+            console.log(options);
+            $target.next(".show").text('Current: ' + options.current);
+            window.location.href += "&offset=" + this.current;
+        }
+    });
+</script>
 
 </html>

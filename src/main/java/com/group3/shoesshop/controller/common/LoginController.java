@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
@@ -45,9 +46,15 @@ public class LoginController {
             return new ModelAndView("redirect:/customer/dashboard");
     }
 
-    @GetMapping(value = "/logout")
-    public ModelAndView logOut(HttpServletRequest request) {
+    @GetMapping(value = "/before-logout")
+    @ResponseBody
+    public String logOut(HttpServletRequest request) {
         request.getSession().setAttribute(Constant.USER_SESSION, null);
-        return new ModelAndView("redirect:/customer/my-account/login");
+        return "<script>" +
+                "var url = new URL(window.location.href);" +
+                "if (url.searchParams.get('message') != null)" +
+                "alert(url.searchParams.get('message'));" +
+                "window.location.href = '/customer/my-account/login';" +
+                "</script>";
     }
 }

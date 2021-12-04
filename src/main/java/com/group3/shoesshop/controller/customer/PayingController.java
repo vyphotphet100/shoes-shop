@@ -7,6 +7,7 @@ import com.group3.shoesshop.converter.dto_entity.mapper.OrderItemMapper;
 import com.group3.shoesshop.dto.OrderItemDTO;
 import com.group3.shoesshop.entity.OrderItemEntity;
 import com.group3.shoesshop.entity.PaymentEntity;
+import com.group3.shoesshop.entity.ProductEntity;
 import com.group3.shoesshop.entity.UserEntity;
 import com.group3.shoesshop.service.*;
 import com.group3.shoesshop.utils.MyUtils;
@@ -52,6 +53,9 @@ public class PayingController extends BaseController {
 
     @Autowired
     private IVNPAYService VNPAYService;
+
+    @Autowired
+    private IProductService productService;
 
     @GetMapping(value = "/customer/paying/shopping-cart")
     public ModelAndView shoppingCart(HttpServletRequest request) {
@@ -233,12 +237,9 @@ public class PayingController extends BaseController {
         }
 
         // save payment
-        for (OrderItemEntity orderItemEntity : readyOrderItems) {
-            PaymentEntity paymentEntity = new PaymentEntity();
-            paymentEntity.setOrderItem(orderItemEntity);
-            paymentEntity.setPaymentDate(new Date());
-            paymentService.save(paymentEntity);
-        }
+        if (!paymentService.executePayment(readyOrderItems))
+            return new ModelAndView("redirect:/customer/my-account/login");
+
         return new ModelAndView("redirect:/customer/paying/thanks");
     }
 

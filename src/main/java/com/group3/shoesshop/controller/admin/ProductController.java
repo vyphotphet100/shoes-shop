@@ -14,6 +14,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.List;
+
 @Controller(value = "admin-product")
 public class ProductController {
 
@@ -28,10 +30,16 @@ public class ProductController {
 
 
     @GetMapping(value = "/admin/product/product-list")
-    public ModelAndView productList() {
+    public ModelAndView productList(@RequestParam(required = false) String[] keyword) {
         ModelAndView mav = new ModelAndView("Admin_Page/Pages/Catalog/ProductList/index");
 
-        mav.addObject("products", productService.findAll());
+        List<ProductEntity> productEntities = null;
+        if (keyword == null)
+            productEntities = productService.findAll();
+        else
+            productEntities = productService.findAllWithKeyword(keyword[keyword.length-1]);
+
+        mav.addObject("products", productEntities);
 
         return mav;
     }

@@ -62,10 +62,12 @@ public class OrderItemService extends BaseService<OrderItemEntity> implements IO
         if (orderItemEntity == null)
             return this.exceptionObject(new OrderItemEntity(), "This order item does not exist.");
 
+        if (quantityBought > orderItemEntity.getProduct().getQuantity())
+            return this.exceptionObject(new OrderItemEntity(), "Chosen quantity of " + orderItemEntity.getProduct().getTitle() + " greater than its quantity in bunker.");
+
         orderItemEntity.setQuantityBought(quantityBought);
         orderItemEntity.setTotalCost(quantityBought*orderItemEntity.getProduct().getPrice());
         orderItemEntity = orderItemRepo.save(orderItemEntity);
-        orderItemEntity.setMessage("Update quantity successfully.");
         return orderItemEntity;
     }
 
