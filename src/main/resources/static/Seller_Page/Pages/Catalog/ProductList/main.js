@@ -37,3 +37,13 @@ function deleteProduct(code) {
     alert(product.message);
     window.location.reload();
 }
+
+function searchProduct() {
+    if (document.getElementById("search-input").value.trim() == '')
+        return;
+
+    if (window.location.href.includes("?keyword"))
+        window.location.href += "&keyword=" + document.getElementById("search-input").value;
+    else
+        window.location.href += "?keyword=" + document.getElementById("search-input").value;
+}

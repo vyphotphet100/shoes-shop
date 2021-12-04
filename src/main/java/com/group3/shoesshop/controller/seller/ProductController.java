@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 @Controller(value = "seller-product")
 public class ProductController {
@@ -25,16 +26,20 @@ public class ProductController {
     private IUserService userService;
 
     @GetMapping(value = "/seller/product/product-list")
-    public ModelAndView productList(HttpServletRequest request) {
-        request.getSession().setAttribute(Constant.USER_SESSION, userService.findOne(2));
-
+    public ModelAndView productList(HttpServletRequest request, @RequestParam(required = false) String[] keyword) {
         ModelAndView mav = new ModelAndView("Seller_Page/Pages/Catalog/ProductList/index");
 
         UserEntity userSession = (UserEntity)request.getSession().getAttribute(Constant.USER_SESSION);
         if (userSession == null)
             return null;
 
-        mav.addObject("products", productService.findAllByAvailableAndSellerId(true, userSession.getId()));
+        List<ProductEntity> productEntities = null;
+        if (keyword == null)
+            productEntities = productService.findAll();
+        else
+            productEntities = productService.findAllByAvailableAndSellerIdWithKeyword(true, userSession.getId(), keyword[keyword.length-1]);
+
+        mav.addObject("products", productEntities);
 
         return mav;
     }

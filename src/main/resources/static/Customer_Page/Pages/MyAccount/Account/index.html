@@ -36,6 +36,14 @@
                     <a class="mb-3" href="/customer/my-account/edit-account">Edit your account information</a>
                     <br>
                     <a href="/customer/my-account/change-password">Change your password</a>
+                    <th:block th:if="${userSession.role.code == 'SELLER'}">
+                        <br>
+                        <a href="/seller/dashboard">Managing page</a>
+                    </th:block>
+                    <th:block th:if="${userSession.role.code.contains('ADMIN')}">
+                        <br>
+                        <a href="/admin/dashboard">Managing page</a>
+                    </th:block>
                     <br>
                     <a href="/logout">Log out</a>
                     <h1 class="mt-3 mb-3">My Orders</h1>

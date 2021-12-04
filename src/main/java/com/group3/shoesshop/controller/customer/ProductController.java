@@ -47,12 +47,17 @@ public class ProductController extends BaseController {
                                     @RequestParam(required = false) String[] categoryCode,
                                     @RequestParam(required = false) String[] brandCode,
                                     @RequestParam(required = true) Integer[] limit,
+                                    @RequestParam(required = false) Integer[] offset,
                                     @RequestParam(required = false) Integer[] price,
                                     @RequestParam(required = false) Integer[] size,
                                     @RequestParam(required = false) String[] keyword) {
         ModelAndView mav = new ModelAndView("Customer_Page/Pages/ProductPage/index");
         List<ProductEntity> productEntities = new ArrayList<>();
-        Pageable pageable = PageRequest.of(0, limit[limit.length-1]);
+        Pageable pageable = null;
+        if (offset == null)
+            pageable = PageRequest.of(0, limit[limit.length-1]);
+        else
+            pageable = PageRequest.of(offset[offset.length-1]-1, limit[limit.length-1]);
 
         if (categoryCode != null && keyword != null)
             productEntities = productService.findAllByCategoryCodeWithPageableAndKeyword(categoryCode[categoryCode.length-1], pageable, keyword[keyword.length-1]);
@@ -89,6 +94,7 @@ public class ProductController extends BaseController {
         }
 
         mav.addObject("products", productEntities);
+        mav.addObject("totalProduct", productService.findAll().size());
         return returnModelAndView(request, mav);
     }
 

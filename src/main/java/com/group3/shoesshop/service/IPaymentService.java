@@ -12,5 +12,6 @@ public interface IPaymentService extends IBaseService<PaymentEntity>{
     PaymentEntity delete(Integer id);
 
     List<PaymentEntity> findAllBySellerId(Integer id);
+    Boolean executePayment(List<OrderItemEntity> orderItemEntities);
 
 }

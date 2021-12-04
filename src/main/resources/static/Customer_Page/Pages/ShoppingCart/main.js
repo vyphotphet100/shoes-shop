@@ -20,8 +20,12 @@ function updateQuantity(orderItemId) {
         }
     }).responseJSON;
 
-    // $('#announcement_content').text(result.message);
-    // $('#announcement').modal('show');
+    if (result.message != null) {
+        alert(result.message);
+        return false;
+    }
+
+    return true;
 }
 
 function resetQuantity(orderItemId) {
@@ -101,7 +105,8 @@ function checkOut() {
 
     // update quantity of each selected order item
     for (var i=0; i<orderItemIds.length; i++) {
-        updateQuantity(orderItemIds[i]);
+        if (!updateQuantity(orderItemIds[i]))
+            return;
     }
 
     // add order item to ready order item

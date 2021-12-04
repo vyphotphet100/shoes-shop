@@ -17,8 +17,8 @@ $(function () {
 });
 
 
-var input = document.getElementById( 'upload' );
-var infoArea = document.getElementById( 'upload-label' );
+var input = document.getElementById('upload');
+var infoArea = document.getElementById('upload-label');
 //
 // input.addEventListener( 'change', showFileName );
 // function showFileName( event ) {
@@ -36,14 +36,24 @@ function deleteProduct(code) {
         type: 'DELETE',
         async: false,
         contentType: 'application/json',
-        success: function(productDto) {
+        success: function (productDto) {
             return productDto;
         },
-        error: function(error) {
+        error: function (error) {
             return error;
         }
     }).responseJSON;
 
     alert(product.message);
     window.location.reload();
+}
+
+function searchProduct() {
+    if (document.getElementById("search-input").value.trim() == '')
+        return;
+
+    if (window.location.href.includes("?keyword"))
+        window.location.href += "&keyword=" + document.getElementById("search-input").value;
+    else
+        window.location.href += "?keyword=" + document.getElementById("search-input").value;
 }

@@ -148,10 +148,24 @@ public class AccountController extends BaseController {
         UserEntity resEntity = userService.findByUsernameAndPassword(user.getUsername(), user.getPassword());
         if (!resEntity.getHttpStatus().equals(HttpStatus.OK))
             return this.login(request, resEntity);
+        // set authorities for user
+        if (resEntity.getRole().getCode().equals(Constant.ROLE_ADMIN))
+            resEntity.setMyAuthorities(Constant.ROLE_ADMIN_CAN);
+        else if (resEntity.getRole().getCode().equals(Constant.ROLE_ADMIN1))
+            resEntity.setMyAuthorities(Constant.ROLE_ADMIN1_CAN);
+        else if (resEntity.getRole().getCode().equals(Constant.ROLE_ADMIN2))
+            resEntity.setMyAuthorities(Constant.ROLE_ADMIN2_CAN);
+        else if (resEntity.getRole().getCode().equals(Constant.ROLE_ADMIN3))
+            resEntity.setMyAuthorities(Constant.ROLE_ADMIN3_CAN);
+
+        // save user to session
         request.getSession().setAttribute(Constant.USER_SESSION, resEntity);
 
         // redirect to true page
-        if (resEntity.getRole().getCode().equals(Constant.ROLE_ADMIN))
+        if (resEntity.getRole().getCode().equals(Constant.ROLE_ADMIN) ||
+                resEntity.getRole().getCode().equals(Constant.ROLE_ADMIN1) ||
+                resEntity.getRole().getCode().equals(Constant.ROLE_ADMIN2) ||
+                resEntity.getRole().getCode().equals(Constant.ROLE_ADMIN3))
             return new ModelAndView("redirect:/admin/dashboard");
         else if (resEntity.getRole().getCode().equals(Constant.ROLE_SELLER))
             return new ModelAndView("redirect:/seller/dashboard");

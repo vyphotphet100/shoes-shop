@@ -49,32 +49,58 @@ public class JwtRequestFilter extends OncePerRequestFilter {
 
         // authorization
         String url = request.getRequestURI();
-        if (url.contains("/admin/")) {
-            if (userSession == null || !userSession.getRole().getCode().equals(Constant.ROLE_ADMIN)) {
-                response.sendRedirect("/logout");
-                return;
-            }
-        } else if (url.contains("/seller/")) {
-            if (userSession == null || !userSession.getRole().getCode().equals(Constant.ROLE_SELLER)) {
-                response.sendRedirect("/logout");
-                return;
-            }
-        } else if (url.contains("/customer/")) {
-            if (userSession == null) {
-                if (!url.contains("/customer/my-account/login") &&
-                        !url.contains("/customer/my-account/register") &&
-                        !url.contains("/customer/my-account/create-seller") &&
-                        !url.contains("/customer/product/") &&
-                        !url.contains("/customer/information/")){
-                    response.sendRedirect("/logout");
-                    return;
-                }
-
-            }
+        if (!checkAuthority(userSession, url)) {
+            response.sendRedirect("/before-logout?message=Please login to do this action.");
+            return;
         }
 
         filterChain.doFilter(request, response);
 
+    }
+
+    private Boolean checkAuthority(UserEntity userEntity, String url) {
+        if (url.startsWith("/admin/")) {
+            if (userEntity == null ||
+                    (!userEntity.getRole().getCode().equals(Constant.ROLE_ADMIN) &&
+                    !userEntity.getRole().getCode().equals(Constant.ROLE_ADMIN1) &&
+                    !userEntity.getRole().getCode().equals(Constant.ROLE_ADMIN2) &&
+                    !userEntity.getRole().getCode().equals(Constant.ROLE_ADMIN3)))
+                return false;
+
+            // check product authority
+            if (url.startsWith("/admin/product")) {
+                if (!userEntity.getMyAuthorities().contains("PRODUCT_MANAGING"))
+                    return false;
+            }
+
+            // check customer authority
+            else if (url.startsWith("/admin/customer")) {
+                if (!userEntity.getMyAuthorities().contains("CUSTOMER_MANAGING"))
+                    return false;
+            }
+
+            // check seller authority
+            else if (url.startsWith("/admin/seller")) {
+                if (!userEntity.getMyAuthorities().contains("SELLER_MANAGING"))
+                    return false;
+            }
+
+        } else if (url.startsWith("/seller/")) {
+            if (userEntity == null || !userEntity.getRole().getCode().equals(Constant.ROLE_SELLER))
+                return false;
+        } else if (url.startsWith("/customer/")) {
+            if (userEntity == null) {
+                if (!url.startsWith("/customer/my-account/login") &&
+                        !url.startsWith("/customer/my-account/register") &&
+                        !url.startsWith("/customer/my-account/create-seller") &&
+                        !url.startsWith("/customer/product/") &&
+                        !url.startsWith("/customer/information/"))
+                    return false;
+
+            }
+        }
+
+        return true;
     }
 
 }

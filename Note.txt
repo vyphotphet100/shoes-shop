@@ -57,3 +57,8 @@
     Username: root
     Password: Caodinhsyvy2001@
 
+- Gmail:
+    noriva.shop@gmail.com
+    noriva@123
+    odcjnahpyxydwfws
+
