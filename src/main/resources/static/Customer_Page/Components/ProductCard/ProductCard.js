@@ -57,7 +57,7 @@ class ProductCard extends HTMLElement {
         this.attachShadow({mode: 'open'});
         this.shadowRoot.appendChild(template.content.cloneNode(true));
         this.shadowRoot.querySelector('span').innerText = this.getAttribute('productName');
-        this.shadowRoot.querySelector('h3').innerText = '$' + this.getAttribute('productPrice');
+        this.shadowRoot.querySelector('h3').innerText = this.getAttribute('productPrice');
         this.shadowRoot.querySelector('img').src = this.getAttribute('productImg');
         this.shadowRoot.querySelector('#quick_view').href = '/customer/product/product-detail?code=' + this.getAttribute('productCode');
         this.shadowRoot.querySelector('#quick_view2').href = '/customer/product/product-detail?code=' + this.getAttribute('productCode');
