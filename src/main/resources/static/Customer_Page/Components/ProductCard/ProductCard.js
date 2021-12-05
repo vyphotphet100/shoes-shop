@@ -23,7 +23,7 @@ template.innerHTML = `
             <h2 title='Add to cart' id="add_to_cart">Add to cart</h2>
         </div>
         <div class='product_infomation'>
-            <a id="quick_view2" href="#"><span></span></a>
+            <div class="product__name"><a id="quick_view2" href="#"><span></span></a></div>
             <div class='price_rating'>
                 <div class='price'>
                     <h3>$</h3>
