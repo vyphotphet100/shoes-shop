@@ -61,7 +61,12 @@
   padding: 4px 25px 4px 10px;
   margin-top: -10px;
 }
-@media only screen and (max-width: 1944px){
+/*@media only screen and (max-width: 1700px){*/
+/*  .introduction img{*/
+/*    width: 1180px;*/
+/*  }*/
+/*}*/
+@media only screen and (min-width: 1900px){
   .introduction img{
     width: 1550px;
   }

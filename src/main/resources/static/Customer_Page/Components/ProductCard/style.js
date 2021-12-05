@@ -89,7 +89,7 @@ export const style = `
   color: #fff;
   position: absolute;
   left: 0;
-  top: 70%;
+  top: 65%;
   z-index: -1;
   transition: 0.5s;
   font-size: 10px;
@@ -158,7 +158,10 @@ export const style = `
 .tooltips:hover::before {
   transform: translate(-50%, -100%) scale(1);
 }
-
+.product__name{
+  height: 40px;
+  margin-bottom: 20px;
+}
 /* For screen with max width 1100px */
 @media only screen and (max-width: 1024px) {
   .product_card {
