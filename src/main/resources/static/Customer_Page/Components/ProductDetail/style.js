@@ -187,5 +187,10 @@ input::-webkit-inner-spin-button {
     padding: 0 20px;
   }
 }
+@media only screen and (max-width: 1944px){
+    .product__name h2{
+        margin-left: 350px
+    }
+}
 
 `

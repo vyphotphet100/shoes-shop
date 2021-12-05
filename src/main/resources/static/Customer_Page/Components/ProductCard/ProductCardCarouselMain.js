@@ -29,5 +29,8 @@ $(".carousel").owlCarousel({
         1500:{
             items: 4,
         },
+        1800:{
+            items: 5,
+        },
     }
 });
