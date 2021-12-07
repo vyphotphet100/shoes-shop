@@ -35,7 +35,7 @@ public class ProductController {
 
         List<ProductEntity> productEntities = null;
         if (keyword == null)
-            productEntities = productService.findAll();
+            productEntities = productService.findAllByAvailableAndSellerId(true, userSession.getId());
         else
             productEntities = productService.findAllByAvailableAndSellerIdWithKeyword(true, userSession.getId(), keyword[keyword.length-1]);
 
