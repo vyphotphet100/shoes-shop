@@ -18,7 +18,8 @@ public class FileController {
     @GetMapping(value = "/file", produces = MediaType.IMAGE_JPEG_VALUE)
     public @ResponseBody byte[] getFile(@RequestParam String name) throws IOException {
         ResourceBundle rb = ResourceBundle.getBundle("google_cloud");
-        File f = new File(rb.getString("downloaded.path") + "/" + name);
+        //File f = new File(rb.getString("downloaded.path") + "/" + name);
+        File f = new File(rb.getString("downloaded.path") + "/" + "product_ftriv.png");
         if(f.exists() && !f.isDirectory()) {
             return Files.readAllBytes(f.toPath());
         }
