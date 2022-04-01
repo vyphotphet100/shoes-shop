@@ -26,7 +26,7 @@ public class ChatPluginController extends BaseController {
             return new ModelAndView("redirect:/customer/my-account/login");
 
         ModelAndView mav = new ModelAndView("Seller_Page/Pages/Plugin/Chat/index");
-        mav.addObject("user", userService.findOne(userSession.getId()));
+        mav.addObject("user", userService.findOneByIsActiveAndId(true, userSession.getId()));
         return mav;
     }
 
@@ -37,7 +37,7 @@ public class ChatPluginController extends BaseController {
             return new ModelAndView("redirect:/customer/my-account/login");
 
         ModelAndView mav = new ModelAndView("Seller_Page/Pages/Plugin/Chat/index");
-        UserEntity userEntity = userService.findOne(userSession.getId());
+        UserEntity userEntity = userService.findOneByIsActiveAndId(true, userSession.getId());
         userEntity.setChatPluginScript(user.getChatPluginScript());
         userEntity = userService.update(userEntity);
         mav.addObject("user", userEntity);

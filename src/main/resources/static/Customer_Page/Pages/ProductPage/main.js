@@ -16,7 +16,10 @@
 
 function addProductToCart(producCode, quantity) {
     var orderItem = {
-        listRequest: [producCode, parseInt(quantity)]
+        listRequest: {
+            'productCode': producCode,
+            'quantity': parseInt(quantity)
+        }
     }
 
     var result = $.ajax({

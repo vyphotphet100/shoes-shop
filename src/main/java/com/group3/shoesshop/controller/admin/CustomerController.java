@@ -1,8 +1,5 @@
 package com.group3.shoesshop.controller.admin;
 
-import com.group3.shoesshop.converter.dto_entity.DTOEntityConverter;
-import com.group3.shoesshop.converter.dto_entity.mapper.UserMapper;
-import com.group3.shoesshop.dto.UserDTO;
 import com.group3.shoesshop.entity.UserEntity;
 import com.group3.shoesshop.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,12 +13,6 @@ public class CustomerController {
     @Autowired
     private IUserService userService;
 
-    @Autowired
-    private DTOEntityConverter dtoEntityConverter;
-
-    @Autowired
-    private UserMapper userMapper;
-
     private String baseUrl = "Admin_Page/Pages/Customer/";
 
     @GetMapping(value = "/admin/customer/customer-list")
@@ -29,25 +20,24 @@ public class CustomerController {
         ModelAndView modelAndView = new ModelAndView("Admin_Page/Pages/Customer/CustomerList/index");
 
         if (keyword == null)
-            modelAndView.addObject("customers", userService.findAllBuyer());
+            modelAndView.addObject("customers", userService.findAllBuyerByIsActive(true));
         else
-            modelAndView.addObject("customers", userService.findAllBuyerByKeyword(keyword));
+            modelAndView.addObject("customers", userService.findAllBuyerByIsActiveAndKeyword(true, keyword));
 
         return modelAndView;
     }
 
     @DeleteMapping(value = "/admin/customer/delete")
-    public ResponseEntity<UserDTO> deleteCustomer(@RequestParam Integer id) {
-        UserEntity userEntity = userService.delete(id);
-        UserDTO userDto = dtoEntityConverter.toDTO(userEntity, userMapper);
-        return new ResponseEntity<UserDTO>(userDto, userDto.getHttpStatus());
+    public ResponseEntity<UserEntity> deleteCustomer(@RequestParam Integer id) {
+        UserEntity userEntity = userService.delete(id).toLaziness();
+        return new ResponseEntity<UserEntity>(userEntity, userEntity.getHttpStatus());
     }
 
     @GetMapping(value = "/admin/customer/edit")
     public ModelAndView editCustomerGet(@RequestParam Integer id) {
         ModelAndView mav = new ModelAndView("Admin_Page/Pages/Customer/EditCustomer/index");
 
-        UserEntity customer = userService.findOne(id);
+        UserEntity customer = userService.findOneByIsActiveAndId(true, id);
         mav.addObject("customer", customer);
         mav.addObject("ordered", userService.getOrderedItem(id));
         mav.addObject("totalSpent", userService.getTotalSpent(id));
@@ -55,9 +45,9 @@ public class CustomerController {
     }
 
     @PostMapping(value = "/admin/customer/edit")
-    public ModelAndView editCustomerPost(@ModelAttribute("customer") UserDTO userDto) {
-        userService.update(dtoEntityConverter.toEntity(userDto, userMapper));
-        return new ModelAndView("redirect:/admin/customer/edit?id=" + userDto.getId());
+    public ModelAndView editCustomerPost(@ModelAttribute("customer") UserEntity userEntity) {
+        userService.update(userEntity);
+        return new ModelAndView("redirect:/admin/customer/edit?id=" + userEntity.getId());
         //return null;
     }
 

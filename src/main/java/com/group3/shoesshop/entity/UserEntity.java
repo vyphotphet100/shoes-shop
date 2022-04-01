@@ -2,6 +2,7 @@ package com.group3.shoesshop.entity;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.modelmapper.internal.bytebuddy.implementation.bind.annotation.IgnoreForBinding;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -16,7 +17,7 @@ import java.util.List;
 @Table(name = "user")
 @Getter
 @Setter
-public class UserEntity extends BaseEntity implements UserDetails {
+public class UserEntity extends BaseEntity<UserEntity> implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -88,23 +89,32 @@ public class UserEntity extends BaseEntity implements UserDetails {
         return null;
     }
 
+    @Transient
+    private Boolean accountNonExpired;
     @Override
     public boolean isAccountNonExpired() {
         return false;
     }
 
+    @Transient
+    private Boolean accountNonLocked;
     @Override
     public boolean isAccountNonLocked() {
         return false;
     }
 
+    @Transient
+    private Boolean credentialsNonExpired;
     @Override
     public boolean isCredentialsNonExpired() {
         return false;
     }
 
+    @Transient
+    private Boolean enabled;
     @Override
     public boolean isEnabled() {
         return false;
     }
+
 }

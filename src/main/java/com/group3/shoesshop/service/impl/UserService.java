@@ -1,6 +1,5 @@
 package com.group3.shoesshop.service.impl;
 
-import com.group3.shoesshop.converter.dto_entity.mapper.UserMapper;
 import com.group3.shoesshop.entity.OrderItemEntity;
 import com.group3.shoesshop.entity.PaymentEntity;
 import com.group3.shoesshop.entity.ProductEntity;
@@ -10,9 +9,9 @@ import com.group3.shoesshop.repository.ProductRepository;
 import com.group3.shoesshop.repository.UserRepository;
 import com.group3.shoesshop.service.IPaymentService;
 import com.group3.shoesshop.service.IUserService;
-import org.apache.catalina.User;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
@@ -21,11 +20,14 @@ import java.util.List;
 
 @Service
 public class UserService extends BaseService<UserEntity> implements IUserService {
-    @Autowired
-    private UserRepository userRepo;
+    public enum IsActiveMode {
+        TRUE,
+        FALSE,
+        BOTH
+    }
 
     @Autowired
-    private UserMapper userMapper;
+    private UserRepository userRepo;
 
     @Autowired
     private ProductRepository productRepo;
@@ -59,17 +61,26 @@ public class UserService extends BaseService<UserEntity> implements IUserService
         if (userEntity == null)
             return this.exceptionObject(new UserEntity(), "This user id does not exist.");
 
+        // format birthday
+        if (userEntity.getBirthday() != null) {
+            userEntity.getBirthday().setYear(entity.getBirthday().getYear());
+            userEntity.getBirthday().setMonth(entity.getBirthday().getMonth());
+            userEntity.getBirthday().setDate(entity.getBirthday().getDate());
+            entity.setBirthday(null);
+        }
+
         BeanUtils.copyProperties(entity, userEntity, getNullPropertyNames(entity));
 
-        userEntity = userRepo.save(userEntity);
+        userRepo.save(userEntity);
+        userEntity = userRepo.findByUsernameAndPassword(userEntity.getUsername(), userEntity.getPassword());
         userEntity.setMessage("Update information successfully.");
         return userEntity;
     }
 
     @Override
-    public UserEntity findOne(Integer id) {
+    public UserEntity findOneByIsActiveAndId(Boolean isActive, Integer id) {
         UserEntity userEntity = userRepo.findById(id).orElse(null);
-        if (userEntity == null)
+        if (userEntity == null || userEntity.getIsActive() == false)
             return this.exceptionObject(new UserEntity(), "This user id does not exist.");
 
         return userEntity;
@@ -99,8 +110,8 @@ public class UserService extends BaseService<UserEntity> implements IUserService
     }
 
     @Override
-    public List<UserEntity> findAllSeller() {
-        return userRepo.findAllByRoleCodeAndIsActive("SELLER", true);
+    public List<UserEntity> findAllSellerByIsActive(Boolean isActive) {
+        return userRepo.findAllByIsActiveAndRoleCode(isActive, "SELLER");
     }
 
     @Override
@@ -109,12 +120,12 @@ public class UserService extends BaseService<UserEntity> implements IUserService
     }
 
     @Override
-    public List<UserEntity> findAllBuyer() {
-        return userRepo.findAllByRoleCodeAndIsActive("BUYER", true);
+    public List<UserEntity> findAllBuyerByIsActive(Boolean isActive) {
+        return userRepo.findAllByIsActiveAndRoleCode(isActive, "BUYER");
     }
 
     @Override
-    public List<UserEntity> findAllBuyerByKeyword(String keyword) {
+    public List<UserEntity> findAllBuyerByIsActiveAndKeyword(Boolean isAvailable, String keyword) {
 //        List<UserEntity> res = new ArrayList<>();
 //        for (String subKey: keyword.split(" ")) {
 //            List<UserEntity> userEntities = userRepo.findAllBuyerByKeyword(subKey);
@@ -123,7 +134,7 @@ public class UserService extends BaseService<UserEntity> implements IUserService
 //                    res.add(userEntity);
 //        }
 
-        return userRepo.findAllBuyerByKeyword(keyword);
+        return userRepo.findAllBuyerByIsActiveAndKeyword(isAvailable, keyword);
     }
 
     @Override
@@ -204,6 +215,171 @@ public class UserService extends BaseService<UserEntity> implements IUserService
         }
 
         return resEntities;
+    }
+
+    @Override
+    public List<UserEntity> findAll(Pageable pageable) {
+        return null;
+    }
+
+    @Override
+    public List<UserEntity> findAll(String keyword) {
+        return null;
+    }
+
+    @Override
+    public List<UserEntity> findAll(Pageable pageable, String keyword) {
+        return null;
+    }
+
+    @Override
+    public List<UserEntity> findAll(IsActiveMode isActiveMode) {
+        if (isActiveMode == IsActiveMode.TRUE)
+            return userRepo.findAllByIsActive(true);
+        else if (isActiveMode == IsActiveMode.FALSE)
+            return userRepo.findAllByIsActive(false);
+        else if (isActiveMode == IsActiveMode.BOTH)
+            return userRepo.findAll();
+
+        return null;
+
+    }
+
+    @Override
+    public List<UserEntity> findAll(Pageable pageable, IsActiveMode isActiveMode) {
+        return null;
+    }
+
+    @Override
+    public List<UserEntity> findAll(String keyword, IsActiveMode isActiveMode) {
+        return null;
+    }
+
+    @Override
+    public List<UserEntity> findAll(Pageable pageable, String keyword, IsActiveMode isActiveMode) {
+        return null;
+    }
+
+    @Override
+    public List<UserEntity> findAllSeller() {
+        return userRepo.findAllByIsActiveAndRoleCode(true, "SELLER");
+    }
+
+    @Override
+    public List<UserEntity> findAllSeller(Pageable pageable) {
+        return null;
+    }
+
+    @Override
+    public List<UserEntity> findAllSeller(String keyword) {
+        return null;
+    }
+
+    @Override
+    public List<UserEntity> findAllSeller(Pageable pageable, String keyword) {
+        return null;
+    }
+
+    @Override
+    public List<UserEntity> findAllSeller(IsActiveMode isActiveMode) {
+        if (isActiveMode == IsActiveMode.TRUE)
+            return this.findAllSeller();
+        else if (isActiveMode == IsActiveMode.FALSE)
+            return userRepo.findAllByIsActiveAndRoleCode(false, "SELLER");
+        else if (isActiveMode == IsActiveMode.BOTH)
+            return userRepo.findAllByRoleCode("SELLER");
+
+        return null;
+    }
+
+    @Override
+    public List<UserEntity> findAllSeller(Pageable pageable, IsActiveMode isActiveMode) {
+        return null;
+    }
+
+    @Override
+    public List<UserEntity> findAllSeller(String keyword, IsActiveMode isActiveMode) {
+        return null;
+    }
+
+    @Override
+    public List<UserEntity> findAllSeller(Pageable pageable, String keyword, IsActiveMode isActiveMode) {
+        return null;
+    }
+
+    @Override
+    public List<UserEntity> findAllBuyer() {
+        return userRepo.findAllByIsActiveAndRoleCode(true, "BUYER");
+    }
+
+    @Override
+    public List<UserEntity> findAllBuyer(Pageable pageable) {
+        return null;
+    }
+
+    @Override
+    public List<UserEntity> findAllBuyer(String keyword) {
+        return null;
+    }
+
+    @Override
+    public List<UserEntity> findAllBuyer(Pageable pageable, String keyword) {
+        return null;
+    }
+
+    @Override
+    public List<UserEntity> findAllBuyer(IsActiveMode isActiveMode) {
+        if (isActiveMode == IsActiveMode.TRUE)
+            return this.findAllBuyer();
+        else if (isActiveMode == IsActiveMode.FALSE)
+            return userRepo.findAllByIsActiveAndRoleCode(false, "BUYER");
+        else if (isActiveMode == IsActiveMode.BOTH)
+            return userRepo.findAllByRoleCode("BUYER");
+
+        return null;
+    }
+
+    @Override
+    public List<UserEntity> findAllBuyer(Pageable pageable, IsActiveMode isActiveMode) {
+        return null;
+    }
+
+    @Override
+    public List<UserEntity> findAllBuyer(String keyword, IsActiveMode isActiveMode) {
+        return null;
+    }
+
+    @Override
+    public List<UserEntity> findAllBuyer(Pageable pageable, String keyword, IsActiveMode isActiveMode) {
+        return null;
+    }
+
+    @Override
+    public UserEntity findOne(Integer id) {
+        UserEntity userEntity = userRepo.findById(id).orElse(null);
+        if (userEntity == null || userEntity.getIsActive().equals(false))
+            return this.exceptionObject(new UserEntity(), "This user id does not exist.");
+
+        return userEntity;
+    }
+
+    @Override
+    public UserEntity findOne(Integer id, IsActiveMode isActiveMode) {
+        if (isActiveMode == IsActiveMode.TRUE)
+            return findOne(id);
+        else if (isActiveMode == IsActiveMode.FALSE) {
+            UserEntity userEntity = userRepo.findById(id).orElse(null);
+            if (userEntity == null || userEntity.getIsActive().equals(true))
+                return this.exceptionObject(new UserEntity(), "This user id does not exist with isActive = true.");
+            return userEntity;
+        } else if (isActiveMode == IsActiveMode.BOTH) {
+            UserEntity userEntity = userRepo.findById(id).orElse(null);
+            if (userEntity == null)
+                return this.exceptionObject(new UserEntity(), "This user id does not exist");
+            return userEntity;
+        }
+
+        return null;
     }
 
 }

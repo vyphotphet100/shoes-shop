@@ -1,14 +1,16 @@
 package com.group3.shoesshop.service.impl;
 
-import com.group3.shoesshop.dto.BaseDTO;
 import com.group3.shoesshop.entity.BaseEntity;
 import com.group3.shoesshop.entity.ProductEntity;
 import com.group3.shoesshop.service.IBaseService;
 import org.springframework.beans.BeanWrapper;
 import org.springframework.beans.BeanWrapperImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.EntityManager;
+import javax.persistence.Query;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -16,6 +18,14 @@ import java.util.Set;
 
 @Service
 public abstract class BaseService<T> implements IBaseService<T> {
+
+    @Autowired
+    private EntityManager entityManager;
+
+    @Override
+    public Query createNativeQuery(String query, Class<T> clazz) {
+        return entityManager.createNativeQuery(query, clazz);
+    }
 
     public T exceptionObject(BaseEntity entity, String message) {
         entity.setMessage(message);

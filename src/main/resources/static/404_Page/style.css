@@ -16,7 +16,7 @@ body{
     justify-content: center;
     align-items: center;
     box-shadow: 0 15px 30px rgba(0, 0, 0, .5);
-    background: url(./p404.png), #151729;
+    background: url(/404_Page/p404.png), #151729;
 }
 
 #container .content{
@@ -48,7 +48,7 @@ body{
     color: white;
     text-decoration: none;
     margin-top: 25px;
-    font-size: 14;
+    font-size: 14px;
     border: 1px solid crimson;
 }
 #container .content a:hover{

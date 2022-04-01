@@ -9,7 +9,7 @@ import java.util.Date;
 @Entity
 @Table(name = "payment")
 @Getter @Setter
-public class PaymentEntity extends BaseEntity{
+public class PaymentEntity extends BaseEntity<PaymentEntity>{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

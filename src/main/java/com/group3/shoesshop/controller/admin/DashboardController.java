@@ -35,13 +35,13 @@ public class DashboardController {
         mav.addObject("averageCost", orderItemService.getAverageCost());
         mav.addObject("totalOrdered", orderItemService.getTotalOrdered());
 
-        mav.addObject("totalProductQuantity", productService.getTotalQuantity());
+        mav.addObject("totalProductQuantity", productService.getSumOfQuantity(true));
         mav.addObject("totalCategory", categoryService.findAll().size());
         mav.addObject("totalBrand", brandService.findAll().size());
 
         mav.addObject("totalPayment", paymentService.findAll().size());
-        mav.addObject("totalCustomer", userService.findAllBuyer().size());
-        mav.addObject("totalSeller", userService.findAllSeller().size());
+        mav.addObject("totalCustomer", userService.findAllBuyerByIsActive(true).size());
+        mav.addObject("totalSeller", userService.findAllSellerByIsActive(true).size());
 
         return mav;
     }

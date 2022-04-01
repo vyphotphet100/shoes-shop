@@ -62,3 +62,24 @@
     noriva@123
     odcjnahpyxydwfws
 
+
+========================================
+- Tối ưu tìm kiếm bằng query
+    - Sửa xong IProductService
+
+- Load user theo isActive
+- Tối ưu các ràng buộc trong db với trigger và function
+
+- Chỉnh FindAll về chế độ Lazy ở những nơi cần thiết
+
+
+
+==========================================
+- API
+- RESTful API
+- Cách gửi request và nhận response trong java (sử dụng API)
+
+- Mô hình Three Layer
+- Cơ chế DI (Dependency Injection)
+
+

@@ -10,13 +10,13 @@ import java.util.List;
 @Entity
 @Table(name = "brand")
 @Getter @Setter
-public class BrandEntity extends BaseEntity{
+public class BrandEntity extends BaseEntity<BrandEntity>{
     @Id
     private String code;
 
     @Column(name = "name")
     private String name;
 
-    @OneToMany(mappedBy = "brand")
+    @OneToMany(mappedBy = "brand", fetch = FetchType.EAGER)
     private List<ProductEntity> products = new ArrayList<>();
 }

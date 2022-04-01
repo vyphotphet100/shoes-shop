@@ -8,7 +8,7 @@ import javax.persistence.*;
 @Entity
 @Table(name = "order_item")
 @Getter @Setter
-public class OrderItemEntity extends BaseEntity{
+public class OrderItemEntity extends BaseEntity<OrderItemEntity>{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,5 +30,4 @@ public class OrderItemEntity extends BaseEntity{
 
     @OneToOne(mappedBy = "orderItem")
     private PaymentEntity payment;
-
 }

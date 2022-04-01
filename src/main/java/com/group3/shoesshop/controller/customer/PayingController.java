@@ -2,12 +2,7 @@ package com.group3.shoesshop.controller.customer;
 
 import com.group3.shoesshop.constant.Constant;
 import com.group3.shoesshop.controller.common.BaseController;
-import com.group3.shoesshop.converter.dto_entity.DTOEntityConverter;
-import com.group3.shoesshop.converter.dto_entity.mapper.OrderItemMapper;
-import com.group3.shoesshop.dto.OrderItemDTO;
 import com.group3.shoesshop.entity.OrderItemEntity;
-import com.group3.shoesshop.entity.PaymentEntity;
-import com.group3.shoesshop.entity.ProductEntity;
 import com.group3.shoesshop.entity.UserEntity;
 import com.group3.shoesshop.service.*;
 import com.group3.shoesshop.utils.MyUtils;
@@ -24,7 +19,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -35,12 +29,6 @@ public class PayingController extends BaseController {
 
     @Autowired
     private IOrderItemService orderItemService;
-
-    @Autowired
-    private DTOEntityConverter converter;
-
-    @Autowired
-    private OrderItemMapper orderItemMapper;
 
     @Autowired
     private IPaymentMethodService paymentMethodService;
@@ -70,11 +58,10 @@ public class PayingController extends BaseController {
     }
 
     @GetMapping(value = "/customer/paying/shopping-cart/get-order-item")
-    public ResponseEntity<OrderItemDTO> getOrderItem(@RequestParam(required = true) Integer id) {
+    public ResponseEntity<OrderItemEntity> getOrderItem(@RequestParam(required = true) Integer id) {
 
-        OrderItemEntity orderItemEntity = orderItemService.findOne(id);
-        OrderItemDTO orderItemDto = converter.toDTO(orderItemEntity, orderItemMapper);
-        return new ResponseEntity<OrderItemDTO>(orderItemDto, orderItemDto.getHttpStatus());
+        OrderItemEntity orderItemEntity = orderItemService.findOne(id).toLaziness();
+        return new ResponseEntity<OrderItemEntity>(orderItemEntity, orderItemEntity.getHttpStatus());
     }
 
     @DeleteMapping(value = "/customer/paying/shopping-cart/delete-order-item")
@@ -84,19 +71,18 @@ public class PayingController extends BaseController {
     }
 
     @PutMapping(value = "/customer/paying/shopping-cart/update-quantity")
-    public ResponseEntity<OrderItemDTO> shoppingCartUpdateQuantity(@RequestBody OrderItemEntity orderItemEntity) {
+    public ResponseEntity<OrderItemEntity> shoppingCartUpdateQuantity(@RequestBody OrderItemEntity orderItemEntity) {
         if (orderItemEntity == null)
             return null;
 
-        orderItemEntity = orderItemService.updateQuantityBought(orderItemEntity.getId(), orderItemEntity.getQuantityBought());
-        OrderItemDTO orderItemDto = converter.toDTO(orderItemEntity, orderItemMapper);
-        return new ResponseEntity<OrderItemDTO>(orderItemDto, orderItemDto.getHttpStatus());
+        orderItemEntity = orderItemService.updateQuantityBought(orderItemEntity.getId(), orderItemEntity.getQuantityBought()).toLaziness();
+        return new ResponseEntity<OrderItemEntity>(orderItemEntity, orderItemEntity.getHttpStatus());
     }
 
     @PostMapping(value = "/customer/paying/add-ready-order-item")
     public void addReadyOrderItem(@RequestBody OrderItemEntity orderItemEntity, HttpServletRequest request) {
         List<OrderItemEntity> readyOrderItems = new ArrayList<>();
-        for (Object id : orderItemEntity.getListRequest()) {
+        for (Object id : (List<Object>)(orderItemEntity.getListRequest().get("orderItemIds"))) {
             OrderItemEntity orderItem = orderItemService.findOne((Integer) id);
             readyOrderItems.add(orderItem);
         }
@@ -128,12 +114,12 @@ public class PayingController extends BaseController {
     }
 
     @PostMapping(value = "/customer/paying/pay")
-    public ResponseEntity<OrderItemDTO> pay(HttpServletRequest request) throws PayPalRESTException {
+    public ResponseEntity<OrderItemEntity> pay(HttpServletRequest request) throws PayPalRESTException {
         UserEntity userSession = MyUtils.getUserFromSession(request);
-        OrderItemDTO orderItemDto = new OrderItemDTO();
+        OrderItemEntity orderItemEntity = new OrderItemEntity();
         if (userSession == null) {
-            orderItemDto.getListResult().add("/customer/my-account/login");
-            return new ResponseEntity<OrderItemDTO>(orderItemDto, orderItemDto.getHttpStatus());
+            orderItemEntity.getListResult().put("redirect_link", "/customer/my-account/login");
+            return new ResponseEntity<OrderItemEntity>(orderItemEntity, orderItemEntity.getHttpStatus());
         }
 
         List<OrderItemEntity> readyOrderItems = (List<OrderItemEntity>) request.getSession().getAttribute(Constant.READY_ORDER_ITEMS);
@@ -145,8 +131,8 @@ public class PayingController extends BaseController {
                 userSession.getPaymentMethod().getId().equals(3)) // VNPAY/COD
             redirectLink = "/customer/paying/review-payment";
 
-        orderItemDto.getListResult().add(redirectLink);
-        return new ResponseEntity<OrderItemDTO>(orderItemDto, orderItemDto.getHttpStatus());
+        orderItemEntity.getListResult().put("redirect_link", redirectLink);
+        return new ResponseEntity<OrderItemEntity>(orderItemEntity, orderItemEntity.getHttpStatus());
     }
 
     @GetMapping(value = "/customer/paying/review-payment")
@@ -257,9 +243,9 @@ public class PayingController extends BaseController {
         if (userSession == null)
             return;
 
-        String phone = (String) user.getListRequest().get(0);
-        String address = (String) user.getListRequest().get(1);
-        Integer paymentMethodId = (Integer) user.getListRequest().get(2);
+        String phone = (String)user.getListRequest().values().toArray()[0];
+        String address = (String) user.getListRequest().values().toArray()[1];
+        Integer paymentMethodId = (Integer) user.getListRequest().values().toArray()[2];
 
         user.setId(userSession.getId());
         user.setPhone(phone);

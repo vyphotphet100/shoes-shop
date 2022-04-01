@@ -42,7 +42,7 @@ public class SellerController {
     public ModelAndView sellerList() {
         ModelAndView mav = new ModelAndView("Admin_Page/Pages/Seller/SellerList/index");
 
-        mav.addObject("sellers", userService.findAllSeller());
+        mav.addObject("sellers", userService.findAllSellerByIsActive(true));
 
         return mav;
     }
@@ -54,7 +54,7 @@ public class SellerController {
         if (id == null)
             return null;
 
-        UserEntity seller = userService.findOne(id);
+        UserEntity seller = userService.findOneByIsActiveAndId(true, id);
         mav.addObject("seller", seller);
 
         return mav;

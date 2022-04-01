@@ -10,7 +10,7 @@ import java.util.List;
 @Entity
 @Table(name = "product")
 @Getter @Setter
-public class ProductEntity extends BaseEntity{
+public class ProductEntity extends BaseEntity<ProductEntity>{
 
     @Id
     private String code;
@@ -56,5 +56,4 @@ public class ProductEntity extends BaseEntity{
 
     @OneToMany(mappedBy = "product")
     private List<OrderItemEntity> orderItems = new ArrayList<>();
-
 }

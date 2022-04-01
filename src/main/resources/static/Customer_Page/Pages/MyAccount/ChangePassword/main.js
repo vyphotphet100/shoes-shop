@@ -1,10 +1,10 @@
 function saveChange() {
     var passwordInfo = {
-        listRequest: [
-            $('#oldPassword').val(),
-            $('#newPassword').val(),
-            $('#confirmPassword').val()
-        ]
+        listRequest: {
+            'oldPassword': $('#oldPassword').val(),
+            'newPassword' : $('#newPassword').val(),
+            'confirmPassword' : $('#confirmPassword').val()
+        }
     }
 
     var resultUser = $.ajax({

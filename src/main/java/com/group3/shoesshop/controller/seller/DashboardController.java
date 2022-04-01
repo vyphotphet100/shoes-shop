@@ -42,8 +42,8 @@ public class DashboardController {
         mav.addObject("totalCost", orderItemService.getTotalCostOfOrderedBySellerId(userSession.getId()));
         mav.addObject("averageCost", orderItemService.getAverageCostBySellerId(userSession.getId()));
         mav.addObject("totalOrdered", orderItemService.getTotalOrderedBySellerId(userSession.getId()));
-        mav.addObject("totalProductQuantity", productService.findAllByAvailableAndSellerId(true, userSession.getId()).size());
-        mav.addObject("totalInStockProduct", productService.findAllInStockProductBySellerId(userSession.getId()).size());
+        mav.addObject("totalProductQuantity", productService.findAllBySellerId(userSession.getId(), true).size());
+        mav.addObject("totalInStockProduct", productService.findAllInStock(true, userSession.getId(), true).size());
         mav.addObject("totalPayment", paymentService.findAllBySellerId(userSession.getId()).size());
         mav.addObject("totalCustomer", userService.findAllCustomerBySellerId(userSession.getId()).size());
 

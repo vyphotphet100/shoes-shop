@@ -44,7 +44,7 @@
                     </div>
                     <div class="mb-3">
                         <label class="form-label"><span>*</span>Birthday</label>
-                        <input id="birthday" th:value="${userSession.birthday}" type="date" class="form-control" placeholder="Enter your Birthday here!" required>
+                        <input id="birthday" th:value="${userSession.birthday}" th:type="date" data-date-format="yyyy-MM-dd" class="form-control" placeholder="Enter your Birthday here!" required>
                     </div>
                     <div class="mb-3">
                         <label class="form-label"><span>*</span>Telephone</label>

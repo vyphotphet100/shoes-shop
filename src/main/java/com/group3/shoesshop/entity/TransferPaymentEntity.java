@@ -9,7 +9,7 @@ import java.util.Date;
 @Entity
 @Table(name = "transfer_payment")
 @Getter @Setter
-public class TransferPaymentEntity extends BaseEntity{
+public class TransferPaymentEntity extends BaseEntity<TransferPaymentEntity>{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

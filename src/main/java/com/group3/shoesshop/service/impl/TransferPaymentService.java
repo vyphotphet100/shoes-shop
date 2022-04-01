@@ -1,6 +1,5 @@
 package com.group3.shoesshop.service.impl;
 
-import com.group3.shoesshop.converter.dto_entity.mapper.TransferPaymentMapper;
 import com.group3.shoesshop.entity.TransferPaymentEntity;
 import com.group3.shoesshop.repository.TransferPaymentRepository;
 import com.group3.shoesshop.service.ITransferPaymentService;
@@ -13,9 +12,6 @@ import java.util.List;
 public class TransferPaymentService extends BaseService<TransferPaymentEntity> implements ITransferPaymentService {
     @Autowired
     private TransferPaymentRepository transferPaymentRepo;
-
-    @Autowired
-    private TransferPaymentMapper transferPaymentMapper;
 
     @Override
     public List<TransferPaymentEntity> findAll() {

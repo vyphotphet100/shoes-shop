@@ -10,7 +10,7 @@ import java.util.List;
 @Entity
 @Table(name = "payment_method")
 @Getter @Setter
-public class PaymentMethodEntity extends BaseEntity{
+public class PaymentMethodEntity extends BaseEntity<PaymentMethodEntity>{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -20,4 +20,5 @@ public class PaymentMethodEntity extends BaseEntity{
 
     @OneToMany(mappedBy = "paymentMethod")
     private List<UserEntity> users = new ArrayList<>();
+
 }

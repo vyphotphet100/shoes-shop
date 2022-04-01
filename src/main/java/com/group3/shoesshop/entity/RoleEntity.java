@@ -10,7 +10,7 @@ import java.util.List;
 @Entity
 @Table(name = "role")
 @Getter @Setter
-public class RoleEntity extends BaseEntity{
+public class RoleEntity extends BaseEntity<RoleEntity>{
     @Id
     private String code;
 
@@ -19,4 +19,5 @@ public class RoleEntity extends BaseEntity{
 
     @OneToMany(mappedBy = "role")
     private List<UserEntity> users = new ArrayList<>();
+
 }

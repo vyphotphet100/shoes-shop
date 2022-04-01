@@ -14,15 +14,17 @@ public interface UserRepository extends JpaRepository<UserEntity, Integer> {
     UserEntity findByUsername(String username);
 
     List<UserEntity> findAllByRoleCode(String roleCode);
+    List<UserEntity> findAllByIsActive(Boolean isActive);
 
-    List<UserEntity> findAllByRoleCodeAndIsActive(String roleCode, Boolean isActive);
+    List<UserEntity> findAllByIsActiveAndRoleCode(Boolean isActive, String roleCode);
 
     @Query(value = "SELECT u FROM UserEntity u WHERE " +
             "u.role.code = 'BUYER' AND " +
+            "u.isActive = :isActive AND " +
             "(u.firstName like %:keyword% OR " +
             "u.lastName like %:keyword% OR " +
             "CONCAT(CONCAT(u.firstName, ' '), u.lastName) like %:keyword%)")
-    List<UserEntity> findAllBuyerByKeyword(@Param("keyword") String keyword);
+    List<UserEntity> findAllBuyerByIsActiveAndKeyword(Boolean isActive, @Param("keyword") String keyword);
 
     @Query(value = "SELECT u FROM UserEntity u WHERE " +
             "u.role.code = 'SELLER' AND " +
@@ -31,4 +33,6 @@ public interface UserRepository extends JpaRepository<UserEntity, Integer> {
             "CONCAT(u.id, '') like %:keyword% OR " +
             "CONCAT(CONCAT(u.firstName, ' '), u.lastName) like %:keyword%)")
     List<UserEntity> findAllSellerByKeyword(@Param("keyword") String keyword);
+
+    UserEntity findOneByIsActiveAndId(Boolean isActive, Integer id);
 }

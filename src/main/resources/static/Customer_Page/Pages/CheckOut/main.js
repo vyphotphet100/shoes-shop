@@ -14,7 +14,7 @@ function pay() {
         }
     }).responseJSON;
 
-    window.location.href = result.listResult[0];
+    window.location.href = result.listResult.redirect_link;
 }
 
 function updateUserBeforePaying() {
@@ -25,11 +25,11 @@ function updateUserBeforePaying() {
             paymentMethodId = i+1;
 
     var user = {
-        listRequest: [
-            $('#phone').val(),
-            $('#address').val(),
-            paymentMethodId
-        ]
+        listRequest: {
+            'phone': $('#phone').val(),
+            'address': $('#address').val(),
+            'paymentMethodId': paymentMethodId
+        }
     }
 
     var resultUser = $.ajax({

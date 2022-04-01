@@ -41,7 +41,7 @@ public class CustomerController {
             return new ModelAndView("redirect:/customer/my-account/login");
 
         ModelAndView mav = new ModelAndView("Seller_Page/Pages/Customer/Customer/index");
-        UserEntity customer = userService.findOne(id);
+        UserEntity customer = userService.findOneByIsActiveAndId(true, id);
         List<OrderItemEntity> orderItemEntities = orderItemService.findAllByCustomerIdAndSellerId(id, userSession.getId());
         mav.addObject("customer", customer);
         mav.addObject("orderItems", orderItemEntities);

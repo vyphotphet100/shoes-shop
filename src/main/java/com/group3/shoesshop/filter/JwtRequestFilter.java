@@ -1,7 +1,6 @@
 package com.group3.shoesshop.filter;
 
 import com.group3.shoesshop.constant.Constant;
-import com.group3.shoesshop.dto.UserDTO;
 import com.group3.shoesshop.entity.UserEntity;
 import com.group3.shoesshop.repository.UserRepository;
 import com.group3.shoesshop.utils.MyUtils;

@@ -1,13 +1,11 @@
 package com.group3.shoesshop.controller.admin;
 
-import com.group3.shoesshop.converter.dto_entity.DTOEntityConverter;
-import com.group3.shoesshop.converter.dto_entity.mapper.ProductMapper;
-import com.group3.shoesshop.dto.ProductDTO;
 import com.group3.shoesshop.entity.ProductEntity;
 import com.group3.shoesshop.entity.UserEntity;
 import com.group3.shoesshop.service.IBrandService;
 import com.group3.shoesshop.service.ICategoryService;
 import com.group3.shoesshop.service.IProductService;
+import com.group3.shoesshop.service.impl.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -35,26 +33,19 @@ public class ProductController {
 
         List<ProductEntity> productEntities = null;
         if (keyword == null)
-            productEntities = productService.findAll();
+            productEntities = productService.findAll(true);
         else
-            productEntities = productService.findAllWithKeyword(keyword[keyword.length-1]);
+            productEntities = productService.findAll(keyword[keyword.length-1], true);
 
         mav.addObject("products", productEntities);
 
         return mav;
     }
 
-    @Autowired
-    private DTOEntityConverter dtoEntityConverter;
-
-    @Autowired
-    private ProductMapper productMapper;
-
     @DeleteMapping(value = "/admin/product/delete")
-    public ResponseEntity<ProductDTO> deleteProduct(@RequestParam String code) {
-        ProductEntity productEntity = productService.delete(code);
-        ProductDTO productDto = dtoEntityConverter.toDTO(productEntity, productMapper);
-        return new ResponseEntity<ProductDTO>(productDto, productDto.getHttpStatus());
+    public ResponseEntity<ProductEntity> deleteProduct(@RequestParam String code) {
+        ProductEntity productEntity = productService.delete(code).toLaziness();
+        return new ResponseEntity<ProductEntity>(productEntity, productEntity.getHttpStatus());
     }
 
     @GetMapping(value = "/admin/product/edit")

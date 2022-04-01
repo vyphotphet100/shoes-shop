@@ -2,11 +2,7 @@ package com.group3.shoesshop.controller.customer;
 
 import com.group3.shoesshop.constant.Constant;
 import com.group3.shoesshop.controller.common.BaseController;
-import com.group3.shoesshop.converter.dto_entity.DTOEntityConverter;
-import com.group3.shoesshop.converter.dto_entity.mapper.UserMapper;
-import com.group3.shoesshop.dto.UserDTO;
 import com.group3.shoesshop.entity.OrderItemEntity;
-import com.group3.shoesshop.entity.RoleEntity;
 import com.group3.shoesshop.entity.UserEntity;
 import com.group3.shoesshop.service.IOrderItemService;
 import com.group3.shoesshop.service.IRoleService;
@@ -23,14 +19,9 @@ import javax.servlet.http.HttpServletRequest;
 
 @Controller
 public class AccountController extends BaseController {
-    @Autowired
-    private DTOEntityConverter converter;
 
     @Autowired
     private IRoleService roleService;
-
-    @Autowired
-    private UserMapper userMapper;
 
     @Autowired
     private IOrderItemService orderItemService;
@@ -53,33 +44,34 @@ public class AccountController extends BaseController {
     }
 
     @PutMapping(value = "/customer/my-account/change-password")
-    public ResponseEntity<UserDTO> changePasswordPut(HttpServletRequest request, @RequestBody UserEntity userEntity) {
-        String oldPassword = userEntity.getListRequest().get(0).toString();
-        String newPassword = userEntity.getListRequest().get(1).toString();
-        String confirmPassword = userEntity.getListRequest().get(2).toString();
+    public ResponseEntity<UserEntity> changePasswordPut(HttpServletRequest request, @RequestBody UserEntity userEntity) {
+        String oldPassword = (String)userEntity.getListRequest().values().toArray()[0];
+        String newPassword = userEntity.getListRequest().values().toArray()[1].toString();
+        String confirmPassword = userEntity.getListRequest().values().toArray()[2].toString();
         UserEntity userSession = MyUtils.getUserFromSession(request);
         if (userSession == null)
             return null;
 
-        UserDTO userDto = new UserDTO();
+//        UserDTO userDto = new UserDTO();
+        UserEntity resEntity = new UserEntity();
         if (!userSession.getPassword().equals(oldPassword)) {
-            userDto.setMessage("Old password is wrong");
-            return new ResponseEntity<UserDTO>(userDto, HttpStatus.FORBIDDEN);
+            resEntity = userService.exceptionObject(resEntity, "Old password is wrong").toLaziness();
+            return new ResponseEntity<UserEntity>(resEntity, resEntity.getHttpStatus());
         }
 
         if (!newPassword.equals(confirmPassword)) {
-            userDto.setMessage("Confirm password is wrong");
-            return new ResponseEntity<UserDTO>(userDto, HttpStatus.FORBIDDEN);
+            resEntity = userService.exceptionObject(resEntity, "Confirm password is wrong").toLaziness();
+            return new ResponseEntity<UserEntity>(resEntity, resEntity.getHttpStatus());
         }
 
         if (newPassword.equals(null) || newPassword.trim().equals("")) {
-            userDto.setMessage("New password is invalid");
-            return new ResponseEntity<UserDTO>(userDto, HttpStatus.FORBIDDEN);
+            resEntity = userService.exceptionObject(resEntity, "New password is invalid").toLaziness();
+            return new ResponseEntity<UserEntity>(resEntity, resEntity.getHttpStatus());
         }
 
         userSession.setPassword(newPassword);
-        userDto = converter.toDTO(userService.update(userSession), userMapper);
-        return new ResponseEntity<UserDTO>(userDto, userDto.getHttpStatus());
+        resEntity = userService.update(userSession).toLaziness();
+        return new ResponseEntity<UserEntity>(resEntity, resEntity.getHttpStatus());
     }
 
     @GetMapping(value = "/customer/my-account/edit-account")
@@ -90,7 +82,7 @@ public class AccountController extends BaseController {
     }
 
     @PutMapping(value = "/customer/my-account/edit-account")
-    public ResponseEntity<UserDTO> editAccountPut(HttpServletRequest request, @RequestBody UserEntity userEntity) {
+    public ResponseEntity<UserEntity> editAccountPut(HttpServletRequest request, @RequestBody UserEntity userEntity) {
         UserEntity userSession = MyUtils.getUserFromSession(request);
         if (userSession == null)
             return null;
@@ -99,7 +91,8 @@ public class AccountController extends BaseController {
         UserEntity resEntity = userService.update(userEntity);
         if (resEntity.getHttpStatus().equals(HttpStatus.OK))
             request.getSession().setAttribute(Constant.USER_SESSION, resEntity);
-        return new ResponseEntity<UserDTO>(converter.toDTO(resEntity, userMapper), resEntity.getHttpStatus());
+        resEntity = resEntity.toLaziness();
+        return new ResponseEntity<UserEntity>(resEntity, resEntity.getHttpStatus());
     }
 
     @GetMapping(value = "/customer/my-account/create-seller")
@@ -131,15 +124,17 @@ public class AccountController extends BaseController {
     }
 
     @GetMapping(value = "/customer/my-account/login")
-    public ModelAndView login(HttpServletRequest request, UserEntity user) {
+    public ModelAndView login(HttpServletRequest request, UserEntity user){
         if (MyUtils.getUserFromSession(request) != null)
             return new ModelAndView("redirect:/customer/my-account/account");
 
         ModelAndView mav = new ModelAndView("Customer_Page/Pages/MyAccount/Login/index");
         if (user == null)
             mav.addObject("user", new UserEntity());
-        else
+        else {
             mav.addObject("user", user);
+        }
+
         return returnModelAndView(request, mav);
     }
 
@@ -218,10 +213,8 @@ public class AccountController extends BaseController {
     @GetMapping(value = "/customer/my-account/order-history")
     public ModelAndView orderHistory(HttpServletRequest request) {
         ModelAndView mav = new ModelAndView("Customer_Page/Pages/MyAccount/OrderHistory/index");
-        UserEntity user = userService.findOne(MyUtils.getUserFromSession(request).getId());
+        UserEntity user = userService.findOneByIsActiveAndId(true, MyUtils.getUserFromSession(request).getId());
         mav.addObject("user", user);
         return returnModelAndView(request, mav);
     }
-
-
 }

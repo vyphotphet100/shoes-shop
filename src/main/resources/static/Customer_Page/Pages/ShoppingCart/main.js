@@ -103,6 +103,11 @@ function checkOut() {
         }
     }
 
+    if (orderItemIds.length == 0) {
+        alert('You did not choose products to checkout');
+        return;
+    }
+
     // update quantity of each selected order item
     for (var i=0; i<orderItemIds.length; i++) {
         if (!updateQuantity(orderItemIds[i]))
@@ -111,7 +116,9 @@ function checkOut() {
 
     // add order item to ready order item
     var orderItemEntity = {
-        listRequest: orderItemIds
+        listRequest: {
+            'orderItemIds' : orderItemIds
+        }
     }
 
     var result = $.ajax({
